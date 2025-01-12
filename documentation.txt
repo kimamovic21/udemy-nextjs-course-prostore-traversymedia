@@ -8,3 +8,5 @@ Section 01: Introduction
 02. The Stack
 
 03. The Project
+
+04. The Environment
