@@ -12,3 +12,5 @@ Section 01: Introduction
 04. The Environment
 
 05. Premium Docs
+
+06. Final Code & Demo
