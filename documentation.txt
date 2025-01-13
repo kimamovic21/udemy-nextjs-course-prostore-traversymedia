@@ -19,3 +19,19 @@ Section 01: Introduction
 Section 02: App Creation & Basics Layout
 
 07. Section Intro
+
+08. Create Next App & Assets
+-preuzemo folder resources
+-otvorimo web stranicu: https://nextjs.org/
+-u terminalu ukucamo komandu npx create-next-app@latest .
+-ukucamo komandu npm run dev 
+-u komponentu layout.tsx importujemo funkciju Inter iz paketa next/font/google
+-kreiramo varijablu const inter
+-u jsx-u, u prop className proslijedujemo dinamicku vrijednost varijable inter
+-brisemo globals.css fajl
+-kreiramo folder assets
+-u folder assets dodajemo starter folder styles sa globals.css fajlom i loader.gif sliku
+-u komponentu layout.tsx importujemo globals.css fajl
+-u komponenti app/page.tsx kreiramo i eksportujemo funkciju Homepage() kao default
+-u folder app dodajemo logo favicon.ico
+-u folder public dodajemo folder images
