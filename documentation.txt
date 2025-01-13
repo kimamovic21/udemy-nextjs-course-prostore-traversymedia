@@ -35,3 +35,13 @@ Section 02: App Creation & Basics Layout
 -u komponenti app/page.tsx kreiramo i eksportujemo funkciju Homepage() kao default
 -u folder app dodajemo logo favicon.ico
 -u folder public dodajemo folder images
+
+09. ShadCN UI Setup
+-otvorimo web stranicu: https://ui.shadcn.com/
+-u terminalu ukucamo komandu: npx shadcn@latest init
+-odaberemo opciju Use --legacy-peer-deps
+-nakon instalacije paketa Shadcn generisan folder lib i utils.ts fajl
+-nakon instalacije paketa Shadcn generisan components.json fajl
+-ukucamo komandu: npx shadcn@latest add button
+-nakon instalacije komponente button generisan folderi components, ui i komponenta button.tsx
+-otvorimo link: https://ui.shadcn.com/docs/react-19
