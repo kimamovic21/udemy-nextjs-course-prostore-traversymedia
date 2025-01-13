@@ -45,3 +45,17 @@ Section 02: App Creation & Basics Layout
 -ukucamo komandu: npx shadcn@latest add button
 -nakon instalacije komponente button generisan folderi components, ui i komponenta button.tsx
 -otvorimo link: https://ui.shadcn.com/docs/react-19
+
+10. Root Layout & Constants
+-u folderu app kreiramo folder (root) i komponentu layout.tsx
+-u komponenti (root)/layout.tsx kreiramo i eksportujemo funkciju RootLayout() kao default
+-u jsx-u kreiramo HTML elemente sa Tailwind CSS klasama
+-u main element dodajemo prop children
+-komponentu app/page.tsx premjestamo u folder (root)
+-u folderu lib kreiramo folder constants i index.ts fajl
+-u constants/index.ts fajlu kreiramo i eksportujemo varijable const APP_NAME, APP_DESCRIPTION i const SERVER_URL
+-kreiramo .env fajl
+-u .env fajlu kreiramo tri env varijable NEXT_PUBLIC_APP_NAME, NEXT_PUBLIC_APP_DESCRIPTION i NEXT_PUBLIC_SERVER_URL
+-kreiramo example.env fajl u koji dodajemo primjer env varijabli koje je potrebno kreirati
+-u komponentu app/layout.tsx importujemo varijable APP_NAME, APP_DESCRIPTION i SERVER_URL iz utils.ts fajla
+-u eslint.config.mjs fajl dodajemo objekt rules
