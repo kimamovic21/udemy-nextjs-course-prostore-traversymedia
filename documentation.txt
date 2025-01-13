@@ -14,3 +14,8 @@ Section 01: Introduction
 05. Premium Docs
 
 06. Final Code & Demo
+
+
+Section 02: App Creation & Basics Layout
+
+07. Section Intro
