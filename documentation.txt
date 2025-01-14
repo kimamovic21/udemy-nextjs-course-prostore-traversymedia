@@ -59,3 +59,44 @@ Section 02: App Creation & Basics Layout
 -kreiramo example.env fajl u koji dodajemo primjer env varijabli koje je potrebno kreirati
 -u komponentu app/layout.tsx importujemo varijable APP_NAME, APP_DESCRIPTION i SERVER_URL iz utils.ts fajla
 -u eslint.config.mjs fajl dodajemo objekt rules
+-uobjekt rules dodajemo opciju: @typescript-eslint/no-empty-interface": "off"
+
+11. Header & Footer Components
+-u eslint.config.mjs fajl dodajemo opciju: @typescript-eslint/no-unused-vars": "warn"
+-u folderu components kreiramo foldere shared i header
+-u folderu header kreiramo komponentu index.tsx
+-u komponentu (root)/layout.tsx importujemo komponentu Header iz komponente header/index.tsx
+-u komponenti header/index.tsx kreiramo i eksportujemo funkciju Header() kao default
+-otvorimo link: https://www.npmjs.com/package/lucide-react
+-u terminalu instaliramo paket Lucide React sa komandom npm i lucide-react
+-u komponentu header/index.tsx importujemo React ikonice ShoppingCart i UserIcon iz paketa Lucide React
+-importujemo komponentu Image iz paketa next/image
+-otvorimo link: https://nextjs.org/docs/pages/api-reference/components/image
+-importujemo komponentu Link iz paketa next/link
+-otvorimo link: https://nextjs.org/docs/pages/api-reference/components/link
+-importujemo komponentu Button iz komponente ui/button.tsx
+-otvorimo link: 
+-importujemo varijablu APP_NAME iz lib/constants.ts fajla
+-u funkciji Header(), u jsx-u kreiramo header element kao roditelj element
+-elementu header dodajemo Tailwind CSS klase w-full i border-b
+-u header elementu kreiramo div element sa Tailwind CSS klasama wrapper i flex-between
+-u div elementu sa klasama wrapper i flex-between kreiramo dva div elementa
+-u prvi div element dodajemo komponentu Link
+-komponenti Link dodajemo prop href i className
+-u komponentu Link dodajemo komponentu Image i kreiramo span element
+-komponenti Image dodajemo prop priority, src, width, height i alt
+-span elementu dodajemo Tailwind CSS klase
+-u drugi div element dodajemo dvije komponente Button
+-komponentama Button dodajemo prop asChild i variant
+-u komponente Button dodajemo komponente Link sa prop href
+-u komponentama Link kreiramo po dva span elementa
+-u prvi span element dodajemo React ikonicu, dok u drugi span element dodajemo opis
+-u folderu components kreiramo komponentu footer.tsx
+-u komponenti footer.tsx kreiramo i eksportujemo funkciju Footer() kao default
+-u komponentu (root)/layout.tsx importujemo komponentu Footer iz komponente footer.tsx
+-u komponentu footer.tsx importujemo varijablu APP_NAME iz lib/constants.ts fajla
+-u funkciji Footer() kreiramo varijablu const currentYear
+-u jsx-u kreiramo footer element kao roditelj element
+-u footer elementu kreiramo div element sa Tailwind CSS klasama p-5 i flex-center
+-u div elementu kreiramo tri span elementa
+-u span elementima dinamicki prikazujemo vrijednost varijabli currentYear i APP_NAME
