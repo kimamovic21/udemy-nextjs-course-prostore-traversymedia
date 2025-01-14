@@ -134,8 +134,8 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -u komponentu Button dodajemo uslov ternarni operator theme === 'system'
 -importujemo funkcije useState i useEffect iz paketa react
 -u funkciji ModeToggle() pozivamo funkciju useState(false)
--vrijednost fukncije useState(false) pohranjujemo u varijable const [mounted, setMounted]
--pozivamo fuknciju useEffect()
+-vrijednost funkcije useState(false) pohranjujemo u varijable const [mounted, setMounted]
+-pozivamo funkciju useEffect()
 -u funkciji useEffect() pozivamo funkciju setMounted(true)
 -dodajemo uslov if (!mounted) return null
 -u komponentu DropdownMenu dodajemo komponentu DropdownMenuContent sa otvorenim i zatvorenim tagom
@@ -144,7 +144,7 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -dodajemo tri komponente DropdownMenuCheckboxItem sa otvorenim i zatvorenim tagom
 -komponentama DropdownMenuCheckboxItem dodajemo prop checked i dogadaj onClick
 -u prop checked proslijedujemo dinamicku vrijednost varijable theme
--u dogadaj onClick proslijedujemo fukncije () => setTheme()
+-u dogadaj onClick proslijedujemo funkcije () => setTheme()
 
 13. Loading & Not Found Pages
 -otvorimo link: https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming
@@ -172,7 +172,7 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -otvorimo link: https://ui.shadcn.com/docs/components/sheet
 -u terminalu ukucamo komandu: npx shadcn@latest add sheet
 -u folderu header kreiramo komponentu menu.tsx
--u komponenti menu.tsx kreiramo i eksportujemo fuknciju Menu() kao default
+-u komponenti menu.tsx kreiramo i eksportujemo funkciju Menu() kao default
 -u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
 -u div elementu kreiramo nav element sa Tailwind CSS klasama
 -iz komponente header/index.tsx prebacujemo komponente ModeToggle.tsx i Button u komponentu menu.tsx
@@ -192,3 +192,21 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -u komponentu Link dodajemo React ikonicu ShoppingCart
 -u komponentu SheetContent dodajemo komponentu SheetDescription sa otvorenim i zatvorenim tagom
 -u komponentu SheetContent dodajemo jos jednu komponentu Button sa prop asChild
+
+15. Sample Products & Product List
+-u eslint.config.mjs fajl dodajemo, u objekt rules dodajemo opciju: "@typescript-eslint/no-explicit-any": "off"
+-kreiramo folder db i sample-data.ts fajl
+-u sample-data.ts fajlu kreiramo i eskportujemo niz sampleData kao default
+-u komponentu (root)/page.tsx importujemo niz sampleData
+-u folderu components/shared kreiramo folder product i komponentu product-list.tsx
+-u komponenti product/product-list.tsx kreiramo i eksportujemo funkciju ProductList() kao default
+-u komponentu (root)/page.tsx importujemo komponentu ProductList.tsx iz komponenta product-list.tsx
+-u jsx-u dodajemo prazan fragment kao roditelj element
+-u element prazan fragment dodajemo komponentu ProductList sa prop data, title i limit
+-u komponenti product-list.tsx, funkciji ProductList() dodajemo parametre destruktuirane prop sa tipovima
+-u jsx-u div roditelj elementu dodajemo Tailwind CSS klasu my-10
+-u div elementu kreiramo h2 element sa Tailwind CSS klasama
+-u div elementu dodajemo uslov ternarni operator data?.length > 0
+-kreiramo varijablu const limitedData
+-u prvi dio ternarnog uslova dodajemo metodu limitedData?.map()
+-u drugi dio ternarnog uslova dodajemo elemente div i p sa porukom da proizvodi nisu pronadeni
