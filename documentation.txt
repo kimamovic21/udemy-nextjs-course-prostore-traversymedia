@@ -167,3 +167,28 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -kreiramo HTML elemente h2 i p sa Tailwind CSS klasama
 -importujemo komponentu Link iz paketa next/link
 -u div element dodajemo komponentu Link sa prop href i className
+
+14. Responsive Sheet Menu
+-otvorimo link: https://ui.shadcn.com/docs/components/sheet
+-u terminalu ukucamo komandu: npx shadcn@latest add sheet
+-u folderu header kreiramo komponentu menu.tsx
+-u komponenti menu.tsx kreiramo i eksportujemo fuknciju Menu() kao default
+-u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
+-u div elementu kreiramo nav element sa Tailwind CSS klasama
+-iz komponente header/index.tsx prebacujemo komponente ModeToggle.tsx i Button u komponentu menu.tsx
+-u komponentu header/index.tsx importujemo komponentu Menu iz komponente menu.tsx
+-u komponentu menu.tsx importujemo React ikonicu EllipsisVertical iz paketa lucide/react
+-importujemo komponente Sheet, SheetContent, SheetTitle i SheetTrigger iz komponente ui/sheet.tsx
+-kreiramo jos jedan nav element sa Tailwind CSS klasom md:hidden
+-u element nav dodajemo komponentu Sheet sa otvorenim i zatvorenim tagom
+-u komponentu Sheet dodajemo komponentu SheetTrigger sa otvorenim i zatvorenim tagom
+-u komponentu SheetTrigger dodajemo komponentu React ikonicu EllipsisVertical
+-u komponentu Sheet dodajemo komponentu SheetContent sa otvorenim i zatvorenim tagom
+-komponenti SheetContent dodajemo Tailwind CSS Flex klase
+-u komponentu SheetContent dodajemo komponentu SheetTitle sa otvorenim i zatvorenim tagom
+-u komponentu SheetContent dodajemo komponentu ModeToggle
+-u komponentu SheetContent dodajemo komponentu Button sa prop asChild i variant
+-u komponentu Button dodajemo komponentu Link sa prop href
+-u komponentu Link dodajemo React ikonicu ShoppingCart
+-u komponentu SheetContent dodajemo komponentu SheetDescription sa otvorenim i zatvorenim tagom
+-u komponentu SheetContent dodajemo jos jednu komponentu Button sa prop asChild
