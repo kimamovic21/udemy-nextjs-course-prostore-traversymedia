@@ -100,3 +100,48 @@ Section 02: App Creation & Basics Layout
 -u footer elementu kreiramo div element sa Tailwind CSS klasama p-5 i flex-center
 -u div elementu kreiramo tri span elementa
 -u span elementima dinamicki prikazujemo vrijednost varijabli currentYear i APP_NAME
+
+12. Theme Mode Toggle
+-otvorimo link: https://ui.shadcn.com/docs/dark-mode/next
+-otvorimo link: https://ui.shadcn.com/themes
+-otvorimo link: https://www.npmjs.com/package/next-themes
+-u globals.css fajl dodajemo kod iz dokumentacije za Shadcn teme
+-u globals.css fajl dodajemo direktivu @layer base 
+-u direktivu @layer base dodajemo objekte :root i .dark
+-u terminalu ukucamo komandu: npm i next-themes
+-otvorimo link: https://ui.shadcn.com/docs/components/dropdown-menu
+-u terminalu ukucamo komandu: npx shadcn@latest add dropdown-menu
+-u komponentu app/layout.tsx importujemo komponentu ThemeProvider iz paketa next-themes
+-u jsx-u dodajemo komponentu ThemeProvider sa otvorenim i zatvorenim tagom
+-komponenti ThemeProvider dodajemo prop attribute, defaultTheme, enableSystem i disableTransitionOnChange
+-u komponentu ThemeProvider dodajemo prop {children}
+-html roditelj elementu dodajemo atribut suppressHydrationWarning>
+-u folderu components/header kreiramo komponentu mode-toggle.tsx
+-u komponenti mode-toggle.tsx kreiramo i eksportujemo funkciju ModeToggle() kao default
+-u komponentu header/index.tsx importujemo komponentu ModeToggle iz komponente mode-toggle.tsx
+-otvorimo link: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+-u komponentu mode-toggle.tsx dodajemo direktivu 'use client'
+-importujemo funkciju useTheme iz paketa next-themes
+-u funkciji ModeToggle() pozivamo funkciju useTheme()
+-vrijednost funkcije useTheme() pohranjujemo u destruktuirane varijable const { theme, setTheme }
+-importujemo sest komponenti: 
+DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuContent i DropdownMenuCheckboxItem iz komponente ui/dropdown-menu.tsx
+-importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo React ikonice SunIcon, Moon i SunMoon iz paketa lucide-react
+-u jsx-u dodajemo komponentu DropdownMenu kao roditelj komponentu
+-u komponentu DropdownMenu dodajemo komponentu DropdownMenuTrigger sa prop asChild
+-u komponentu DropdownMenuTrigger dodajemo komponentu Button sa prop variant
+-u komponentu Button dodajemo uslov ternarni operator theme === 'system'
+-importujemo funkcije useState i useEffect iz paketa react
+-u funkciji ModeToggle() pozivamo funkciju useState(false)
+-vrijednost fukncije useState(false) pohranjujemo u varijable const [mounted, setMounted]
+-pozivamo fuknciju useEffect()
+-u funkciji useEffect() pozivamo funkciju setMounted(true)
+-dodajemo uslov if (!mounted) return null
+-u komponentu DropdownMenu dodajemo komponentu DropdownMenuContent sa otvorenim i zatvorenim tagom
+-u komponentu DropdownMenuContent dodajemo komponentu DropdownMenuLabel sa otvorenim i zatvorenim tagom
+-dodajemo komponentu DropdownMenuSeparator sa samozatvarajucim tagom
+-dodajemo tri komponente DropdownMenuCheckboxItem sa otvorenim i zatvorenim tagom
+-komponentama DropdownMenuCheckboxItem dodajemo prop checked i dogadaj onClick
+-u prop checked proslijedujemo dinamicku vrijednost varijable theme
+-u dogadaj onClick proslijedujemo fukncije () => setTheme()
