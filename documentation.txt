@@ -145,3 +145,25 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -komponentama DropdownMenuCheckboxItem dodajemo prop checked i dogadaj onClick
 -u prop checked proslijedujemo dinamicku vrijednost varijable theme
 -u dogadaj onClick proslijedujemo fukncije () => setTheme()
+
+13. Loading & Not Found Pages
+-otvorimo link: https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming
+-u folderu app kreiramo komponentu loading.tsx
+-u komponenti app/loading.tsx kreiramo i eksportujemo funkciju LoadingPage() kao default
+-importujemo komponentu Image iz paketa next/image
+-importujemo sliku loader iz foldera assets
+-u jsx-u roditelj div elementu dodajemo Tailwind CSS Flex klase
+-u div element dodajemo komponentu Image sa prop src, alt, width i height
+-u komponenti (root)/page.tsx kreiramo funkciju delay()
+-otvorimo link: https://nextjs.org/docs/pages/building-your-application/routing/custom-error
+-u folderu app kreiramo komponentu not-found.tsx
+-u komponenti not-found.tsx kreiramo i eksportujemo funkciju NotFoundPage() kao default
+-dodajemo direktivu 'use client'
+-importujemo komponentu Image iz paketa next/image
+-importujemo varijablu APP_NAME iz lib/constants.ts fajla
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u jsx-u dodajemo roditelj div elementu Tailwind CSS Flex klase
+-u div element dodajemo komponentu Image sa prop src, width, width, height i priority
+-kreiramo HTML elemente h2 i p sa Tailwind CSS klasama
+-importujemo komponentu Link iz paketa next/link
+-u div element dodajemo komponentu Link sa prop href i className
