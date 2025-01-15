@@ -259,3 +259,15 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 Section 03: Database, Prisma & Product Display
 
 18. Section Intro
+
+19. PostgreSQL & Prisma Setup
+-otvorimo web stranicu: https://vercel.com/
+-na web stranici Vercel odaberemo opciju Storage i kreiramo bazu podataka
+-otvorimo web stranicu: https://www.prisma.io/
+-u terminalu ukucamo komandu: npm install -D prisma @prisma/client
+-ukucamo komandu npx prisma init
+-nakon komande npx prisma init generise se folder prisma i schema.prisma fajl
+-u .env fajlu se generise env varijabla DATABASE_URL
+-varijabli DATABASE_URL dodajemo link za konekciju baze podataka (connection string) sa web stranice Vercel
+-instaliramo VS Code ekstenziju za Prismu
+-u example.env dodajemo primjer za varijablu DATABASE_URL koju je potrebno kreirati 
