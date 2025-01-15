@@ -280,3 +280,19 @@ Section 03: Database, Prisma & Product Display
 -ukucamo komandu: npx prisma migrate dev --name init
 -nakon ove komande u folderu prisma se generise folder migrations
 -ukucamo komandu: npx prisma studio
+
+21. Seed Sample Data
+-otvorimo link: https://www.npmjs.com/package/tsx
+-u terminalu instaliramo paket tsx sa komandom npm i tsx
+-otvorimo link: https://www.npmjs.com/package/colors
+-u terminalu instaliramo paket colors sa komandom npm i colors
+-otvorimo link: https://www.prisma.io/docs/orm/reference/prisma-client-reference
+-u folderu db kreiramo seed.ts fajl
+-u seed.ts fajl importujemo funkciju PrismaClient iz paketa prisma/client
+-importujemo nit sampleData iz sample-data.ts fajla
+-kreiramo asinhronu funkciju main()
+-u funkciji main() pozivamo funkciju new PrismaClient()
+-vrijednost funkcije new PrismaClient() pohranjujemo u varijablu const prisma
+-pozivamo funkciju await prisma.product.deleteMany()
+-pozivamo funkciju await prisma.product.createMany()
+-u terminalu ukucamo komandu: npx tsx ./db/seed
