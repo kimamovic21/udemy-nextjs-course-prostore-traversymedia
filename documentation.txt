@@ -237,3 +237,20 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -dodajemo uslvo ternarni operator product?.stock > 0
 -u prvi dio ternarnog operatora dodajemo p element u kojem dinamicki prikazujemo cijenu artikla
 -u drugi dio ternarnog operatora dodajemo p element sa klasom text-destructive u kojem prikazujemo poruku kako artikl nije dostupan
+
+17. Product Price Component
+-u folderu components/product kreiramo komponentu product-price.tsx
+-u komponenti product-price.tsx kreiramo i eksportujemo funkciju ProductPrice() kao default
+-funkciji ProductPrice() dodajemo parametre destruktuirane prop value i className sa tipovima
+-u funkciji ProductPrice() kreiramo varijablu const stringValue
+-dodajemo metodu stringValue.split('.')
+-vrijednost metode stringValue.split('.') pohranjujemo u varijable const [intValue, floatValue]
+-importujemo funkciju cn iz lib/utils.ts fajla
+-u jsx-u kreiramo p element kao roditelj element
+-p elementu dodajemo prop className
+-u prop className proslijedujemo funkciju cn()
+-u p elementu kreiramo tri span elementa
+-u komponentu product-card.tsx importujemo komponentu ProductPrice iz komponente product-price.tsx
+-u prvi dio ternarnog uslova dodajemo komponentu ProductPrice umjesto p elementa
+-komponenti ProductPrice dodajemo prop value
+-u prop value proslijedujemo funkciju Number(product.price)
