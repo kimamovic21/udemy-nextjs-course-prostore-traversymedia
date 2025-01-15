@@ -296,3 +296,27 @@ Section 03: Database, Prisma & Product Display
 -pozivamo funkciju await prisma.product.deleteMany()
 -pozivamo funkciju await prisma.product.createMany()
 -u terminalu ukucamo komandu: npx tsx ./db/seed
+
+22. Load Products From Database
+-otvorimo link: https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
+-otvorimo link: https://stackoverflow.com/questions/77091418/warning-only-plain-objects-can-be-passed-to-client-components-from-server-compo
+-u folderu lib kreiramo fodler actions
+-u folderu actions kreiramo product.actions.ts fajl
+-u product.actions.ts fajl dodajemo direktivu 'use server'
+-kreiramo i eksportujemo asinhronu funkciju getLatestProducts()
+-importujemo funkciju PrismaClient iz paketa prisma/client
+-u funkciji getLatestProducts() kreiramo varijablu const prisma
+-pozivamo funkciju await prisma.product.findMany()
+-vrijednost funkcije await prisma.product.findMany() pohranjujemo u varijablu const data
+-dodajemo izjavu return data
+-u utils.ts fajlu kreiramo i eskportujemo funkciju convertToPlainObject()
+-u product.actions.ts fajl importujemo funkciju convertToPlainObject
+-u izjavu return dodajemo funkciju convertToPlainObject(data)
+-u komponentu (root)/page.tsx importujemo funkciju getLatestProducts iz product.actions.ts fajla
+-u funkciji Homepage() pozivamo funkciju await getLatestProducts()
+-vrijednost funkcije await getLatestProducts() pohranjujemo u varijablu const latestProducts
+-u prop data proslijedujemo vrijednost varijable latestProducts
+-u constants/index.ts fajlu kreiramo i eksportujemo varijablu const LATEST_PRODUCTS_LIMIT
+-u .env fajl dodajemo varijablu LATEST_PRODUCTS_LIMIT
+-u example.env fajl dodajemo primjer varijable LATEST_PRODUCTS_LIMIT koju je potrebno kreirati
+-u product.actions.ts fajl importujemo varijablu LATEST_PRODUCTS_LIMIT iz constants/index.ts fajla
