@@ -24,7 +24,8 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "tsx": "^4.19.2",
-    "udemy-nextjs-course-prostore-traversymedia": "file:"
+    "udemy-nextjs-course-prostore-traversymedia": "file:",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

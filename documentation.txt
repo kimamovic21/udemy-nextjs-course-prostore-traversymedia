@@ -320,3 +320,28 @@ Section 03: Database, Prisma & Product Display
 -u .env fajl dodajemo varijablu LATEST_PRODUCTS_LIMIT
 -u example.env fajl dodajemo primjer varijable LATEST_PRODUCTS_LIMIT koju je potrebno kreirati
 -u product.actions.ts fajl importujemo varijablu LATEST_PRODUCTS_LIMIT iz constants/index.ts fajla
+
+23. Zod Validation & Type Inference
+-otvorimo web stranicu: https://zod.dev/
+-u terminalu ukucamo komandu: npm i zod
+-u folderu lib kreiramo validators.ts fajl
+-u validators.ts fajl importujemo instancu z iz paketa zod
+-pozivamo funkciju z.object()
+-vrijednost funkcije z.object() pohranjujemo u varijablu insertProductSchema
+-eksportujemo varijable insertProductSchema
+-kreiramo folder types
+-u folderu types kreiramo index.ts fajl
+-u types/index.ts fajl importujemo instancu z iz paketa zod
+-importujemo varijablu insertProductSchema iz lib/validators.ts fajla
+-kreiramo i eksportujemo tip Product
+-tipu Product dodajemo genericki tip z.infer<typeof insertProductSchema> & { ... }
+-u objekt dodajemo opcije id, rating i createdAt
+-u lib/utils.ts fajlu kreiramo i eksportujemo funkciju formatNumberWithDecimal()
+-u lib/validators.ts fajl importujemo funkciju formatNumberWithDecimal
+-kreiramo varijablu const currency
+-u objekt z.object({}) dodajemo key - value par price: currency
+-u komponentu product-card.tsx importujemo tip Product iz foldera types
+-u funkciji ProductCard() destruktuiranom parametru product dodajemo tip Product
+-u komponentu product-list.tsx importujemo tip Product iz foldera types
+-u funkciji ProductList() destruktuiranom parametru data dodajemo tip Product
+-u jsx-u, u funkciji map() parametru product dodajemo tip Product
