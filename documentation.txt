@@ -210,3 +210,30 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -kreiramo varijablu const limitedData
 -u prvi dio ternarnog uslova dodajemo metodu limitedData?.map()
 -u drugi dio ternarnog uslova dodajemo elemente div i p sa porukom da proizvodi nisu pronadeni
+
+16. Product Card Component
+-otvorimo link: https://ui.shadcn.com/docs/components/card
+-u terminalu ukucamo komandu: npx shadcn@latest add card
+-u folderu components/product kreiramo komponentu product-card.tsx
+-u komponenti product-card.tsx kreiramo i eksportujemo funkciju ProductCard() kao default
+-u komponentu product-card.tsx importujemo komponente Link i Image iz paketa next
+-importujemo komponente Card, CardHeader i CardContent iz komponente ui/card.tsx
+-funkciji ProductCard() dodajemo parametar destruktuirani prop product sa tipom
+-u jsx-u dodajemo komponentu Card kao roditelj element sa Tailwind CSS klasama
+-u komponentu Card dodajemo komponentu CardHeader sa otvorenim i zatvorenim tagom
+-komponenti CardHeader dodajemo Tailwind CSS klase
+-u komponentu CardHeader dodajemo komponente Link i Image
+-u komponentu Card dodajemo komponentu CardContent sa otvorenim i zatvorenim tagom
+-komponenti CardContent dodajemo Tailwind CSS klase
+-u komponenti CardContent kreiramo div element
+-dodajemo komponentu Link sa prop href 
+-u prop href dodajemo dinamicki link
+-u komponenti Link kreiramo h2 element sa Tailwind CSS klasama
+-u komponentu product-list.tsx importujemo komponentu ProductCard iz komponente product-card.tsx
+-u funkciju map() dodajemo komponentu ProductCard umjesto div elementa
+-u komponenti CardContent kreiramo div element sa Tailwind CSS klasama
+-u div elementu kreiramo p element
+-u p elementu kreiramo dva span elementa
+-dodajemo uslvo ternarni operator product?.stock > 0
+-u prvi dio ternarnog operatora dodajemo p element u kojem dinamicki prikazujemo cijenu artikla
+-u drugi dio ternarnog operatora dodajemo p element sa klasom text-destructive u kojem prikazujemo poruku kako artikl nije dostupan
