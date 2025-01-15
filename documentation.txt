@@ -254,3 +254,8 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -u prvi dio ternarnog uslova dodajemo komponentu ProductPrice umjesto p elementa
 -komponenti ProductPrice dodajemo prop value
 -u prop value proslijedujemo funkciju Number(product.price)
+
+
+Section 03: Database, Prisma & Product Display
+
+18. Section Intro
