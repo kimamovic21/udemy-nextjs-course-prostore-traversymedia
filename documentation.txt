@@ -431,3 +431,11 @@ Section 03: Database, Prisma & Product Display
 -komponenti Image dodajemo prop src, alt, width, height
 -u dogadaj onClick proslijedujemo funkciju () => setCurrent(index)
 -u prop className proslijedujemo dinamicku klasu cn()
+
+27. Initial Deployment
+-u terminalu ukucamo komandu: npm run build
+-otvorimo Web stranicu: https://github.com i postavimo kod
+-na Web stranici https://vercel.com kreiramo novi projekt
+-u kreirani projekt dodajemo env varijable iz .env fajla
+-u opciji Install Command dodajemo komandu: npm install --legacy-peer-deps
+-promjenimo ime varijable NEXT_PUBLIC_SERVER_URL nakon sto dobijemo Vercel link projekta
