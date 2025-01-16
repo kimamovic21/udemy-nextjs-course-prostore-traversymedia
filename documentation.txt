@@ -409,3 +409,25 @@ Section 03: Database, Prisma & Product Display
 -kreiramo div element u koji dodajemo komponentu Badge
 -dodajemo uslov ternarni operator product?.stock > 0 
 -dodajemo uslov za kondicionalno renderovanje komponenta Button product?.stock > 0 &&
+
+26. Product Images Component
+-u folderu shared/product kreiramo komponentu product-images.tsx
+-u komponenti product-images.tsx kreiramo i eksportujemo funkciju ProductImages() kao default
+-funkciji ProductImages() dodajemo parametar destruktuirani prop images sa tipom string[]
+-u komponentu [slug]/page.tsx importujemo komponentu ProductImages iz komponente product-images.tsx
+-u jsx-u, u div element za sliku dodajemo komponentu ProductImages sa prop images
+-u komponentu product-images.tsx dodajemo direktivu 'use client'
+-importujemo funkciju useState iz paketa react
+-importujemo komponentu Image iz paketa next/image
+-importujemo funkciju cn iz lib/utils.ts fajla
+-u funkciji ProductImages() kreiramo state varijablu const current i set funkciju setCurrent
+-u roditelj div element dodajemo komponentu Image
+-komponenti Image dodajemo prop src, alt, width, height i className
+-kreiramo div element sa Tailwind klasom flex
+-u div element dodajemo metodu images?.map()
+-u funkciji map() kreiramo div element
+-div elementu dodajemo prop key, className i dogadaj onClick
+-u div element dodajemo komponentu Image
+-komponenti Image dodajemo prop src, alt, width, height
+-u dogadaj onClick proslijedujemo funkciju () => setCurrent(index)
+-u prop className proslijedujemo dinamicku klasu cn()
