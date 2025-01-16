@@ -441,3 +441,8 @@ Section 03: Database, Prisma & Product Display
 -promjenimo ime varijable NEXT_PUBLIC_SERVER_URL nakon sto dobijemo Vercel link projekta
 
 28. A Note On ES Lint Errors
+
+
+Section 04: Authentication With Next Auth
+
+29. Section Intro
