@@ -345,3 +345,25 @@ Section 03: Database, Prisma & Product Display
 -u komponentu product-list.tsx importujemo tip Product iz foldera types
 -u funkciji ProductList() destruktuiranom parametru data dodajemo tip Product
 -u jsx-u, u funkciji map() parametru product dodajemo tip Product
+
+24. Serverless Environment Config
+-otvorimo link: https://www.npmjs.com/package/@neondatabase/serverless
+-u terminalu ukucamo komandu: npm i @neondatabase/serverless
+-otvorimo link: https://www.npmjs.com/package/@prisma/adapter-neon
+-ukucamo komandu: npm i @prisma/adapter-neon
+-otvorimo link: https://www.npmjs.com/package/ws
+-ukucamo komandu: npm i ws
+-otvorimo link: https://www.npmjs.com/package/@types/ws
+-ukucamo komandu: npm i -D @types/ws
+-otvorimo link: https://www.npmjs.com/package/bufferutil
+-ukucamo koamndu: npm i -D bufferutil
+-u schema.prisma fajlu u objekt generator client dodajemo opciju previewFeatures
+-ukucamo komandu npx prisma generate
+-otvorimo link: https://neon.tech/docs/serverless/serverless-driver
+-otvorimo link: https://www.prisma.io/docs/orm/overview/databases/neon
+-u folderu prisma kreiramo prisma.ts fajl
+-u prisma.ts fajl kopiramo kod iz dokumentacije
+-u product.actions.ts fajl importujemo instancu prisma iz db/prisma.ts fajla
+-izbrisemo varijablu const prisma
+-izbrisemo folder .next
+-u terminalu ukucamo komandu: npm run dev
