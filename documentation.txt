@@ -439,3 +439,5 @@ Section 03: Database, Prisma & Product Display
 -u kreirani projekt dodajemo env varijable iz .env fajla
 -u opciji Install Command dodajemo komandu: npm install --legacy-peer-deps
 -promjenimo ime varijable NEXT_PUBLIC_SERVER_URL nakon sto dobijemo Vercel link projekta
+
+28. A Note On ES Lint Errors
