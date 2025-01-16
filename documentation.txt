@@ -356,7 +356,7 @@ Section 03: Database, Prisma & Product Display
 -otvorimo link: https://www.npmjs.com/package/@types/ws
 -ukucamo komandu: npm i -D @types/ws
 -otvorimo link: https://www.npmjs.com/package/bufferutil
--ukucamo koamndu: npm i -D bufferutil
+-ukucamo komandu: npm i -D bufferutil
 -u schema.prisma fajlu u objekt generator client dodajemo opciju previewFeatures
 -ukucamo komandu npx prisma generate
 -otvorimo link: https://neon.tech/docs/serverless/serverless-driver
@@ -367,3 +367,45 @@ Section 03: Database, Prisma & Product Display
 -izbrisemo varijablu const prisma
 -izbrisemo folder .next
 -u terminalu ukucamo komandu: npm run dev
+
+25. Product Details Page
+-u product.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju getProductBySlug() sa parametrom slug
+-parametru slug dodajemo tip string
+-u izjavu return dodajemo metodu return await prisma.product.findFirst()
+-u funkciju findFirst() dodajemo konfiguracioni objekt
+-u konfiguracioni objekt dodajemo objekt where
+-u folderu (root) kreiramo foldere product i [slug]
+-u folderu product/[slug] kreiramo komponentu page.tsx
+-u komponenti [slug]/page.tsx kreiramo i eksportujemo funkciju ProductDetailsPage() kao default
+-otvorimo rutu: http://localhost:3000/product/[slug]
+-funkciji ProductDetailsPage() dodajemo parametar props sa tipom Promise
+-funkciji ProductDetailsPage() dodajemo asinhronost
+-u funkciji ProductDetailsPage() dodajemo metodu await props.params
+-vrijednost metode await props.params pohranjujemo u destruktuiranu varijablu const { slug }
+-importujemo funkciju notFound iz paketa next/navigation
+-importujemo funkciju getProductBySlug iz product.actions.ts fajla
+-dodajemo metodu getProductBySlug(slug)
+-vrijednost metode getProductBySlug(slug) pohranjujemo u varijablu const product
+-dodajemo uslov if (!product) notFound()
+-otvorimo link: https://ui.shadcn.com/docs/components/badge
+-u terminalu ukucamo komandu: npx shadcn@latest add badge
+-importujemo komponentu Badge iz komponente ui/components/badge.tsx
+-importujemo komponente Card i CardContent iz komponente ui/components/card.tsx
+-importujemo komponentu Button iz komponente ui/components/button.tsx
+-importujemo komponentu ProductPrice iz komponente product/product-price.tsx
+-u jsx-u dodajemo section element kao roditelj element
+-u section elementu kreiramo div element sa Tailwind CSS Grid klasama
+-u div elementu sa Tailwind CSS Grid klasama kreiramo dva div elementa za sliku i detalje sa Tailwind CSS klasom col-span-2
+-u div elementu za detalje kreiramo div element sa Tailwind CSS Flex klasama
+-u div elementu kreiramo p dva span elementa u kojima dinamicki prikazujemo marku artikla i kategoriju
+-kreiramo h2 element u kojem dinamicki prikazujemo ime artikla
+-kreiramo p element i unutar njega cetiri span elementa u kojima dinamicki prikazujemo ocjenu i recenzije artikla
+-kreiramo div element sa Tailwind CSS Flex klasama u koji dodajemo komponentu ProductPrice
+-komponenti ProductPrice dodajemo prop value i className
+-kreiramo div element sa klasom mt-10 u kojem dinamicki prikazujemo opis artikla
+-kreiramo div element u koji dodajemo komponentu Card sa otvorenim i zatvorenim tagom
+-u komponentu Card dodajemo komponentu CardContent
+-u komponenti CardContent kreiramo div element u koji dodajemo komponentu ProductPrice
+-kreiramo div element u koji dodajemo komponentu Badge
+-dodajemo uslov ternarni operator product?.stock > 0 
+-dodajemo uslov za kondicionalno renderovanje komponenta Button product?.stock > 0 &&
