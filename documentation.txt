@@ -446,3 +446,12 @@ Section 03: Database, Prisma & Product Display
 Section 04: Authentication With Next Auth
 
 29. Section Intro
+
+30. Prisma User-Related Models
+-otvorimo web stranicu: https://authjs.dev/
+-otvorimo link: https://authjs.dev/getting-started/adapters/prisma
+-u schema.prisma fajlu kreiramo modele User, Account, Session i VerificationToken
+-u terminalu ukucamo komandu: npx prisma generate
+-ukucamo komandu: npx prisma migrate dev --name add_user_based_tables
+-u folderu prisma generisan novi folder za migracije
+-ukucamo komandu: npx prisma studio
