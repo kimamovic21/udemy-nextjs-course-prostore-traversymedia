@@ -455,3 +455,16 @@ Section 04: Authentication With Next Auth
 -ukucamo komandu: npx prisma migrate dev --name add_user_based_tables
 -u folderu prisma generisan novi folder za migracije
 -ukucamo komandu: npx prisma studio
+
+31. Seed User Data
+-u sample-data.ts fajlu kreiramo niz users
+-otvorimo link: https://www.npmjs.com/package/bcrypt-ts
+-otvorimo link: https://npm.runkit.com/bcrypt-ts-edge
+-u terminalu ukucamo komandu: npm install bcrypt-ts-edge
+-importujemo funkciju hashSync iz paketa bcrypt-ts-edge
+-u nizu users kreiramo dva objekta sa podacima o korisniku
+-u objekte dodajemo polja name, email, password i role
+-u seed.ts fajl, u funkciju main() dodajemo vise metoda deleteMany()
+-dodajemo metodu await prisma.user.createMany() za korisnike
+-u terminalu ukucamo komandu: npx tsx ./db/seed
+-ukucamo komandu: npx prisma studio
