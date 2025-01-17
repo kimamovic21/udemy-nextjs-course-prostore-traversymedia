@@ -507,3 +507,13 @@ Section 04: Authentication With Next Auth
 -dodajemo uslov if (trigger === 'update') 
 -nakon uslova if dodajemo izjavu return session
 -objektu config dodajemo tip satisfies NextAuthConfig
+
+33. Next Auth Catch All API Route
+-otvorimo link: https://next-auth.js.org/getting-started/example#add-api-route
+-u folderu app kreiramo foldere api, auth i [...nextauth]
+-u folderu [...nextauth] kreiramo route.ts fajl
+-u route.ts fajl dodajemo console.log('Hello World');
+-u pretrazivacu otvorimo rutu: http://localhost:3000/api/auth/session
+-u route.ts fajl importujemo varijablu handlers iz auth.ts fajla
+-eksportujemo funkcije GET i POST
+-u pretrazivacu otvorimo rute: /api/auth/signin, /api/auth/signout i /api/auth/session
