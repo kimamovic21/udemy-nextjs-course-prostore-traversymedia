@@ -468,3 +468,42 @@ Section 04: Authentication With Next Auth
 -dodajemo metodu await prisma.user.createMany() za korisnike
 -u terminalu ukucamo komandu: npx tsx ./db/seed
 -ukucamo komandu: npx prisma studio
+
+32. Next Auth Setup
+-otvorimo link: https://authjs.dev/getting-started
+-u terminalu ukucamo komandu: npm install next-auth@5.0.0-beta.25 --legacy-peer-deps
+-otvorimo link: https://www.npmjs.com/package/@auth/prisma-adapter
+-ukucamo komandu: npm install @auth/prisma-adapter
+-ukucamo komandu: openssl rand -base64 32
+-u .env fajlu dodajemo env varijable NEXT_AUTH_SECRET, NEXTAUTH_URL i NEXTAUTH_URL_INTERNAL
+-u example.env fajl dodajemo primjer varijabli koje je potrebno kreirati
+-otvorimo link: https://next-auth.js.org/configuration/options
+-kreiramo auth.ts fajl i importujemo funkciju NextAuth iz paketa next-auth
+-kreiramo i eskportujemo objekt config
+-pozivamo funkciju NextAuth(config)
+-vrijednost funkcije NextAuth(config) pohranjujemo u destruktuirane varijable const { handlers, auth, signIn, signOut } 
+-eksportujemo destruktuirane varijable
+-u objekt config dodajemo objekte pages i session
+-importujemo funkciju PrismaAdapter iz paketa auth/prisma-adapter
+-importujemo instancu prisma iz db/prisma.ts fajla
+-u objekt config dodajemo key-value par adapter i funkciju PrismaAdapter(prisma)
+-dodajemo niz providers
+-importujemo funkciju CredentialsProvider iz paketa next-auth/providers/credentials
+-importujemo funkciju compareSync iz paketa bcrypt-ts-edge
+-u nizu providers pozivamo funkciju CredentialsProvider() sa argumentom konfiguracionim objektom
+-u konfiguracioni objekt dodajemo objekt credentials
+-dodajemo metodu async authorize(credentials)
+-u funkciju authorize(credentials) dodajemo uslov if (credentials === null) return null
+-kreiramo varijablu const user
+-dodajemo uslov if (user && user.password)
+-u uslovu if kreiramo varijablu const isMatch
+-dodajemo uslov if (isMatch)
+-dodajemo izjavu return null ako korisnik ne postoji ili ako se unesena sifra ne slaze sa sifrom u bazi podataka
+-importujemo tip NextAuthConfig iz paketa next-auth
+-dodajemo objekt callbacks
+-u objekt callbacks dodajemo asinhronu funkciju session()
+-funkciji session dodajemo parametre { session, user, trigger, token }
+-u funkciju session() dodajemo metodu session.user.id = token.sub
+-dodajemo uslov if (trigger === 'update') 
+-nakon uslova if dodajemo izjavu return session
+-objektu config dodajemo tip satisfies NextAuthConfig
