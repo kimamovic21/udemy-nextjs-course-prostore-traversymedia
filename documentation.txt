@@ -539,3 +539,25 @@ Section 04: Authentication With Next Auth
 -u objekt dodajemo vrijednost success: false i poruku da je email ili sifra pogresna
 -kreiramo i eksportujemo asinhronu funkciju signOutUser()
 -u funkciji signOutUser() pozivamo funkciju await signOut()
+
+35. Auth Layout & Sign In Page
+-u folderu app kreiramo folder (auth)
+-u folderu (auth) kreiramo komponentu layout.tsx
+-u komponenti (auth)/layout.tsx kreiramo i eksportujemo funkciju AuthLayout() kao default
+-u funkciji AuthLayout() kreiramo roditelj div element sa Tailwind CSS klasama
+-u div element dinamicki prikazujemo vrijednost prop children
+-u folderu (auth) kreiramo folder sign-in i komponentu page.tsx
+-u komponenti sing-in/page.tsx kreiramo i eksportujemo funkciju SignInPage() kao default
+-importujemo tip Metadata iz paketa next
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
+-importujemo komponente Card, CardContent, CardDescription, CardHeader i CardTitle iz komponente ui/card.tsx
+-u div element dodajemo komponentu Card sa otvorenim i zatvorenim tagom
+-u komponentu Card dodajemo komponentu CardHeader sa otvorenim i zatvorenim tagom
+-importujemo komponente Link i Image iz paketa next
+-importujemo varijablu APP_NAME iz lib/constants.ts fajla
+-u komponentu CardHeader dodajemo komponentu Link sa prop href i className
+-u komponentu Link dodajemo komponentu Image sa prop src, alt, width, height i priority
+-dodajemo komponentu CardTitle sa otvorenim i zatvorenim tagom
+-dodajemo komponentu CardDescription sa otvorenim i zatvorenim tagom
+-u komponentu Card dodajemo komponentu CardContent sa otvorenim i zatvorenim tagom
