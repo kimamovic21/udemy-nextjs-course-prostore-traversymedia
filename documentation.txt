@@ -561,3 +561,32 @@ Section 04: Authentication With Next Auth
 -dodajemo komponentu CardTitle sa otvorenim i zatvorenim tagom
 -dodajemo komponentu CardDescription sa otvorenim i zatvorenim tagom
 -u komponentu Card dodajemo komponentu CardContent sa otvorenim i zatvorenim tagom
+
+36. Credentials Sign In Form
+-u folderu sign-in kreiramo komponentu credentials-signin-form.tsx
+-u komponenti credentials-signin-form.tsx kreiramo i eksportujemo funkciju CredentialsSignInForm() kao default
+-u komponentu sign-in/page.tsx importujemo komponentu CredentialsSignInForm iz komponente credentials-signin-form.tsx
+-u jsx-u, u komponentu CardContent dodajemo komponentu CredentialsSignInForm
+-u komponentu credentials-signin-form.tsx dodajemo direktivu 'use client'
+-otvorimo link: https://ui.shadcn.com/docs/components/label
+-otvorimo link: https://ui.shadcn.com/docs/components/input
+-u terminalu ukucamo komandu: npx shadcn@latest add input label
+-u funkciji CredentialsSignInForm(), u jsx-u kreiramo form element kao roditelj element
+-u form elementu kreiramo div element za email polja sa Tailwind CSS klasom space-y-6
+-importujemo komponente Label i Input iz foldera components/ui
+-u div element dodajemo komponente Label i Input
+-komponenti Label dodajemo prop htmlFor
+-komponenti Input dodajemo prop id, name, type, required i autoComplete
+-u constants/index.ts fajlu kreiramo i eksportujemo varijablu objekt const signInDefaultValues
+-u komponentu credentials-signin-form.tsx importujemo varijablu signInDefaultValues
+-u jsx-u komponenti Input dodajemo prop defaultValue
+-u prop defaultValue proslijedujemo vrijednost varijable signInDefaultValues.email
+-kreiramo jos jedan div element za sifru 
+-u div element dodajemo komponente Label i Input
+-komponenti Input dodajemo prop defaultValue
+-u prop defaultValue proslijedujemo vrijednost varijable signInDefaultValues.password
+-importujemo komponentu Button iz komponente ui/button.tsx
+-kreiramo div element za komponentu Button
+-komponenti Button dodajemo prop className i variant
+-kreiramo div element za span element i komponentu Link
+-komponenti Link dodajemo prop href, target i className
