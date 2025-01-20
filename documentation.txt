@@ -517,3 +517,25 @@ Section 04: Authentication With Next Auth
 -u route.ts fajl importujemo varijablu handlers iz auth.ts fajla
 -eksportujemo funkcije GET i POST
 -u pretrazivacu otvorimo rute: /api/auth/signin, /api/auth/signout i /api/auth/session
+
+34. Sign In & Sign Out Action
+-u validators.ts fajlu kreiramo i eksportujemo varijablu signInFormSchema
+-u folderu lib/actions kreiramo user.actions.ts fajl
+-u user.actions.ts fajl dodajemo direktivu 'use server'
+-importujemo funkciju signInFormSchema iz validators.ts fajla
+-importujemo funkcije signIn i signOut iz auth.ts fajla
+-importujemo funkciju isRedirectError iz paketa next
+-kreiramo i eksportujemo asinhronu funkciju signInWithCredentials()
+-funkciji signInWithCredentials() dodajemo parametre prevState i formData sa tipovima
+-dodajemo blokove koda try - catch
+-u bloku koda try dodajemo metodu signInFormSchema.parse()
+-vrijednost metode signInFormSchema() pohranjujemo u varijablu const user
+-pozivamo funkciju await signIn('credentials, user)
+-dodajemo izjavu return objekt sa key - value vrijednostima success i message
+-u objekt dodajemo vrijednost success: true i poruku da je prijava uspjesna
+-u blok koda catch(error) dodajemo uslov if (isRedirectError(error))
+-u uslov if dodajemo throw error
+-dodajemo izjavu return objekt sa key - value vrijednostima success i message
+-u objekt dodajemo vrijednost success: false i poruku da je email ili sifra pogresna
+-kreiramo i eksportujemo asinhronu funkciju signOutUser()
+-u funkciji signOutUser() pozivamo funkciju await signOut()
