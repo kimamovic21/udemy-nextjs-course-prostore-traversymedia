@@ -1,6 +1,7 @@
 'use client';
 
 import { useActionState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { signInDefaultValues } from '@/lib/constants';
@@ -14,8 +15,17 @@ const CredentialsSignInForm = () => {
     success: false,
   });
 
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
+
   return (
     <form action={action}>
+      <input 
+        type='hidden' 
+        name='callbackUrl' 
+        value={callbackUrl} 
+      />
+      
       <div className='space-y-6'>
         <div>
           <Label htmlFor='email'>Email</Label>

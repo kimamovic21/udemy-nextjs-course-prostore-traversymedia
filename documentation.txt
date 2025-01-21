@@ -624,3 +624,19 @@ Section 04: Authentication With Next Auth
 -u komponenti signin-button.tsx kreiramo i eskportujemo funkciju SignInButton() kao default
 -premjestamo logiku za komponentu SignInButton iz komponente credentials-signin-form.tsx
 -u komponentu credentials-signin-form.tsx importujemo komponentu SignInButton iz komponente signin-button.tsx
+
+38. Callback URL Redirect
+-otvorimo link: https://nextjs.org/docs/app/api-reference/functions/use-search-params
+-u komponenti sign-in/page.tsx, funkciji SignInPage() dodajemo parametar props sa generickim tipom Promise
+-u funkciji SignInPage() dodajemo metodu await props.searchParams
+-vrijednost metode await props.searchParams pohranjujemo u varijablu const { callbackUrl }
+-u uslov if (session) dodajemo izjavu return redirect(callbackUrl || '/')
+-u komponentu sign-in-credentials.tsx importujemo funkciju useSearchParams iz paketa next/navigation
+-u funkciji CredentialsSignInForm() kreiramo varijable const searchParams i const callbackUrl
+-u jsx-u, u form elementu kreiramo input element sa prop type, name i value
+-u prop type dodajemo opciju da je element sakriven
+-u prop name dodajemo ime callbackUrl
+-u prop value proslijedujemo vrijednost varijable callbackUrl
+-otvorimo pretrazivac i obrisemo kolacice u aplikaciji 
+-otvorimo rutu: http://localhost:3000/sign-in?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fshipping-address i prijavimo se
+-nakon prijave treba se otvoriti ruta: http://localhost:3000/shipping-address
