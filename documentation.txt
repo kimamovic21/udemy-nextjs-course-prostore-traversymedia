@@ -590,3 +590,37 @@ Section 04: Authentication With Next Auth
 -komponenti Button dodajemo prop className i variant
 -kreiramo div element za span element i komponentu Link
 -komponenti Link dodajemo prop href, target i className
+
+37. Hook Up Sign In Form
+-otvorimo link: https://react.dev/reference/react/useActionState
+-otvorimo link: https://react.dev/reference/react-dom/hooks/useFormStatus
+-u komponentu credentials-signin-form.tsx importujemo funkciju useAction state iz paketa react
+-importujemo funkciju useFormStatus iz paketa react-dom
+-importujemo funkciju signInWithCredentials iz actions/user.actions.ts fajla
+-u funkciji CredentialsSignInForm() pozivamo funkciju useActionState() sa dva argumenta
+-u funkciji useActionState() prvi argument je funkcija signInWithCredentials, dok je drugi argument ojekt
+-vrijednost funkcije pohranjujemo u varijablu const data i funkciju action
+-u jsx-u form elementu dodajemo prop action
+-u prop action proslijedujemo vrijednost funkcije action
+-dodajemo uslov za kondicionalno renderovanje data && !data.success && ()
+-kreiramo funkciju SignInButton()
+-u funkciji SignInButton() pozivamo funkciju useFormStatus()
+-vrijednost funkcije useFormStatus() pohranjujemo u destruktuiranu varijablu const { pending }
+-dodajemo izjavu return
+-u izjavi return dodajemo komponentu Button sa prop disabled, className i variant
+-u komponentu Button dodajemo uslov ternarni operator za varijablu pending
+-u div element dodajemo komponentu SignInButton
+-u komponentu app/(auth)/page.tsx importujemo funkciju auth iz auth.ts fajla
+-importujemo funkciju redirect iz paketa next/redirect
+-funkciji SignInPage() dodajemo asinhronost
+-u funkciji SignInPage() pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-dodajemo uslov if (session)
+-u uslovu if (session) pozivamo funkciju return redirect('/')
+-u pretrazivacu otvorimo rutu: http://localhost:3000/ i prijavimo se
+-u pretrazivacu otvorimo opciju Devtools -> Application -> Cookies
+-otvorimo link: http://localhost:3000/api/auth/session da vidimo podatke o prijavljenom korisniku
+-u folderu sign-in kreiramo komponentu signin-button.tsx
+-u komponenti signin-button.tsx kreiramo i eskportujemo funkciju SignInButton() kao default
+-premjestamo logiku za komponentu SignInButton iz komponente credentials-signin-form.tsx
+-u komponentu credentials-signin-form.tsx importujemo komponentu SignInButton iz komponente signin-button.tsx
