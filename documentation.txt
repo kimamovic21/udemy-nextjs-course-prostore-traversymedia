@@ -674,3 +674,26 @@ Section 04: Authentication With Next Auth
 -u komponenti DropdownMenuContent kreiramo form element sa prop action
 -u prop action proslijedujemo funkciju signOutUser
 -u form element dodajemo komponentu Button sa tekstom Sign Out
+
+40. Sign Up Zod Schema & Action
+-u validators.ts fajlu kreiramo i eksportujemo varijablu const signUpFormSchema
+-funkciji z.object({ }) dodajemo metodu refine()
+-u user.actions.ts fajl importujemo varijablu signUpFormSchema iz validators.ts fajla
+-importujemo funkciju hashSync iz paketa bcrypt-ts-edge
+-importujemo instancu prisma iz db/prisma.ts fajla
+-kreiramo i eksportujemo asinhronu funkciju signUp() sa dva parametra
+-u funkciji signUp() prvi parametar je prevState sa tipom unknown, dok je drugi parametar formData sa tipom FormData
+-u funkciji signUp() dodajemo blokove koda try - catch
+-u bloku koda try dodajemo metodu signUpFormSchema.parse()
+-vrijednost metode signUpFormSchema.parse() pohranjujemo u varijablu const user
+-kreiramo varijablu const plainPassword
+-dodajemo metodu hashSync(user.password, 10)
+-vrijednost metode hashSync(user.password, 10) pohranjujemo u objekt polje user.password
+-pozivamo metodu await prisma.user.create()
+-u funkciju create() dodajemo konfiguracioni objekt
+-u konfiguracioni objekt dodajemo objekt data { ... }
+-pozivamo funkciju await signIn() sa dva argumenta
+-u funkciji signIn() prvi argument je string credentials, dok je drugi argument objekt koji sadrzi polja o imenu u hasovanoj sifri
+-dodajemo objekt izjavu return sa poljima success: true i porukom da je korisnik uspjesno kreiran
+-u blok koda catch (error) dodajemo uslov if (isRedirectError(error))
+-dodajemo objekt izjavu return sa poljima success: false i porukom da je doslo do greske
