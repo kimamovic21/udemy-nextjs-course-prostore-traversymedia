@@ -547,7 +547,7 @@ Section 04: Authentication With Next Auth
 -u funkciji AuthLayout() kreiramo roditelj div element sa Tailwind CSS klasama
 -u div element dinamicki prikazujemo vrijednost prop children
 -u folderu (auth) kreiramo folder sign-in i komponentu page.tsx
--u komponenti sing-in/page.tsx kreiramo i eksportujemo funkciju SignInPage() kao default
+-u komponenti sign-in/page.tsx kreiramo i eksportujemo funkciju SignInPage() kao default
 -importujemo tip Metadata iz paketa next
 -kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
 -u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
@@ -624,6 +624,7 @@ Section 04: Authentication With Next Auth
 -u komponenti signin-button.tsx kreiramo i eskportujemo funkciju SignInButton() kao default
 -premjestamo logiku za komponentu SignInButton iz komponente credentials-signin-form.tsx
 -u komponentu credentials-signin-form.tsx importujemo komponentu SignInButton iz komponente signin-button.tsx
+-otvorimo rutu: http://localhost:3000/sign-in i prijavimo se
 
 38. Callback URL Redirect
 -otvorimo link: https://nextjs.org/docs/app/api-reference/functions/use-search-params
@@ -697,3 +698,18 @@ Section 04: Authentication With Next Auth
 -dodajemo objekt izjavu return sa poljima success: true i porukom da je korisnik uspjesno kreiran
 -u blok koda catch (error) dodajemo uslov if (isRedirectError(error))
 -dodajemo objekt izjavu return sa poljima success: false i porukom da je doslo do greske
+
+41. Sign Up Page & Form
+-u folderu (auth) kreiramo folder sign-up i komponentu page.tsx
+-u komponenti sign-up/page.tsx kreiramo i eksportujemo funkciju SignUpPage()
+-kopiramo vecinu koda iz komponente sign-in/page.tsx u komponentu sign-up/page.tsx
+-u folderu sign-up kreiramo komponentu sign-up-form.tsx
+-kopiramo vecinu koda iz komponente sign-in/credentials-sign-form.tsx u komponentu sign-up-form.tsx
+-u constants/index.ts fajlu kreiramo i eksportujemo varijablu signUpDefaultValues
+-u komponentu sign-up-form.tsx importujemo varijablu signUpDefaultValues
+-importujemo funkciju signUp iz user.actions.ts fajla
+-kreiramo komponentu sign-up-button.tsx 
+-u komponenti sign-up-button.tsx kreiramo i eksportujemo funkciju SignUpButton() kao default
+-u komponentu sign-up-form.tsx importujemo komponentu SignUpButton iz komponente sign-up-button.tsx
+-u komponentu sign-up/page.tsx importujemo komponentu SignUpForm iz komponente sign-up-form.tsx
+-otvorimo rutu: http://localhost:3000/sign-up i registrujemo se
