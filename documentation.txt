@@ -640,3 +640,37 @@ Section 04: Authentication With Next Auth
 -otvorimo pretrazivac i obrisemo kolacice u aplikaciji 
 -otvorimo rutu: http://localhost:3000/sign-in?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fshipping-address i prijavimo se
 -nakon prijave treba se otvoriti ruta: http://localhost:3000/shipping-address
+
+39. User Button & Sign Out
+-u projekt na web stranici Vercel dodajemo tri env varijable: NEXTAUTH_SECRET, NEXTAUTH_URL i NEXTAUTH_URL_INTERNAL
+-u folderu header kreiramo komponentu user-button.tsx
+-u komponenti user-button.tsx kreiramo i eksportujemo funkciju UserButton() kao default
+-u komponentu menu.tsx importujemo komponentu UserButton iz komponente user-button.tsx
+-u jsx-u dodajemo dvije komponente UserButton sa samozatvarajucim tagom
+-u komponentu user-button.tsx importujemo komponentu Link iz paketa next
+-importujemo funkciju auth iz auth.ts fajla
+-importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo komponente DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel i DropdownMenuTrigger iz komponente ui/dropdown-menu.tsx
+-importujemo React ikonicu UserIcon iz paketa lucide-react
+-funkciji UserButton() dodajemo asinhronost
+-u funkciji UserButton() pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-dodajemo uslov if (!session)
+-u uslov if (!session) dodajemo komponentu Button za prikazivenje teksta za prijavu ako korisnik nije prijavljen
+-kreiramo varijablu const firstInitial
+-importujemo funkciju signOutUser iz user.actions.ts fajla
+-u jsx-u roditelj div elementu dodajemo Tailwind CSS flex klase
+-u div element dodajemo komponentu DropdownMenu sa otvorenim i zatvorenim tagom
+-u komponentu DropdownMenu dodajemo komponentu DropdownMenuTrigger sa otvorenim i zatvorenim tagom
+-u komponenti DropdownMenuTrigger kreiramo div element sa Tailwind CSS flex klasama
+-u div element dodajemo komponentu Button sa prop variant, className
+-u komponenti Button dinamicki prikazujemo vrijednost varijable firstInitial
+-u komponentu DropdownMenu dodajemo komponentu DropdownMenuContent sa otvorenim i zatvorenim tagom 
+-komponenti DropdownMenuContent dodajemo prop className, align i forceMount
+-u komponentu DropdownMenuContent dodajemo komponentu DropdownMenuLabel sa otvorenim i zatvorenim tagom
+-u komponenti DropdownMenuLabel kreiramo div element sa Tailwind CSS klasama
+-u div elementu kreiramo dva p elementa sa Tailwind CSS klasama u kojima dinamicki prikazujemo ime i email prijavljenog korisnika
+-u komponentu DropdownMenuContent dodajemo komponentu DropdownMenuItem sa otvorenim i zatvorenim tagom
+-u komponenti DropdownMenuContent kreiramo form element sa prop action
+-u prop action proslijedujemo funkciju signOutUser
+-u form element dodajemo komponentu Button sa tekstom Sign Out
