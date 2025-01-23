@@ -5,12 +5,12 @@ import { useActionState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { signUpDefaultValues } from '@/lib/constants';
-import { signUp } from '@/lib/actions/user.actions';
+import { signUpUser } from '@/lib/actions/user.actions';
 import Link from 'next/link';
 import SignUpButton from './sign-up-button';
 
 const SignUpForm = () => {
-  const [data, action] = useActionState(signUp, {
+  const [data, action] = useActionState(signUpUser, {
     message: '',
     success: false,
   });
@@ -27,7 +27,7 @@ const SignUpForm = () => {
           <Input
             id='name'
             name='name'
-            required
+            // required
             type='text'
             defaultValue={signUpDefaultValues.name}
             autoComplete='name'
@@ -38,8 +38,8 @@ const SignUpForm = () => {
           <Input
             id='email'
             name='email'
-            required
-            type='email'
+            // required
+            type='text'
             defaultValue={signUpDefaultValues.email}
             autoComplete='email'
           />

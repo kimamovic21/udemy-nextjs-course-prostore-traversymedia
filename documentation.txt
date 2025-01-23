@@ -713,3 +713,23 @@ Section 04: Authentication With Next Auth
 -u komponentu sign-up-form.tsx importujemo komponentu SignUpButton iz komponente sign-up-button.tsx
 -u komponentu sign-up/page.tsx importujemo komponentu SignUpForm iz komponente sign-up-form.tsx
 -otvorimo rutu: http://localhost:3000/sign-up i registrujemo se
+
+42. Sign Up Error Handling
+-u komponenti sign-up-form.tsx, komponentama Input brisemo prop required
+-komponenti Input za email dodajemo prop type='text'
+-otvorimo rutu: http://localhost:3000/sign-up i pokusamo se regitrovati sa netacnim kredencijalima
+-u lib/utils.ts fajlu kreiramo i eksportujemo asinhronu funkcija formatError() sa parametrom error
+-parametru error dodajemo tip any
+-u funkciji formatError() dodajemo uslov if (error.name === 'ZodError')
+-dodajemo uslove else if i else
+-u uslovu if dodajemo metodu Object.keys(error.errors).map((field) => { ... })
+-u funkciji map() kreiramo varijablu const message
+-dodajemo izjavu ternarni operator return typeof message === 'string'
+-vrijednost metode Object.keys() pohranjujemo u varijablu const fieldErrors
+-dodajemo izjavu return fieldErrors.join('. ')
+-u user.actions.ts fajl importujemo funkciju formatError iz utils.ts fajla
+-funkciju signUp preimenujemo u signUpUser
+-u funkciju signUpUser, u izjavu objekt return, u polje message dodajemo funkciju formatError(error)
+-u utils.ts fajlu, u funkciji formatError(), u uslovu else if kreiramo varijablu const field
+-dodajemo izjavu return poruku da korisnik sa tom email adresom postoji
+-u uslov else dodajemo izjavu uslov ternarni operator return typeof error.message === 'string'
