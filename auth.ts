@@ -18,9 +18,7 @@ export const config = {
   providers: [
     CredentialsProvider({
       credentials: {
-        email: {
-          type: 'email',
-        },
+        email: { type: 'email' },
         password: { type: 'password' },
       },
       async authorize(credentials) {
@@ -32,12 +30,14 @@ export const config = {
             email: credentials.email as string,
           },
         });
+
         // Check if user exists and password is correct
         if (user && user.password) {
           const isMatch = compareSync(
             credentials.password as string,
             user.password
           );
+
           // If password is correct, return user object
           if (isMatch) {
             return {
@@ -48,6 +48,7 @@ export const config = {
             };
           };
         };
+        
         // If user doesn't exist or password is incorrect, return null
         return null;
       },
@@ -57,11 +58,41 @@ export const config = {
     async session({ session, user, trigger, token }: any) {
       // Set the user id on the session
       session.user.id = token.sub;
+      session.user.role = token.role;
+      session.user.name = token.name;
+
+      // console.log('Token: ', token);
+
       // If there is an update, set the name on the session
-      if (trigger === 'update') {
+      if (trigger === 'update' && token.name) {
         session.user.name = user.name;
       };
+
       return session;
+    },
+    async jwt({ token, user, trigger, session }: any) {
+      // Assign user fields to the token
+      if (user) {
+        token.role = user.role;
+
+        // If user has no name then use the email
+        if (user.name === 'NO_NAME') {
+          token.name = user.email!.split('@')[0];
+
+          // Update database to reflect the token name
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { name: token.name },
+          });
+        };
+      };
+
+      // Handle session updates (e.g., name change)
+      if (session?.user.name && trigger === 'update') {
+        token.name = session.user.name;
+      };
+
+      return token;
     },
   },
 } satisfies NextAuthConfig;

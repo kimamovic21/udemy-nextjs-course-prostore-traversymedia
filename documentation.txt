@@ -733,3 +733,17 @@ Section 04: Authentication With Next Auth
 -u utils.ts fajlu, u funkciji formatError(), u uslovu else if kreiramo varijablu const field
 -dodajemo izjavu return poruku da korisnik sa tom email adresom postoji
 -u uslov else dodajemo izjavu uslov ternarni operator return typeof error.message === 'string'
+
+43. Customize Token with JWT Callback
+-manje izmjene u semama za prijavu i registraciju korisnika u validators.ts fajlu
+-otvorimo link: https://next-auth.js.org/configuration/callbacks
+-u auth.ts fajlu kreiramo asinhronu funkciju jtw() sa parametrima destruktuiranom prop { token, user, trigger, session }
+-parametrima dodajemo tip any
+-u funkciju jwt() dodajemo uslov if (user)
+-dodajemo izjavu return token
+-u funkciju session() dodajemo vrijednosti session.user.role i session.user.name
+-promjenimo uslov if (trigger === 'update') u if (trigger === 'update' && token.name)
+-u funkciju jtw() dodajemo uslov if (session?.user.name && trigger === 'update')
+-otvorimo rutu: http://localhost:3000/sign-in i prijavio se
+-u VS Code terminalu provjerimo vrijednost za token
+-otvorimo rutu: http://localhost:3000/api/auth/session da provjerimo informacije za prijavljenog korisnika
