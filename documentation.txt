@@ -747,3 +747,8 @@ Section 04: Authentication With Next Auth
 -otvorimo rutu: http://localhost:3000/sign-in i prijavio se
 -u VS Code terminalu provjerimo vrijednost za token
 -otvorimo rutu: http://localhost:3000/api/auth/session da provjerimo informacije za prijavljenog korisnika
+
+
+Section 05: Add To Cart
+
+44. Section Intro
