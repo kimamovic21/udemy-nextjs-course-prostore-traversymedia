@@ -815,3 +815,22 @@ Section 05: Add To Cart
 -importujemo React ikonicu Plus iz paketa lucide-react
 -u komponenti Button kreiramo dva span element
 -u prvi span element dodajemo komponentu Button, dok u drugi span element dodajemo tekst Add To Cart
+
+47. Session Cart ID Cookie
+-otvorimo link: https://vercel.com/docs/functions/limitations#code-size-limit
+-otvorimo link: https://gist.github.com/bradtraversy/16e3c89b9b25bc79cf86f5f36e14e83d
+-otvorimo link: https://authjs.dev/reference/nextjs#authorized
+-kreiramo middleware.ts fajl
+-u middleware.ts fajlu eksportujemo funkciju auth kao middleware
+-u auth.ts fajl importujemo funkcije cookies i NextResponse iz paketa next
+-kreiramo funkciju authorized() sa destruktuirana parametra request i auth
+-u funkciju authorized dodajemo uslov if - else
+-pozivamo funkciju crypto.randomUUID()
+-vrijednost funkcije crypto.randomUUID() pohranjujemo u varijablu const sessionCartId
+-pozivamo funkciju new Headers(request.headers)
+-vrijednost funkcije new Headers(request.headers) pohranjujemo u varijablu const newRequestHeaders
+-pozivamo funkciju NextResponse.next()
+-vrijednost funkcije NextResponse.next() pohranjujemo u varijablu const response
+-pozivamo funkciju response.cookies.set()
+-dodajemo izjavu return response
+-u uslov else dodajemo izjavu return true
