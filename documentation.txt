@@ -752,3 +752,15 @@ Section 04: Authentication With Next Auth
 Section 05: Add To Cart
 
 44. Section Intro
+
+45. Cart Zod Schema & Prisma Model
+-u validators.ts fajlu kreiramo i eksportujemo varijablu cartItemSchema
+-kreiramo i eksportujemo varijablu const insertCartSchema
+-u types/index.ts fajlu importujemo varijable insertCartSchema i cartItemSchema
+-kreiramo i eksportujemo tipove Cart i CartItem
+-u schema.prisma kreiramo model Cart
+-modelu User dodajemo model Cart
+-u terminalu ukucamo komandu: npx prisma generate
+-u terminalu ukucamo komandu: npx prisma migrate dev --name add-cart
+-u terminalu ukucamo komandu: npx prisma studio
+-u folderu prisma/migrations se generise folder add_cart i migration.sql fajl
