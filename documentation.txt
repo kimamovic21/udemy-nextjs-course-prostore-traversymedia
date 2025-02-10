@@ -764,3 +764,54 @@ Section 05: Add To Cart
 -u terminalu ukucamo komandu: npx prisma migrate dev --name add-cart
 -u terminalu ukucamo komandu: npx prisma studio
 -u folderu prisma/migrations se generise folder add_cart i migration.sql fajl
+
+46. Add To Cart Component
+-u folderu shared/product kreiramo komponentu add-to-cart.tsx
+-u komponenti add-to-cart.tsx kreiramo i eksportujemo funkciju AddToCart() kao default
+-dodajemo direktivu 'use client'
+-importujemo tip CartItem iz foldera types
+-funkciji AddToCart() dodajemo parametar destruktuirani prop item
+-destruktuiranom parametru item dodajemo tip CartItem
+-u komponentu product/[slug]/page.tsx importujemo komponentu AddToCart iz komponente add-to-cart.tsx
+-izbrisemo import za komponentu Button
+-u jsx-u, u uslovu za kondicionalno renderovanje product?.stock > 0 && dodajemo komponentu AddToCart
+-komponenti AddToCart dodajemo prop item
+-u komponentu add-to-cart.tsx importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo funkciju useRouter iz paketa next/navigation
+-importujemo React ikonicu Plus iz paketa lucide-react
+-otvorimo link: https://ui.shadcn.com/docs/components/toast
+-u terminalu ukucamo komandu: npx shadcn@latest add toast
+-u folderu components/ui se generisu komponente toast.tsx i toaster.tsx
+-generise se folder hooks sa use-toast.ts fajlom
+-u komponentu app/layout.tsx importujemo komponentu Toaster iz komponente ui/toaster
+-u jsx-u, u komponentu ThemeProvider dodajemo komponentu Toaster sa samozatvarajucim tagom
+-u komponentu add-to-cart.tsx importujemo funkciju useToast iz hooks/use-toast.ts fajla
+-importujemo komponentu ToastAction iz komponente ui/toast.tsx
+-u jsx-u, dodajemo komponentu Button sa prop className, type i onClick
+-kreiramo asinhronu funkciju handleAddToCart()
+-u folderu lib/actions kredencijalima cart.actions.ts fajl
+-u cart.actions.ts fajl dodajemo direktivu 'use server'
+-importujemo tip CartItem iz foldera types
+-kreiramo i eksportujemo asinhronu funkciju addItemToCart() sa parametrom data
+-parametru data dodajemo tip CartItem
+-u funkciju addItemToCart() dodajemo izjavu objekt return sa key - value parovima success i message
+-u komponentu add-to-cart.tsx importujemo funkciju addItemToCart iz foldera lib/actions
+-u funkcija AddToCart() pozivamo funkcije useRouter() i useToast()
+-vrijednost funkcije useRouter() pohranjujemo u destruktuiranu varijablu const router
+-vrijednost funkcije useToast() pohranjujemo u destruktuiranu varijablu const { toast }
+-u funkciji handleAddToCart() pozivamo funkciju await addItemToCart(item)
+-vrijednost funkcije await addItemToCart(item) pohranjujemo u varijablu const res
+-dodajemo uslov if (!res.success)
+-u uslovu if (!res.success) pozivamo funkciju toast()
+-funkciji toast() dodajemo argument objekt sa key - value parovima variant i description
+-nakon funkcije toast() dodajemo izjavu return
+-nakon uslova if (!res.success) pozivamo funkciju toast()
+-funkciji toast() dodajemo argument objekt sa key - value parovima description i action
+-u prop action dodajemo komponentu ToastAction sa otvorenim i zatvorenim tagom
+-komponenti ToastAction dodajemo prop className, altText i dogadaj onClick
+-u dogadaj onClick proslijedujemo anonimnu funkciju
+-u anonimnu funkciju proslijedujemo funkciju router.push('/cart')
+-otvorimo rutu http://localhost:3000/product/[slug] i kliknemo dugme Add To Cart
+-importujemo React ikonicu Plus iz paketa lucide-react
+-u komponenti Button kreiramo dva span element
+-u prvi span element dodajemo komponentu Button, dok u drugi span element dodajemo tekst Add To Cart

@@ -19,7 +19,7 @@ export const insertProductSchema = z.object({
   images: z.array(z.string()).min(1, 'Product must have at least one image'),
   isFeatured: z.boolean(),
   banner: z.string().nullable(),
-  price: currency
+  price: currency,
 });
 
 // Schema for signing in a user
@@ -36,7 +36,7 @@ export const signUpFormSchema = z.object({
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'Passwords do not match',
-    path: ['confirmPassword']
+    path: ['confirmPassword'],
 });
 
 // Cart Schemas
@@ -46,12 +46,7 @@ export const cartItemSchema = z.object({
   slug: z.string().min(1, 'Slug is required'),
   qty: z.number().int().nonnegative('Quantity must be a non-negative number'),
   image: z.string().min(1, 'Image is required'),
-  price: z
-    .number()
-    .refine(
-      (value) => /^\d+(\.\d{2})?$/.test(Number(value).toFixed(2)),
-      'Price must have exactly two decimal places (e.g., 49.99)'
-    ),
+  price: currency,
 });
 
 export const insertCartSchema = z.object({
