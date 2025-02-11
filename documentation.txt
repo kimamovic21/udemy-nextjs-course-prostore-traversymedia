@@ -845,3 +845,31 @@ Vercel Deploy Error Edge Function "middleware" fix
 -u middleware.ts fajl importujemo objekt authConfig
 -u auth.ts fajl importujemo objekt authConfig
 -u objekt callbacks dodajemo ...authConfig.callbacks
+
+48. Get Item From Cart
+-u cart.actions.ts fajl importujemo funkcije cookies i formatError iz foldera utils
+-u funkciju addItemToCart() dodajemo blokove koda try - catch
+-u blokove koda try - catch dodajemo izjave return i objekte sa key - value parovima success i message
+-u funkciji addItemToCart() pozivamo funkciju await cookies()
+-vrijednost funkcije await cookies() pohranjujemo u varijablu const sessionCartId 
+-dodajemo uslov if (!sessionCartId)
+-importujemo funkciju auth iz auth.ts fajla
+-pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-kreiramo varijablu const userId
+-kreiramo i eksportujemo asinhronu funkciju getMyCart()
+-importujemo instancu prisma prisma.ts fajla
+-u funkciji getMyCart() kreiramo varijablu const sessionCartId
+-dodajemo uslov if (!sessionCartId)
+-kreiramo varijable const session i const userId
+-pozivamo funkciju await prisma.card.findFirst()
+-vrijednost funkcije await prisma.card.findFirst() pohranjujemo u varijablu const cart
+-dodajemo uslov if (!cart) return undefined
+-importujemo funkciju convertToPlainObject iz utils.ts fajla
+-dodajemo izjavu return convertToPlainObject()
+-u funkciji addItemToCart() pozivamo funkciju await getMyCart()
+-vrijednost funkcije await getMyCart() pohranjujemo u varijablu const cart
+-importujemo varijablu cartItemSchema iz validators.ts fajla
+-kreiramo varijablu const item
+-pozivamo funkciju await prisma.product.findFirst()
+-vrijednost funkcije await prisma.product.findFirst() pohranjujemo u varijablu const product
