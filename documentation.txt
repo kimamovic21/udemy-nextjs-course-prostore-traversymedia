@@ -834,3 +834,14 @@ Section 05: Add To Cart
 -pozivamo funkciju response.cookies.set()
 -dodajemo izjavu return response
 -u uslov else dodajemo izjavu return true
+
+Vercel Deploy Error Edge Function "middleware" fix
+-Error: The Edge Function "middleware" size is 1.02 MB and your plan size limit is 1 MB. Learn More: https://vercel.link/edge-function-size
+-otvorimo link: https://gist.github.com/bushblade/73a85d7bb145d17d7dbb6bea68f11f9e
+-kreiramo auth.config.ts fajl
+-u auth.config.ts fajl importujemo tip NextAuthConfig i funkciju NextResponse iz paketa next
+-kreiramo i eksportujemo objekt const authConfig
+-u objekt authConfig dodajemo niz providers i objekt callbacks
+-u middleware.ts fajl importujemo objekt authConfig
+-u auth.ts fajl importujemo objekt authConfig
+-u objekt callbacks dodajemo ...authConfig.callbacks
