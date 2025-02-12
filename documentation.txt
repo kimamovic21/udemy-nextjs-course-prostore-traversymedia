@@ -934,3 +934,34 @@ Vercel Deploy Error Edge Function "middleware" fix
 -nakon uslova if - else pozivamo funkciju await prisma.cart.update()
 -pozivamo funkciju revalidatePath()
 -dodajemo izjavu return objekt sa key - value parovima success i message
+
+52. Dynamic Cart Button
+-u komponentu product/[slug]/page.tsx importujemo funkciju getMyCart iz cart.actions.ts fajla
+-u funkciji ProductDetailsPage() pozivamo funkciju getMyCart()
+-vrijednost funkcije getMyCart() pohranjujemo u varijablu const cart
+-u jsx-u, komponenti AddToCart dodajemo prop cart u koji proslijedujemo varijablu cart
+-u komponentu add-to-cart.tsx importujemo funkciju removeItemFromCart
+-importujemo tip Cart
+-importujemo React ikonicu Minus
+-funkciji AddToCart() dodajemo parametar destruktuirani prop cart
+-destruktuiranom parametru cart dodajemo tip Cart
+-kreiramo varijablu const existItem
+-kreiramo funkciju handleRemoveFromCart()
+-u jsx-u dodajemo izjavu return ternarni operator za varijablu existItem
+-u prvi dio ternarnog operatora kreiramo roditelj div element
+-u roditelj div element dodajemo dvije komponente Button
+-prvoj komponenti Button dodajemo prop type, variant i dogadaj onClick
+-u dogadaj onClick proslijedujemo funkciju handleRemoveFromCart
+-u komponentu Button dodajemo React ikonicu Minus
+-kreiramo span element sa prop className
+-u span elementu dinamicki prikazujemo vrijednost varijable existItem.qty
+-drugoj komponenti Button dodajemo prop type, variant i dogadaj onClick
+-u dogadaj onClick proslijedujemo funkciju handleAddToCart
+-u komponentu Button dodajemo React ikonicu Plus
+-u drugi dio ternarnog operatora dodajemo komponentu Button i React ikonicu Plus
+-funkciji handleRemoveFromCart() dodajemo asinhronost 
+-u funkciji handleRemoveFromCart() pozivamo funkciju await removeItemFromCart(item.productId)
+-vrijednost funkcije await removeItemFromCart(item.productId) pohranjujemo u varijablu const res
+-pozivamo funkciju toast() sa argumentom objekt
+-u objekt dodajemo key - value parove variant i description
+-nakon funkcije toast() dodajemo izjavu return
