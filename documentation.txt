@@ -910,3 +910,27 @@ Vercel Deploy Error Edge Function "middleware" fix
 -dodajemo izjavu return objekt sa key - value parovima success i message
 -u komponentu add-to-cart.tsx, u funkciju toast dodajemo description: res.message
 -otvorimo rutu: http://localhost:3000/product/[slug] i kliknemo dugme Add To Cart da vidimo poruku
+
+51. Remove Cart Action
+-u cart.actions.ts fajlu kreiramo i eksportujemo funkciju removeItemFromCart() sa parametrom productId
+-parametru productId dodajemo tip string
+-u funkciju removeItemFromCart() dodajemo blokove koda try - catch
+-u blok koda catch dodajemo izjavu return objekt sa key - value parovima success i message
+-u bloku koda try kreiramo varijablu const sessionCartId
+-dodajemo uslov if (!sessionCartId) 
+-pozivamo funkciju await prisma.product.findFirst()
+-vrijednost funkcije await prisma.product.findFirst() pohranjujemo u varijablu const product
+-dodajemo uslov if (!product)
+-u uslov if (!product) pozivamo funkciju throw new Error()
+-nakon uslova if (!product) pozivamo funkciju await getMyCart()
+-vrijednost funkcije await getMyCart() pohranjujemo u varijablu const cart
+-dodajemo uslov if (!cart)
+-u uslovu if (!cart) pozivamo funkcija throw new Error()
+-pozivamo funkciju (cart.items as CartItem[]).find()
+-vrijednost funkcije (cart.items as CartItem[]).find() pohranjujemo u varijablu const existItem
+-dodajemo uslov if (!existItem) 
+-u uslovu if (!existItem) pozivamo funkciju throw new Error()
+-dodajemo uslove if (existItem.qty === 1) - else
+-nakon uslova if - else pozivamo funkciju await prisma.cart.update()
+-pozivamo funkciju revalidatePath()
+-dodajemo izjavu return objekt sa key - value parovima success i message
