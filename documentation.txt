@@ -965,3 +965,16 @@ Vercel Deploy Error Edge Function "middleware" fix
 -pozivamo funkciju toast() sa argumentom objekt
 -u objekt dodajemo key - value parove variant i description
 -nakon funkcije toast() dodajemo izjavu return
+
+53. Smooth UI With useTransition Hook
+-otvorimo link: https://react.dev/reference/react/useTransition
+-u komponentu add-to-cart.tsx importujemo funkciju useTransition iz paketa react
+-importujemo React ikonicu Loader iz paketa lucide-react
+-u funkciji AddToCart() pozivamo funkciju useTransition()
+-vrijednost funkcije useTransition() pohranjujemo u destruktuirane varijable const [isPending, startTransition]
+-u funkcije handleAddToCart() i handleRemoveFromCart() pozivamo funkciju startTransition()
+-u funkcije startTransition() proslijedujemo kao argument anonimne asinhrone funkcije
+-u komponente Button dodajemo uslov ternarni operator za varijablu isPending
+-u prvi dio ternarnog operatora dodajemo komponentu Loader
+-komponenti Loader dodajemo prop className i animate-spin
+-u drugi dio ternarnog operatora dodajemo React ikonicu Plus ili Minus 
