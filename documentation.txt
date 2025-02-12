@@ -873,3 +873,23 @@ Vercel Deploy Error Edge Function "middleware" fix
 -kreiramo varijablu const item
 -pozivamo funkciju await prisma.product.findFirst()
 -vrijednost funkcije await prisma.product.findFirst() pohranjujemo u varijablu const product
+
+49. Price Calc & Add To Database
+-u lib/utils.ts fajlu kreiramo i eksportujemo funkciju round2() sa parametrom value
+-parametru value dodajemo tipove number | string
+-u funkciju round2() dodajemo uslove if - else if - else
+-u cart.actions.ts fajl importujemo funkciju round2 iz utils.ts fajla
+-kreiramo funkciju calcPrice() sa parametrom items
+-parametru items dodajemo tip CartItem[]
+-u funkciji calcPrice() pozivamo funkciju round2()
+-vrijednost funkcije round2() pohranjujemo u varijablu const itemsPrice
+-dodajemo izjavu return objekt sa key - value parovima itemsPrice, shippingPrice, taxPrice i totalPrice
+-importujemo varijablu insertCartSchema iz validators.ts fajla
+-u funkciju addItemToCart() dodajemo uslov if (!product)
+-dodajemo uslov if (!cart)
+-u uslovu if (!cart) kreiramo varijablu const newCart
+-otvorimo rutu http://localhost:3000/product/[slug] i kliknemo dugme Add To Cart
+-pozivamo funkciju await prisma.cart.create()
+-importujemo funkciju revalidatePath iz paketa next/cache
+-pozivamo funkciju revalidatePath()
+-izjavu return objekt sa key - value parovima success i message premjestamo u uslov if (!cart)
