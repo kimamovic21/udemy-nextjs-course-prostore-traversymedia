@@ -893,3 +893,20 @@ Vercel Deploy Error Edge Function "middleware" fix
 -importujemo funkciju revalidatePath iz paketa next/cache
 -pozivamo funkciju revalidatePath()
 -izjavu return objekt sa key - value parovima success i message premjestamo u uslov if (!cart)
+
+50. Handle Quantity & Multiple Products
+-u cart.actions.ts fajl importujemo instancu Prisma iz paketa prisma/client
+-za uslov if (!cart) dodajemo uslov else
+-u uslovu else kreiramo varijablu const existItem
+-dodajemo uslov if (existItem) - else
+-u uslov if (existItem) dodajemo uslov if (product.stock < existItem.qty + 1) 
+-u uslov if pozivamo funkciju throw new Error()
+-nakon uslova if pozivamo funkciju (cart.items as CartItem[]).find()
+-u uslov else dodajemo uslov if (product.stock < 1)
+-u uslov if (product.stock < 1) pozivamo funkciju throw new Error()
+-nakon uslova if pozivamo funkciju cart.items.push(item)
+-pozivamo funkciju await prisma.cart.update()
+-pozivamo funkciju revalidatePath()
+-dodajemo izjavu return objekt sa key - value parovima success i message
+-u komponentu add-to-cart.tsx, u funkciju toast dodajemo description: res.message
+-otvorimo rutu: http://localhost:3000/product/[slug] i kliknemo dugme Add To Cart da vidimo poruku
