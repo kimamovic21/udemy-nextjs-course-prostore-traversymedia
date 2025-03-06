@@ -75,7 +75,7 @@ Section 02: App Creation & Basics Layout
 -importujemo komponentu Link iz paketa next/link
 -otvorimo link: https://nextjs.org/docs/pages/api-reference/components/link
 -importujemo komponentu Button iz komponente ui/button.tsx
--otvorimo link: 
+-otvorimo link: https://ui.shadcn.com/docs/components/button
 -importujemo varijablu APP_NAME iz lib/constants.ts fajla
 -u funkciji Header(), u jsx-u kreiramo header element kao roditelj element
 -elementu header dodajemo Tailwind CSS klase w-full i border-b
@@ -978,3 +978,8 @@ Vercel Deploy Error Edge Function "middleware" fix
 -u prvi dio ternarnog operatora dodajemo komponentu Loader
 -komponenti Loader dodajemo prop className i animate-spin
 -u drugi dio ternarnog operatora dodajemo React ikonicu Plus ili Minus 
+
+
+Section 06: Cart & Shipping Pages
+
+54. Section Intro
