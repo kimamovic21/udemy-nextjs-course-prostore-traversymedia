@@ -983,3 +983,30 @@ Vercel Deploy Error Edge Function "middleware" fix
 Section 06: Cart & Shipping Pages
 
 54. Section Intro
+
+55. Cart Page
+-u folderu (root)/cart kreiramo komponentu page.tsx
+-u komponenti cart/page.tsx kreiramo i eksportujemo funkciju CartPage() kao default
+-kreiramo i eskportujemo varijablu const metadata
+-kreiramo komponentu cart-table.tsx
+-u komponenti cart-table.tsx kreiramo i eskportujemo funkciju CartTable() kao default
+-u komponentu cart-table.tsx dodajemo direktivu 'use client'
+-importujemo tip Cart iz types/index.ts fajla
+-u komponentu cart/page.tsx importujemo komponentu CartTable iz komponente cart-table.tsx
+-u komponenti cart-table.tsx funkciji CartTable() dodajemo parametar destruktuirani prop cart sa tipom Cart
+-u jsx-u kreiramo h2 element sa Tailwind CSS klasama
+-u komponentu cart/page.tsx importujemo funkciju getMyCart iz cart.actions.ts fajla
+-funkciji CartPage() dodajemo asinhronost
+-u funkciji CartPage() pozivamo funkciju await getMyCart()
+-vrijednost funkcije await getMyCart() pohranjujemo u varijablu const cart
+-u jsx-u dodajemo komponentu CartTable sa prop cart
+-u komponentu cart-table.tsx importujemo funkcije useRouter, useTransition, addItemToCart, removeItemFromCart i useToast
+-importujemo React ikonice ArrowRight, Loader, Minus i Plus
+-importujemo komponente Link i Image
+-pozivamo funkciju useRouter()
+-vrijednost funkcije useRouter() pohranjujemo u varijablu const router
+-pozivamo funkciju useToast() 
+-vrijednost funkcije useToast() pohranjujemo u varijablu const { toast }
+-pozivamo funkciju useTransition()
+-vrijednost funkcije useTransition() pohranjujemo u varijable const [isPending, startTransition]
+-u jsx-u dodajemo ternarni uslov !cart || cart.items.length === 0
