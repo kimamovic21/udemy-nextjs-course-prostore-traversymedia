@@ -1010,3 +1010,13 @@ Section 06: Cart & Shipping Pages
 -pozivamo funkciju useTransition()
 -vrijednost funkcije useTransition() pohranjujemo u varijable const [isPending, startTransition]
 -u jsx-u dodajemo ternarni uslov !cart || cart.items.length === 0
+-otvorimo rutu: http://localhost:3000/cart
+
+56. ShadCN UI Table
+-otvorimo link: https://ui.shadcn.com/docs/components/table
+-u terminalu ukucamo komandu npx shadcn@latest add table
+-u komponentu cart-table.tsx importujemo komponente Table, TableBody, TableHead,  TableHeader, TableRow i TableCell iz komponente ui/table.tsx
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u div element sa klasom overflow-x-auto md:col-span-3 dodajemo Table komponente iz komponente ui/table.tsx
+-u komponentu TableBody dodajemo funkciju cart.items?.map()
+-otvorimo rutu: http://localhost:3000/cart
