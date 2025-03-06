@@ -1020,3 +1020,21 @@ Section 06: Cart & Shipping Pages
 -u div element sa klasom overflow-x-auto md:col-span-3 dodajemo Table komponente iz komponente ui/table.tsx
 -u komponentu TableBody dodajemo funkciju cart.items?.map()
 -otvorimo rutu: http://localhost:3000/cart
+
+57. Subtotal Card
+-u lib/utils.ts fajlu kreiramo varijablu CURRENCY_FORMATTER
+-kreiramo i eksportujemo funkciju formatCurrency() sa parametrom amount
+-parametru amount dodajemo tipove number, string i null
+-u funkciju formatCurrency() dodajemo uslove if, else if i else
+-u komponentu cart-table.tsx importujemo funkciju formatCurrency iz lib/utils.ts fajla
+-importujemo komponente Card i CardContent iz komponente ui/card.tsx
+-u div element sa klasom grid md:grid-cols-4 md:gap-5 dodajemo komponentu Card
+-u komponentu Card dodajemo komponentu CardContent sa prop className
+-u komponenti CardContent kreiramo div element sa Tailwind CSS klasama
+-u div elementu kreiramo dva span elementa
+-u prvi span element dodajemo funkciju cart.items.reduce()
+-u drugi span element dodajemo funkciju formatCurrency(cart.itemsPrice)
+-u komponentu CardContent dodajemo komponentu Button sa prop className, disabled i onClick
+-u komponenti Button kreiramo dva span elementa
+-u prvi span element dodajemo uslov ternarni operator isPending 
+-u drugi span element dodajemo tekst Proceed to Checkout
