@@ -1038,3 +1038,27 @@ Section 06: Cart & Shipping Pages
 -u komponenti Button kreiramo dva span elementa
 -u prvi span element dodajemo uslov ternarni operator isPending 
 -u drugi span element dodajemo tekst Proceed to Checkout
+
+58. Shipping Address Zod Schema & Page
+-u lib/validators.ts fajlu kreiramo i eksportujemo varijablu shippingAddressSchema
+-u types/index.ts fajl importujemo varijablu shippingAddressSchema
+-eksportujemo tip ShippingAddress
+-u constants/index.ts fajlu kreiramo i eskportujemo varijablu shippingAddressDefaultValues
+-u folderu (root) kreiramo folder shipping-address i komponentu page.tsx
+-u komponenti shipping-address/page.tsx kreiramo i eksportujemo funkciju ShippingAddressPage() kao default
+-u user.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju getUserById()
+-u komponentu shipping-address/page.tsx importujemo funkcije redirect, auth, getMyCart i getUserById
+-importujemo tipove Metadata i ShippingAddress
+-funkciji ShippingAddressPage() dodajemo asinhronost
+-kreiramo i eksportujemo varijablu const metadata
+-u funkciji ShippingAddressPage() pozivamo funkciju await getMyCart()
+-vrijednost funkcije await getMyCart() pohranjujemo u varijablu const cart
+-dodajemo uslov if (!cart || cart.items.length === 0)
+-u uslovu if pozivamo funkciju redirect('/cart')
+-pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-kreiramo varijablu const userId
+-dodajemo uslov if (!userId) 
+-u uslov if (!userId) dodajemo throw new Error()
+-pozivamo funkciju await getUserById(userId)
+-vrijednost funkcije await getUserById(userId) pohranjujemo u varijablu const user

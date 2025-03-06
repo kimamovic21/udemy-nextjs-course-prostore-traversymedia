@@ -28,6 +28,7 @@ export const signInFormSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
+// Schema for signing up a user
 export const signUpFormSchema = z.object({
     name: z.string().min(3, 'Name must be at least 3 characters'),
     email: z.string().email().min(6, 'Email must be at least 6 characters'),
@@ -57,4 +58,15 @@ export const insertCartSchema = z.object({
   taxPrice: currency,
   sessionCartId: z.string().min(1, 'Session cart id is required'),
   userId: z.string().optional().nullable(),
+});
+
+// Schema for the shipping address
+export const shippingAddressSchema = z.object({
+  fullName: z.string().min(3, 'Name must be at least 3 characters'),
+  streetAddress: z.string().min(3, 'Address must be at least 3 characters'),
+  city: z.string().min(3, 'city must be at least 3 characters'),
+  postalCode: z.string().min(3, 'Postal code must be at least 3 characters'),
+  country: z.string().min(3, 'Country must be at least 3 characters'),
+  lat: z.number().optional(),
+  lng: z.number().optional(),
 });
