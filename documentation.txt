@@ -1116,3 +1116,29 @@ Section 06: Cart & Shipping Pages
 -u div element dodajemo komponentu Button sa prop type i disabled
 -importujemo React ikonice Loader i ArrowRight iz paketa lucide-react
 -u komponentu Button dodajemo uslov ternarni operator za varijablu isPending
+-otvorimo rutu: http://localhost:3000/shipping-address
+
+60. Update User Address
+-u user.actions.ts fajl importujemo funkciju auth iz auth.ts fajla
+-importujemo tip ShippingAddress iz types/index.ts fajla
+-importujemo varijablu shippingAddressSchema iz validators.ts fajla
+-kreiramo i eksportujemo asinhronu funkciju updateUserAddress() sa parametrom data
+-parametru data dodajemo tip ShippingAddress
+-dodajemo blokove koda try - catch
+-u bloku koda try kreiramo varijablu const session
+-kreiramo varijablu const currentUser
+-dodajemo uslov if (!currentUser)
+-kreiramo varijablu const address
+-pozivamo funkciju await prisma.user.update()
+-dodajemo izjavu objekt return da je korisnikova adresa uspjesno izmjenjena
+-u blok koda catch dodajemo izjavu objekt return da je doslo do greske
+-u komponentu shipping-address-form.tsx importujemo funkciju updateUserAddress iz user.actions.ts fajla
+-importujemo tip SubmitHandler iz paketa react-hook-form
+-funkciji onSubmit() dodajemo asinhronost
+-funkciji onSubmit() dodajemo tip SubmitHandler<z.infer<typeof shippingAddressSchema>>
+-u funkciji onSubmit() pozivamo funkciju startTransition()
+-u funkciji startTransition() pozivamo anonimnu asinhronu funkciju
+-u anonimnoj asinhronoj funkciji kreiramo varijablu const res
+-dodajemo uslov if (!res.success)
+-pozivamo funkciju router.push('/payment-method')
+-otvorimo rutu: http://localhost:3000/shipping-address
