@@ -4,6 +4,7 @@ import { type ShippingAddress } from '@/types';
 import { auth } from '@/auth';
 import { getMyCart } from '@/lib/actions/cart.actions';
 import { getUserById } from '@/lib/actions/user.actions';
+import ShippingAddressForm from './shipping-address-form';
 
 export const metadata: Metadata = {
   title: 'Shipping Address',
@@ -23,9 +24,9 @@ const ShippingAddressPage = async () => {
   const user = await getUserById(userId);
 
   return (
-    <div>
-      ShippingAddressPage
-    </div>
+    <>
+      <ShippingAddressForm address={user.address as ShippingAddress} />
+    </>
   );
 };
 

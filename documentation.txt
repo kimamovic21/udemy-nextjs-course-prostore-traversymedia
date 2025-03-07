@@ -1062,3 +1062,57 @@ Section 06: Cart & Shipping Pages
 -u uslov if (!userId) dodajemo throw new Error()
 -pozivamo funkciju await getUserById(userId)
 -vrijednost funkcije await getUserById(userId) pohranjujemo u varijablu const user
+
+59. Shipping Address & Form
+-u folderu shipping-address kreiramo komponentu shipping-address-form.tsx
+-u komponenti shipping-address-form.tsx kreiramo i eksportujemo funkciju ShippingAddressForm()
+-dodajemo direktivu 'use client'
+-importujemo tip ShippingAddress iz types/index.ts fajla
+-funkciji ShippingAddressForm() dodajemo parametar destruktuirani prop address
+-u komponentu shipping-address/page.tsx importujemo komponentu ShippingAddressForm iz komponente shipping-address-form.tsx
+-u jsx-u dodajemo prazan fragment kao roditelj element
+-u prazan fragment dodajemo komponenta ShippingAddressForm sa prop address
+-u prop address proslijedujemo varijablu user.address as ShippingAddress
+-u komponentu shipping-address-form.tsx importujemo funkcije useTransition, useRouter i useToast
+-importujemo varijablu shippingAddressSchema iz lib/validators.ts fajla
+-u funkciji ShippingAddressForm() pozivamo funkciju useRouter()
+-vrijednost funkcije useRouter() pohranjujemo u varijablu const router
+-pozivamo funkciju useToast() 
+-vrijednost funkcije useToast() pohranjujemo u destruktuiranu varijablu const { toast }
+-otvorimo link: https://www.npmjs.com/package/react-hook-form
+-otvorimo link: https://github.com/react-hook-form/resolvers
+-u terminalu ukucamo komandu: npm i react-hook-form @hookform/resolvers
+-otvorimo link: https://ui.shadcn.com/docs/components/form
+-u terminalu ukucamo komandu: npx shadcn@latest add form
+-importujemo funkcije useForm i zodResolver
+-importujemo instancu z iz paketa zod
+-importujemo varijablu shippingAddressDefaultValues iz lib/constants.ts fajla
+-kreiramo varijablu const form
+-pozivamo funkciju useTransition()
+-vrijednost funkcije useTransition() pohranjujemo u varijable const [isPending, startTransition]
+-importujemo komponente Form, FormControl, FormField, FormItem, FormLabel i FormMessage iz komponente ui/form.tsx
+-importujemo komponentu Input iz komponente ui/input.tsx
+-u jsx-u dodajemo prazan fragment kao roditelj element
+-u praznom fragmentu kreiramo div element sa Tailwind CSS klasama
+-u div elementu kreiramo elemente h1 i p sa Tailwind CSS klasama
+-u div element dodajemo komponentu Form sa otvorenim i zatvorenim tagom
+-komponenti Form dodajemo prop {...form}
+-u komponenti Form kreiramo form element
+-form elementu dodajemo atribute method, className i dogadaj onSubmit
+-kreiramo funkciju onSubmit() sa parametrom values
+-parametru values dodajemo tip z.infer<typeof shippingAddressSchema>
+-u dogadaj onSubmit proslijedujemo funkciju form.handleSubmit(onSubmit)
+-u form elementu kreiramo div element sa Tailwind CSS klasama
+-u komponentu div dodajemo komponentu FormField za puno ime korisnika sa samozatvarajucim tagom
+-komponenti FormField dodajemo prop control, name i render
+-u prop render proslijedujemo anonimnu funkciju sa parametrom destruktuiranim prop field
+-u anonimnu funkciju dodajemo komponente FormItem, FormLabel, FormControl, Input i FormMessage
+-kreiramo div element i komponentu FormField za korisnikovu adresu
+-kreiramo div element i komponentu FormField za korisnikov grad
+-kreiramo div element i komponentu FormField za korisnikov postanski broj
+-kreiramo div element i komponentu FormField za korisnikovu drzavu
+-kreiramo div element sa Tailwind CSS klasama flex gap-2
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u div element dodajemo komponentu Button sa prop type i disabled
+-importujemo React ikonice Loader i ArrowRight iz paketa lucide-react
+-u komponentu Button dodajemo uslov ternarni operator za varijablu isPending
