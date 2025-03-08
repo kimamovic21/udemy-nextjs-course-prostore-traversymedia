@@ -1169,3 +1169,16 @@ Section 06: Cart & Shipping Pages
 -u komponentu shipping-address/page.tsx importujemo komponentu CheckoutSteps iz komponente CheckoutSteps.tsx
 -u jsx-u dodajemo komponentu CheckoutSteps sa prop current
 -otvorimo rutu: http://localhost:3000/shipping-address
+
+62. Persist Session Cart
+-u auth.ts fajlu, u funkciju jwt() dodajemo uslov if (trigger === 'signIn' || trigger === 'signUp')
+-u uslovu if pozivamo funkciju await cookies()
+-vrijednost funkcije await cookies() pohranjujemo u varijablu const cookiesObject
+-pozivamo funkciji cookiesObject.get()
+-vrijednost funkcije cookiesObject.get() pohranjujemo u varijablu const sessionCartId
+-dodajemo uslov if (sessionCartId)
+-u uslovu if (sessionCartId) pozivamo funkciju await prisma.cart.findFirst()
+-vrijednost funkcije await prisma.cart.findFirst() pohranjujemo u varijablu const sessionCart
+-dodajemo uslov if (sessionCart)
+-u uslovu if (sessionCart) pozivamo funkciju await prisma.cart.deleteMany()
+-pozivamo funkciju await prisma.cart.update()
