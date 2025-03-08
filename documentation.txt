@@ -1190,3 +1190,8 @@ Section 06: Cart & Shipping Pages
 -u uslov if dodajemo izjavu return false
 -odjavimo se iz aplikacije i otvorimo rutu: http://localhost:3000/shipping-address
 -otvorimo link: https://www.udemy.com/course/nextjs-ecommerce-course/learn/lecture/47571607#questions/22806241/
+
+
+Section 07: Payment Method & Order Pages
+
+64. Section Intro
