@@ -554,6 +554,7 @@ Section 04: Authentication With Next Auth
 -u div element dinamicki prikazujemo vrijednost prop children
 -u folderu (auth) kreiramo folder sign-in i komponentu page.tsx
 -u komponenti sign-in/page.tsx kreiramo i eksportujemo funkciju SignInPage() kao default
+-otvorimo link: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 -importujemo tip Metadata iz paketa next
 -kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
 -u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
@@ -1218,3 +1219,33 @@ Section 07: Payment Method & Order Pages
 -kreiramo varijablu const paymentMethod
 -pozivamo funkciju await prisma.user.update()
 -dodajemo izjavu objekt return da je izmjena metode placanja uspjesna
+
+66. Payment Method Page
+-u folderu app/(root) kreiramo folder payment-method i komponentu page.tsx
+-u komponenti payment-method/page.tsx kreiramo i eksportujemo funkciju PaymentMethodPage() kao default
+-funkciji PaymentMethodPage() dodajemo asinhronost
+-importujemo tip Metadata iz paketa next
+-importujemo funkcije auth i getUserById
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-u funkciji PaymentMethodPage() kreiramo varijable const session i const userId
+-dodajemo uslov if (!userId) 
+-kreiramo varijablu const user
+-kreiramo komponentu payment-method-form.tsx
+-u komponenti payment-method-form.tsx kreiramo i eksportujemo funkciju PaymentMethodForm() kao default
+-dodajemo direktivu 'use client'
+-funkciji PaymentMethodForm() dodajemo parametar destruktuirani prop preferredPaymentMethod
+-importujemo funkcije useTransition, useRouter, useForm, zodResolver i useToast
+-importujemo instancu z iz paketa zod
+-importujemo varijablu paymentMethodSchema iz validators.ts fajla
+-importujemo varijablu DEFAULT_PAYMENT_METHOD iz constants/index.ts fajla
+-importujemo komponentu CheckoutSteps iz komponente CheckoutSteps.tsx
+-u funkciji PaymentMethodForm() kreiramo varijablu const router
+-pozivamo funkciju useToast()
+-vrijednost funkcije useToast pohranjujemo u destruktuiranu varijablu const { toast }
+-kreiramo varijablu const form 
+-pozivamo funkciju useTransition()
+-vrijednost funkcije useTransition() pohranjujemo u destruktuirane varijable const [isPending, startTransition]
+-u jsx-u dodajemo komponentu CheckoutSteps sa prop current
+-u komponentu payment-method/page.tsx importujemo komponentu PaymentMethodForm
+-u jsx-u dodajemo komponentu PaymentMethodForm sa prop preferredPaymentMethod
+-otvorimo rutu: http://localhost:3000/payment-method
