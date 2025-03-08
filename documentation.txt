@@ -1182,3 +1182,11 @@ Section 06: Cart & Shipping Pages
 -dodajemo uslov if (sessionCart)
 -u uslovu if (sessionCart) pozivamo funkciju await prisma.cart.deleteMany()
 -pozivamo funkciju await prisma.cart.update()
+
+63. Protecting Paths
+-u auth.config.ts fajlu, u funkciji authorized() kreiramo niz const protectedPaths
+-iz varijable request.nextUrl destruktuiramo varijablu const { pathname }
+-dodajemo uslov if (!auth && protectedPaths.some((path) => path.test(pathname)))
+-u uslov if dodajemo izjavu return false
+-odjavimo se iz aplikacije i otvorimo rutu: http://localhost:3000/shipping-address
+-otvorimo link: https://www.udemy.com/course/nextjs-ecommerce-course/learn/lecture/47571607#questions/22806241/
