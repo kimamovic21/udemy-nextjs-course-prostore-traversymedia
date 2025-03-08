@@ -1195,3 +1195,26 @@ Section 06: Cart & Shipping Pages
 Section 07: Payment Method & Order Pages
 
 64. Section Intro
+
+65. Payment Method Action & Zod Schema
+-u .env fajlu kreiramo varijable PAYMENT_METHODS i DEFAULT_PAYMENT_METHOD
+-u example.env fajl dodajemo primjer env varijabli koje je potrebno kreirati
+-u constants/index.ts fajlu kreiramo i eksportujemo varijable PAYMENT_METHODS i DEFAULT_PAYMENT_METHOD
+-u validators.ts fajl importujemo varijablu PAYMENT_METHODS iz constants/index.ts fajla
+-kreiramo i eksportujemo varijablu const paymentMethodSchema
+-u user.actions.ts fajl importujemo varijablu paymentMethodSchema iz validators.ts fajla
+-importujemo instancu z iz paketa zod
+-kreiramo i eksportujemo asinhronu funkciju updateUserPaymentMethod()
+-funkciji updateUserPaymentMethod() dodajemo parametar data
+-parametru data dodajemo tip z.infer<typeof paymentMethodSchema>
+-dodajemo blokove koda try - catch
+-u blok koda catch dodajemo izjavu objekt return da je doslo do greske prilikom izmjene metode placanja
+-u bloku koda try pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-pozivamo funkciju await prisma.user.findFirst()
+-vrijednost funkcije await prisma.user.findFirst() pohranjujemo u varijablu const currentUser
+-dodajemo uslov if (!currentUser)
+-otvorimo link: https://stackoverflow.com/questions/74853013/next-js-error-session-user-is-possibly-undefined-but-im-able-to-acc
+-kreiramo varijablu const paymentMethod
+-pozivamo funkciju await prisma.user.update()
+-dodajemo izjavu objekt return da je izmjena metode placanja uspjesna
