@@ -45,6 +45,12 @@ Section 02: App Creation & Basics Layout
 -ukucamo komandu: npx shadcn@latest add button
 -nakon instalacije komponente button generisan folderi components, ui i komponenta button.tsx
 -otvorimo link: https://ui.shadcn.com/docs/react-19
+-otvorimo link: https://www.npmjs.com/package/clsx
+-u terminalu ukucamo komandu: npx i clsx
+-otvorimo link: https://www.npmjs.com/package/tailwind-merge
+-u terminalu ukucamo komandu: npm i tailwind-merge
+-otvorimo link: https://www.npmjs.com/package/tailwindcss-animate
+-u terminalu ukucamo komandu: npx i tailwindcss-animate
 
 10. Root Layout & Constants
 -u folderu app kreiramo folder (root) i komponentu layout.tsx
@@ -300,7 +306,7 @@ Section 03: Database, Prisma & Product Display
 22. Load Products From Database
 -otvorimo link: https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
 -otvorimo link: https://stackoverflow.com/questions/77091418/warning-only-plain-objects-can-be-passed-to-client-components-from-server-compo
--u folderu lib kreiramo fodler actions
+-u folderu lib kreiramo folder actions
 -u folderu actions kreiramo product.actions.ts fajl
 -u product.actions.ts fajl dodajemo direktivu 'use server'
 -kreiramo i eksportujemo asinhronu funkciju getLatestProducts()
@@ -1141,4 +1147,25 @@ Section 06: Cart & Shipping Pages
 -u anonimnoj asinhronoj funkciji kreiramo varijablu const res
 -dodajemo uslov if (!res.success)
 -pozivamo funkciju router.push('/payment-method')
+-otvorimo rutu: http://localhost:3000/shipping-address
+
+61. Checkout Steps Component
+-otvorimo link: https://react.dev/reference/react/Fragment
+-u folderu components/shared kreiramo komponentu checkout-steps.tsx
+-u komponenti checkout-steps.tsx kreiramo i eksportujemo funkciju CheckoutSteps() kao default
+-importujemo komponentu Fragment iz paketa react
+-importujemo funkciju cn iz utils.ts fajla
+-funkciji CheckoutSteps() dodajemo parametar destruktuirani prop current = 0
+-u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
+-kreiramo varijablu niz checkoutSteps
+-u roditelj div elementu dodajemo funkciju checkoutSteps?.map()
+-u funkciju map() proslijedujemo anonimnu funkciju sa parametrima step i index
+-u anonimnu funkciju dodajemo komponentu Fragment sa otvorenim i zatvorenim tagom
+-komponenti Fragment dodajemo prop key
+-u komponenti Fragment kreiramo div element sa prop className
+-u prop className proslijedujemo funkciju cn()
+-u div elementu dinamicki prikazujemo vrijednost varijable step
+-u komponentu Fragment dodajemo uslov za kondicionalno renderovanje step !== 'Place Order' && ()
+-u komponentu shipping-address/page.tsx importujemo komponentu CheckoutSteps iz komponente CheckoutSteps.tsx
+-u jsx-u dodajemo komponentu CheckoutSteps sa prop current
 -otvorimo rutu: http://localhost:3000/shipping-address
