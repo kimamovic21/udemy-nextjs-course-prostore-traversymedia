@@ -1305,3 +1305,9 @@ Section 07: Payment Method & Order Pages
 -u terminalu ukucamo komandu: npx prisma generate
 -u terminalu ukucamo komandu: npx prisma migrate dev --name add-order
 -u terminalu ukucamo komandu: npx prisma studio
+
+69. Order Zod Shcemas & Types
+-u validators.ts fajlu kreiramo i eksportujemo varijablu const insertOrderSchema
+-kreiramo i eksportujemo varijablu const insertOrderItemSchema
+-u types/index.ts fajl importujemo varijable insertOrderItemSchema i insertOrderSchema
+-kreiramo i eksportujemo tipove OrderItem i Order
