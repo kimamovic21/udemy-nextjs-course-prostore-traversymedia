@@ -1249,3 +1249,53 @@ Section 07: Payment Method & Order Pages
 -u komponentu payment-method/page.tsx importujemo komponentu PaymentMethodForm
 -u jsx-u dodajemo komponentu PaymentMethodForm sa prop preferredPaymentMethod
 -otvorimo rutu: http://localhost:3000/payment-method
+
+67. Payment Method Form & Update
+-u komponentu payment-method importujemo komponentu CheckoutSteps iz komponente CheckoutSteps.tsx
+-u jsx-u dodajemo komponentu CheckoutSteps sa prop current
+-u komponentu payment-method-form.tsx importujemo React ikonice ArrowRight i Loader iz paketa lucide-react
+-importujemo komponente Form, FormField, FormControl, FormItem, FormLabel i FormMessage iz komponente ui/form.tsx
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u jsx-u dodajemo prazan fragment kao roditelj element
+-u praznom fragmentu kreiramo div element sa Tailwind CSS klasama
+-u div elementu kreiramo elemente h2 i p sa Tailwind CSS klasama
+-dodajemo komponentu Form
+-u komponenti Form kreiramo form element 
+-form elementu dodajemo prop method, className i dogadaj onSubmit
+-kreiramo asinhronu funkciju onSubmit()
+-u dogadaj onSubmit proslijedujemo funkciju form.handleSubmit(onSubmit)
+-u form elementu kreiramo dva div elementa sa Tailwind CSS klasama
+-u drugi div element dodajemo komponentu Button sa prop type i disabled
+-otvorimo link: https://ui.shadcn.com/docs/components/radio-group
+-u terminalu ukucamo komandu: npx shadcn@latest add radio-group
+-u prvi div element dodajemo komponentu FormField sa samozatvarajucim tagom
+-komponenti FormField dodajemo prop control, name i render
+-u prop render proslijedujemo anonimnu funkciju sa destruktuiranim parametrom field
+-u anonimnu funkciju dodajemo komponentu FormItem sa otvorenim i zatvorenim tagom
+-u komponentu FormItem dodajemo komponentu FormControl sa otvorenim i zatvorenim tagom
+-importujemo komponente RadioGroup i RadioGroupItem iz komponente ui/radio-group.tsx
+-u komponentu FormControl dodajemo komponentu RadioGroup 
+-komponenti RadioGroup dodajemo prop onValueChange i className
+-importujemo varijablu PAYMENT_METHODS iz constants/index.ts fajla
+-kreiramo varijablu const paymentMethods
+-u komponentu RadioGroup dodajemo funkciju paymentMethods.map()
+-u funkciju map() dodajemo komponentu FormItem sa otvorenim i zatvorenim tagom
+-komponenti FormItem dodajemo prop key i className
+-u komponentu FormItem dodajemo komponentu FormControl sa otvorenim i zatvorenim tagom
+-u komponentu FormControl dodajemo komponentu RadioGroupItem sa samozatvarajucim tagom
+-komponenti RadioGroupItem dodajemo prop value i checked
+-u komponentu FormItem dodajemo komponentu FormLabel sa otvorenim i zatvorenim tagom
+-u prop render, u komponentu FormItem dodajemo komponentu FormMessage sa samozatvarajucim tagom
+-importujemo funkciju updateUserPaymentMethod iz user.actions.ts fajla
+-asinhronoj funkciji onSubmit() dodajemo parametar values
+-parametru values dodajemo tip z.infer<typeof paymentMethodSchema>
+-u funkciji onSubmit() pozivamo funkciju startTransition()
+-u funkciju startTransition() proslijedujemo anonimnu asinhronu funkciju
+-u anonimnoj asinhronoj funkciji pozivamo funkciju await updateUserPaymentMethod(values)
+-vrijednost funkcije await updateUserPaymentMethod() pohranjujemo u varijablu const res
+-dodajemo uslov if (!res.success) 
+-u uslovu if (!res.success) pozivamo funkciju toast()
+-nakon funkciji toast() dodajemo izjavu return
+-nakon uslova if (!res.success) pozivamo funkciju router.push('/place-order')
+-otvorimo rutu: http://localhost:3000/payment-method i odaberemo metodu placanja
+-nakon sto odaberemo metodu placanja kliknemo dugme Continue
