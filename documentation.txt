@@ -1299,3 +1299,9 @@ Section 07: Payment Method & Order Pages
 -nakon uslova if (!res.success) pozivamo funkciju router.push('/place-order')
 -otvorimo rutu: http://localhost:3000/payment-method i odaberemo metodu placanja
 -nakon sto odaberemo metodu placanja kliknemo dugme Continue
+
+68. Order & OrderItem Prisma Schema
+-u schema.prisma fajlu kreiramo modele Order i OrderItem
+-u terminalu ukucamo komandu: npx prisma generate
+-u terminalu ukucamo komandu: npx prisma migrate dev --name add-order
+-u terminalu ukucamo komandu: npx prisma studio
