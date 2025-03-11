@@ -1311,3 +1311,38 @@ Section 07: Payment Method & Order Pages
 -kreiramo i eksportujemo varijablu const insertOrderItemSchema
 -u types/index.ts fajl importujemo varijable insertOrderItemSchema i insertOrderSchema
 -kreiramo i eksportujemo tipove OrderItem i Order
+
+70. Place Order Page
+-u folderu (root) kreiramo folder place-order i komponentu page.tsx
+-u komponenti place-order/page.tsx kreiramo i eksportujemo asinhronu funkciju PlaceOrderPage()
+-importujemo funkciju redirect iz paketa next/navigation
+-importujemo tip Metadata iz paketa next
+-kreiramo varijablu const metadata sa tipom Metadata
+-importujemo funkciju getMyCart iz cart.actions.ts fajla
+-importujemo funkciju auth iz auth.ts fajla
+-importujemo funkciju getUserById iz user.actions.ts fajla
+-u funkciji PlaceOrderPage() kreiramo varijable const cart, const session i const userId
+-dodajemo uslov if (userId)
+-kreiramo varijablu const user
+-dodajemo uslov if (!cart || cart.items.length === 0)
+-dodajemo uslov if (!user.address)
+-dodajemo uslov if (!user.paymentMethod)
+-importujemo tip ShippingAddress iz types/index.ts fajla
+-kreiramo varijablu const userAddress
+-importujemo komponentu CheckoutSteps iz komponente CheckoutSteps.tsx
+-u jsx-u dodajemo prazan fragment kao roditelj element 
+-u prazan fragment dodajemo komponentu CheckoutSteps sa prop current
+-kreiramo h2 element sa Tailwind CSS klasama
+-kreiramo div element sa Tailwind CSS Grid klasama
+-u div elementu sa Tailwind CSS Grid klasama kreiramo div element
+-importujemo komponente Card i CardContent iz komponente ui/card.tsx 
+-u div element dodajemo komponentu Card sa otvorenim i zatvorenim tagom
+-u komponentu Card dodajemo komponentu CardContent sa otvorenim i zatvorenim tagom
+-u komponenti CardContent dinamicki prikazujemo podatke o korisnikovoj adresi stanovanja
+-dodajemo komponentu Card u kojoj dinamicki prikazujemo podatke o korisnikovoj metodi placanja
+-importujemo komponentu Image iz paketa next/image
+-importujemo komponente Table, TableBody, TableCell, TableHead, TableHeader, TableRow iz komponente ui/table.tsx
+-dodajemo komponentu Cart u kojoj dinamicki prikazujemo podatke o korisnikovim artiklima iz korpe
+-importujemo funkciju formatCurrency iz lib/utils.ts fajla
+-kreiramo div element i unutar div elementa dodajemo komponentu Card za dinamicko prikazivanje podataka o korisnikovoj korpi
+-otvorimo rutu: http://localhost:3000/place-order
