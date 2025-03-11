@@ -18,6 +18,7 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import CheckoutSteps from '@/components/shared/checkout-steps';
+import PlaceOrderForm from './place-order-form';
 
 export const metadata: Metadata = {
   title: 'Place Order',
@@ -140,7 +141,8 @@ const PlaceOrderPage = async () => {
                 <div>Total</div>
                 <div>{formatCurrency(cart.totalPrice)}</div>
               </div>
-              {/* Form Here */}
+              
+              <PlaceOrderForm />
             </CardContent>
           </Card>
         </div>

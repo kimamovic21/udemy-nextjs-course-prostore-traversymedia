@@ -1375,3 +1375,35 @@ Section 07: Payment Method & Order Pages
 -dodajemo uslov if (!insertedOrderId) 
 -u uslov if (!insertedOrderId) dodajemo funkciju throw new Error()
 -dodajemo izjavu objekt return poruku da je narudzba uspjesno kreirana
+
+72. Place Order Form
+-u folderu place-order kredencijalima komponentu place-order-form.tsx
+-u komponenti place-order-form.tsx kreiramo i eksportujemo funkciju PlaceOrderForm() kao default
+-dodajemo direktivu 'use client'
+-importujemo funkciju createOrder iz order.actions.ts fajla
+-u komponentu place-order/page.tsx importujemo komponentu PlaceOrderForm iz komponente PlaceOrderForm.tsx
+-u jsx-u, u zadnju komponentu Card dodajemo komponentu PlaceOrderForm sa samozatvarajucim tagom
+-u funkciji PlaceOrderForm() kreiramo varijablu const router
+-u jsx-u kreiramo form element kao roditelj element
+-form elementu dodajemo prop className i dogadaj onSubmit
+-kreiramo asinhronu funkciju handleSubmit()
+-u dogadaj onSubmit proslijedujemo funkciju handleSubmit
+-kreiramo komponentu place-order-button.tsx
+-u komponenti place-order-button.tsx kreiramo i eksportujemo funkciju PlaceOrderButton() kao default
+-u komponentu PlaceOrderButton() importujemo funkcije useRouter i useFormStatus
+-importujemo React ikonice Check i Loader iz paketa lucide-react
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u funkciji PlaceOrderButton pozivamo funkciju useFormStatus()
+-vrijednost funkcije useFormStatus() pohranjujemo u destruktuiranu varijablu const { pending }
+-u jsx-u dodajemo komponentu Button kao roditelj element
+-komponenti Button dodajemo prop disabled i className
+-u komponentu Button dodajemo uslov ternarni operator za varijablu pending
+-u komponentu place-order-form.tsx importujemo komponentu PlaceOrderButton iz komponente place-order-button.tsx
+-funkciji handleSubmit dodajemo parametar e sa tipom React.FormEvent
+-u funkciji handleSubmit() pozivamo funkciju e.preventDefault()
+-pozivamo funkciju await createOrder()
+-vrijednost funkcije await createOrder() pohranjujemo u varijablu const res
+-dodajemo uslov if (res.redirectTo)
+-u uslov if (res.redirectTo) pozivamo funkciju router.push(res.redirectTo)
+-u jsx-u, u form element dodajemo komponentu PlaceOrderButton sa samozatvarajucim tagom
+-otvorimo rutu: http://localhost:3000/place-order i kliknemo dugme Place Order
