@@ -1346,3 +1346,32 @@ Section 07: Payment Method & Order Pages
 -importujemo funkciju formatCurrency iz lib/utils.ts fajla
 -kreiramo div element i unutar div elementa dodajemo komponentu Card za dinamicko prikazivanje podataka o korisnikovoj korpi
 -otvorimo rutu: http://localhost:3000/place-order
+
+71. Create Order Action
+-u folderu lib/actions kreiramo order.actions.ts fajl
+-u order.actions.ts fajl dodajemo direktivu 'use server'
+-kreiramo i eksportujemo asinhronu funkciju createOrder()
+-importujemo funkciju isRedirectError iz paketa next/dist/client/components/redirect-error
+-importujemo funkciju formatError iz lib/utils.ts fajla
+-u funkciju createOrder() dodajemo blokove koda try - catch
+-u blok koda catch dodajemo uslov if (isRedirectError(error)) throw error
+-dodajemo izjavu objekt return poruku da je doslo do greske
+-importujemo funkcije auth, getMyCart i getUserById
+-u bloku koda try kreiramo varijablu const session
+-dodajemo uslov if (!session)
+-kreiramo varijable const cart i const userId
+-dodajemo uslov if (!userId)
+-kreiramo varijablu const user 
+-dodajemo uslov if (!cart || cart.items.length === 0)
+-dodajemo uslov if (!user.address)
+-dodajemo uslov if (!user.paymentMethod)
+-importujemo varijablu insertOrderSchema iz validators.ts fajla
+-kreiramo varijablu const order
+-otvorimo link: https://www.prisma.io/docs/orm/prisma-client/queries/transactions
+-importujemo instancu prisma iz prisma.ts fajla
+-importujemo tip CartItem iz types/index.ts fajla
+-pozivamo funkciju await prisma.$transaction()
+-vrijednost funkcije await prisma.$transaction() pohranjujemo u varijablu const insertedOrderId
+-dodajemo uslov if (!insertedOrderId) 
+-u uslov if (!insertedOrderId) dodajemo funkciju throw new Error()
+-dodajemo izjavu objekt return poruku da je narudzba uspjesno kreirana
