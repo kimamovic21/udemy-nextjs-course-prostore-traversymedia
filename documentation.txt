@@ -1441,3 +1441,38 @@ Section 07: Payment Method & Order Pages
 -u funkciju formatId() dodajemo izjavu return id.substring()
 -kreiramo i eksportujemo funkciju formatDateTime()
 -funkciji formatDateTime() dodajemo parametar dateString sa tipom Date
+
+75. Order Details Page
+-otvorimo rutu: http://localhost:3000/order/[id]
+-u folderu order/[id] kreiramo komponentu order-details-table.tsx
+-u komponentu order-details-table.tsx dodajemo direktivu 'use client'
+-kreiramo i eksportujemo funkciju OrderDetailsTable() kao default
+-importujemo tip Order iz types/index.ts fajla
+-funkciji OrderDetailsTable() dodajemo parametar destruktuirani prop order
+-parametru order dodajemo tip Order
+-u jsx-u dodajemo prazan fragment kao roditelj element
+-u komponentu order/[id] importujemo komponentu OrderDetailsTable iz komponente order-details-table.tsx
+-importujemo tip ShippingAddress iz types/index.ts fajla
+-u jsx-u dodajemo komponentu OrderDetailsTable sa samozatvarajucim tagom
+-komponenti OrderDetailsTable dodajemo prop order
+-u komponenti order-details-table.tsx, u jsx-u kreiramo h2 element sa Tailwind CSS klasama
+-importujemo funkcije formatCurrency, formatDateTime i formatId iz lib/utils.ts fajla
+-u h2 elementu kreiramo dva span elementa
+-u prvi span element dodajemo rijec Order
+-u drugom span elementu dinamicki prikazujemo vrijednost id-a narudzbe formatId(id)
+-kreiramo div element sa Tailwind CSS Grid klasama grid md:grid-cols-3 md:gap-5
+-u div elementu sa Tailwind CSS Grid klasama kreiramo div element sa Tailwind CSS klasama overflow-x-auto md:col-span-2 space-y-4
+-destruktuiramo 12 varijabli iz prop order
+-importujemo komponente Card i CardContent iz komponente ui/card.tsx
+-importujemo komponentu Badge iz komponente ui/badge.tsx
+-u div elementu sa Tailwind CSS klasama overflow-x-auto md:col-span-2 space-y-4 dodajemo komponentu Card za metodu placanja
+-u komponentu Card dodajemo komponentu CardContent sa otvorenim i zatvorenim tagom
+-u komponenti CardContent kreiramo elemente h3 i p
+-u p elementu dinamicki prikazujemo vrijednost varijable paymentMethod
+-dodajemo uslov ternarni operator za varijablu isPaid
+-dodajemo komponentu Card za adresu dostave
+-importujemo komponente za tabelu iz komponente ui/table.tsx 
+-importujemo komponente Image i Link iz paketa next
+-dodajemo komponentu Card za prikazivenje podataka o proizvodima koji su naruceni
+-u div elementu sa Tailwind CSS Grid klasama kreiramo div element sa Tailwind CSS klasama mt-4 md:mt-0
+-u div element dodajemo komponentu Card za prikazivanje troskova narudzbe
