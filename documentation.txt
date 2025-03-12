@@ -1407,3 +1407,29 @@ Section 07: Payment Method & Order Pages
 -u uslov if (res.redirectTo) pozivamo funkciju router.push(res.redirectTo)
 -u jsx-u, u form element dodajemo komponentu PlaceOrderButton sa samozatvarajucim tagom
 -otvorimo rutu: http://localhost:3000/place-order i kliknemo dugme Place Order
+
+73. Order Page & Action
+-u order.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju getOrderById()
+-funkciji getOrderById() dodajemo parametar orderId sa tipom string
+-importujemo funkciju convertToPlainObject iz lib/utils.ts fajla
+-u funkciji getOrderById() pozivamo funkciju await prisma.order.findFirst()
+-vrijednost funkcije await prisma.order.findFirst() pohranjujemo u varijablu const data
+-dodajemo izjavu return convertToPlainObject(data)
+-u folderu (root) kreiramo folder order
+-u folderu order kreiramo folder [id] i komponentu page.tsx
+-u komponenti [id]/page.tsx kreiramo i eksportujemo asinhrone funkciju OrderDetailsPage() kao default
+-otvorimo rutu: http://localhost:3000/place-order i kliknemo dugme Place Order
+-nakon sto kliknemo dugme Place Order otvori se ruta: http://localhost:3000/order/[id]
+-u komponentu [id]/page.tsx importujemo tip Metadata iz paketa next
+-importujemo funkciju notFound iz paketa next/navigation
+-importujemo funkciju getOrderById iz order.actions.ts fajla
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-funkciji OrderDetailsPage() dodajemo parametar objekt props
+-u funkciji OrderDetailsPage() pozivamo funkciju await prop.params
+-vrijednost funkcije await prop.params pohranjujemo u varijablu const params
+-destruktuiramo varijablu const { id } iz varijable paramms
+-pozivamo funkciju await getOrderById(id)
+-dodajemo uslov if (!order)
+-u uslovu if (!order) pozivamo funkciju notFound()
+-u jsx-u dodajemo prazan fragment kao roditelj element
+-u praznom fragmentu dinamicki ispisujemo vrijednost varijable id
