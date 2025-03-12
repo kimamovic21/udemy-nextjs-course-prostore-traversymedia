@@ -1481,3 +1481,9 @@ Section 07: Payment Method & Order Pages
 Section 08: PayPal Payments
 
 76. Section Intro
+
+77. PayPal Sandbox Setup
+-otvorimo web stranicu: https://developer.paypal.com/
+-otvorimo link: https://developer.paypal.com/dashboard/accounts
+-u .env fajlu kreiramo tri env varijable: PAYPAL_API_URL, PAYPAL_CLIENT_ID i PAYPAL_APP_SECRET
+-u example.env fajl dodajemo primjer varijabli koje je potrebno kreirati
