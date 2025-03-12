@@ -1476,3 +1476,8 @@ Section 07: Payment Method & Order Pages
 -dodajemo komponentu Card za prikazivenje podataka o proizvodima koji su naruceni
 -u div elementu sa Tailwind CSS Grid klasama kreiramo div element sa Tailwind CSS klasama mt-4 md:mt-0
 -u div element dodajemo komponentu Card za prikazivanje troskova narudzbe
+
+
+Section 08: PayPal Payments
+
+76. Section Intro
