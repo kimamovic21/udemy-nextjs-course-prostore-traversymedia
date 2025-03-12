@@ -1433,3 +1433,11 @@ Section 07: Payment Method & Order Pages
 -u uslovu if (!order) pozivamo funkciju notFound()
 -u jsx-u dodajemo prazan fragment kao roditelj element
 -u praznom fragmentu dinamicki ispisujemo vrijednost varijable id
+
+74. Format Utility Functions
+-u prisma.ts fajl, u funkciju $extends() dodajemo objekte cart i order
+-u lib/utils.ts fajlu kreiramo i eksportujemo funkciju formatId()
+-funkciji formatId() dodajemo parametar id sa tipom string
+-u funkciju formatId() dodajemo izjavu return id.substring()
+-kreiramo i eksportujemo funkciju formatDateTime()
+-funkciji formatDateTime() dodajemo parametar dateString sa tipom Date
