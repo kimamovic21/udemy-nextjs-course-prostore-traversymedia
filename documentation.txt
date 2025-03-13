@@ -1484,6 +1484,26 @@ Section 08: PayPal Payments
 
 77. PayPal Sandbox Setup
 -otvorimo web stranicu: https://developer.paypal.com/
+-otvorimo link: https://developer.paypal.com/dashboard/applications/sandbox
 -otvorimo link: https://developer.paypal.com/dashboard/accounts
 -u .env fajlu kreiramo tri env varijable: PAYPAL_API_URL, PAYPAL_CLIENT_ID i PAYPAL_APP_SECRET
 -u example.env fajl dodajemo primjer varijabli koje je potrebno kreirati
+
+78. Generate Access Token
+-otvorimo link: https://developer.paypal.com/reference/get-an-access-token/
+-u folderu lib kreiramo paypal.ts fajl
+-u paypal.ts fajlu kreiramo varijablu const base
+-kreiramo i eksportujemo varijablu objekt const paypal
+-kreiramo asinhronu funkciju generateAccessToken()
+-u funkciji generateAccessToken() destruktuiramo varijable const { PAYPAL_CLIENT_ID, PAYPAL_APP_SECRET } iz varijable process.env
+-kreiramo varijablu const auth
+-pozivamo funkciju await fetch()
+-prvi argument u funkciji fetch() je link, dok je drugi argument konfiguracioni objekt
+-vrijednost funkcije await fetch() pohranjujemo u varijablu const response
+-dodajemo uslove if (response.ok) - else
+-u uslovu if (response.ok) pozivamo funkciju await response.json()
+-vrijednost funkcije await response.json() pohranjujemo u varijablu const jsonData
+-dodajemo izjavu return jsonData.access_token
+-u uslovu else pozivamo funkciju await response.text()
+-vrijednost funkcije await response.text() pohranjujemo u varijablu const errorMessage
+-pozivamo funkciju throw new Error(errorMessage)
