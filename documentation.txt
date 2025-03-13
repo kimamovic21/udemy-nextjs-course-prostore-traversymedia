@@ -1530,7 +1530,7 @@ Section 08: PayPal Payments
 -u folderu tests kreiramo paypal.test.ts fajl
 -u paypal.test.ts fajl importujemo funkciju generateAccessToken iz lib/paypal.ts fajla
 -pozivamo funkciju test() sa dva argumenta
--prvi argument u funkciji test() je opis testa, dok je drugi argument anonimna asinhrona funkcija
+-prvi argument u funkciji test() je opis testa za generisanje PayPal pristupnog tokena, dok je drugi argument anonimna asinhrona funkcija
 -u anonimnoj asinhronoj funkciji pozivamo funkciju await generateAccessToken()
 -vrijednost funkcije await generateAccessToken() pohranjujemo u varijablu  const tokenResponse
 -pozivamo dvije funkcije expect()
@@ -1571,3 +1571,25 @@ Section 08: PayPal Payments
 -u funkciji fetch() prvi argument je varijabla url, dok je drugi argument konfiguracioni objekt
 -vrijednost funkcije await fetch() pohranjujemo u varijablu const response
 -pozivamo funkciju return handleResponse(response)
+
+81. Jest Testing For Order Payment
+-u paypal.test.ts fajl importujemo objekt paypal
+-kreiramo funkciju test() sa dva argumenta
+-u funkciji test() prvi argument je opis testa za kreiranje PayPal narudzbe, dok je drugi argument anonimna asinhrona funkcija
+-u anonimnoj funkciji pozivamo funkciju await generateAccessToken()
+-vrijednost funkcije await generateAccessToken() pohranjujemo u varijablu const token
+-kreiramo varijablu const price
+-pozivamo funkciju await paypal.createOrder(price)
+-vrijednost funkcije await paypal.createOrder(price) pohranjujemo u varijablu const orderResponse
+-pozivamo tri funkcije expect()
+-u terminalu ukucamo komandu npm test
+-pozivamo funkciju test()
+-u funkciji test() prvi argument je opis testa za simuliranje hvatanja PayPal narudzbe, dok je drugi argument anonimna asinhrona funkcija
+-u anonimnoj asinhronoj funkciji kreiramo varijablu const const orderId
+-pozivamo funkciju jest.spyOn()
+-vrijednost funkcije jest.spyOn() pohranjujemo u varijablu const mockCapturePayment
+-pozivamo funkciju await paypal.capturePayment(orderId)
+-vrijednost funkcije await paypal.capturePayment(orderId) pohranjujemo u varijablu const captureResponse
+-pozivamo funkciju expect(captureResponse)
+-pozivamo funkciju mockCapturePayment.mockRestore()
+-u terminalu ukucamo komandu npm test
