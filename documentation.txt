@@ -1507,3 +1507,31 @@ Section 08: PayPal Payments
 -u uslovu else pozivamo funkciju await response.text()
 -vrijednost funkcije await response.text() pohranjujemo u varijablu const errorMessage
 -pozivamo funkciju throw new Error(errorMessage)
+
+79. Jest Testing For Access Token
+-otvorimo web stranicu https://jestjs.io/
+-otvorimo link: https://www.npmjs.com/package/jest
+-otvorimo link: https://www.npmjs.com/package/ts-jest
+-otvorimo link: https://www.npmjs.com/package/ts-node
+-otvorimo link: https://www.npmjs.com/package/@types/jest
+-otvorimo link: https://www.npmjs.com/package/@types/node
+-otvorimo link: https://www.npmjs.com/package/dotenv
+-u terminalu ukucamo komandu: npm install -D jest ts-jest ts-node @types/jest @types/node dotenv
+-u terminalu ukucamo komandu: npm init jest@latest
+-nakon ove komande generise se jest.config.ts fajl
+-u jest.config.ts fajl importujemo tip Config iz paketa jest
+-kreiramo varijablu objekt const config sa tipom Config
+-u objekt config dodajemo opcije clearMocks, covecoverageProvider, preset i setupFiles
+-u package.json fajl, u objekt scripts dodajemo komande test i test:watch
+-kreiramo jest.setup.ts fajl
+-u jest.setup.ts fajl dodajemo import 'dotenv/config'
+-u paypal.ts fajlu eksportujemo funkciju generateAccessToken
+-kreiramo folder tests
+-u folderu tests kreiramo paypal.test.ts fajl
+-u paypal.test.ts fajl importujemo funkciju generateAccessToken iz lib/paypal.ts fajla
+-pozivamo funkciju test() sa dva argumenta
+-prvi argument u funkciji test() je opis testa, dok je drugi argument anonimna asinhrona funkcija
+-u anonimnoj asinhronoj funkciji pozivamo funkciju await generateAccessToken()
+-vrijednost funkcije await generateAccessToken() pohranjujemo u varijablu  const tokenResponse
+-pozivamo dvije funkcije expect()
+-u terminalu ukucamo komandu npm test ili npm run test:watch
