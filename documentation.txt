@@ -1535,3 +1535,39 @@ Section 08: PayPal Payments
 -vrijednost funkcije await generateAccessToken() pohranjujemo u varijablu  const tokenResponse
 -pozivamo dvije funkcije expect()
 -u terminalu ukucamo komandu npm test ili npm run test:watch
+
+80. Create Order & Capture Payment Request
+-otvorimo link: https://developer.paypal.com/docs/api/orders/v2/
+-otvorimo link: https://developer.paypal.com/docs/api/orders/v2/#orders_create
+-otvorimo link: https://developer.paypal.com/docs/api/orders/v2/#orders_capture
+-u paypal.ts fajlu, u objekt paypal kreiramo key - value par createOrder i asinhronu funkciju createOrder()
+-funkciji createOrder() dodajemo parametar price sa tipom number
+-u asinhronoj funkciji pozivamo funkciju await generateAccessToken()
+-vrijednost funkcije await generateAccessToken() pohranjujemo u varijablu const accessToken
+-kreiramo varijablu const url
+-pozivamo funkciju await fetch() sa dva argumenta
+-u funkciji fetch() prvi argument je varijabla url, dok je drugi argument konfiguracioni objekt
+-dodajemo uslove if (response.ok) - else
+-u uslovu if (response.ok) pozivamo funkciju await response.json()
+-u uslovu else pozivamo funkciju await response.text()
+-vrijednost funkcije await response.text() pohranjujemo u varijablu const errorMessage
+-pozivamo funkciju throw new Error(errorMessage)
+-kreiramo asinhronu funkciju handleResponse()
+-funkciji handleResponse() dodajemo parametar response sa tipom Response
+-u funkciju handleResponse() dodajemo uslove if (response.ok) - else
+-u uslovu if (response.ok) pozivamo funkciju return response.json()
+-u uslovu else kreiramo varijablu const errorMessage
+-pozivamo funkciju throw new Error(errorMessage)
+-u funkciji generateAccessToken() pozivamo funkciju await handleResponse(response)
+-vrijednost funkcije await handleResponse(response) pohranjujemo u varijablu const jsonData
+-dodajemo izjavu return jsonData.access_token
+-u funkciji createOrder() pozivamo funkciju return handleResponse(response)
+-u objektu paypal kreiramo key - value par capturePayment i asinhronu funkciju capturePayment()
+-funkciji capturePayment() dodajemo parametar orderId sa tipom string
+-u funkciji capturePayment() pozivamo funkciju await generateAccessToken()
+-vrijednost funkcije await generateAccessToken() pohranjujemo u varijablu  const accessToken
+-kreiramo varijablu const url 
+-pozivamo funkciju await fetch() sa dva argumenta
+-u funkciji fetch() prvi argument je varijabla url, dok je drugi argument konfiguracioni objekt
+-vrijednost funkcije await fetch() pohranjujemo u varijablu const response
+-pozivamo funkciju return handleResponse(response)
