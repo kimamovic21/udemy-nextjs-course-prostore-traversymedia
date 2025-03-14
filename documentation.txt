@@ -1613,3 +1613,33 @@ Section 08: PayPal Payments
 -vrijednost funkcije await paypal.createOrder() pohranjujemo u varijablu const paypalOrder
 -pozivamo funkciju await prisma.order.update()
 -dodajemo izjavu objekt return poruku da je PayPal narudzba kreirana uspjesno
+
+83. Approve & Update Order
+-u order.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju approvePayPalOrder()
+-funkciji approvePayPalOrder() dodajemo parametre orderId i data sa tipovima
+-dodajemo blokove koda try - catch
+-u blok koda catch dodajemo izjavu objekt return poruku da je doslo do greske
+-u bloku koda try pozivamo funkciju await prisma.order.findFirst()
+-vrijednost funkcije await prisma.order.findFirst() pohranjujemo u varijablu const order
+-dodajemo uslov if (!order)
+-u uslovu if (!order) pozivamo funkciju throw new Error()
+-pozivamo funkciju await paypal.capturePayment(data.orderID)
+-vrijednost funkcije await paypal.capturePayment(data.orderID) pohranjujemo u varijablu const captureData
+-dodajemo uslov if () za varijablu captureData
+-u uslovu if() pozivamo funkciju throw new Error()
+-pozivamo funkciju revalidatePath(`/order/${orderId}`)
+-dodajemo izjavu objekt return poruku da je PayPal narudzba uspjesno placena
+-kreiramo asinhronu funkciju updateOrderToPaid()
+-funkciji updateOrderToPaid() dodajemo destruktuirane parametre orderId i paymentResult sa tipovima
+-u funkciji updateOrderToPaid() pozivamo funkciju await prisma.order.findFirst()
+-vrijednost funkcije await prisma.order.findFirst() pohranjujemo u varijablu const order
+-dodajemo uslov if (!order) 
+-u uslovu if (!order) pozivamo funkciju throw new Error()
+-dodajemo uslov if (order.isPaid)
+-u uslovu if (order.isPaid) pozivamo funkciju throw new Error()
+-pozivamo funkciju await prisma.$transaction()
+-pozivamo funkciju await prisma.order.findFirst()
+-vrijednost funkcije await prisma.order.findFirst() pohranjujemo u varijablu  const updatedOrder
+-dodajemo uslov if (!updatedOrder) 
+-u uslovu if (!updatedOrder) pozivamo funkciju throw new Error()
+-u funkciji approvePayPalOrder() pozivamo funkciju await updateOrderToPaid()
