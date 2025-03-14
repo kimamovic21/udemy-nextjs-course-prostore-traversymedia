@@ -1643,3 +1643,28 @@ Section 08: PayPal Payments
 -dodajemo uslov if (!updatedOrder) 
 -u uslovu if (!updatedOrder) pozivamo funkciju throw new Error()
 -u funkciji approvePayPalOrder() pozivamo funkciju await updateOrderToPaid()
+
+84. Implement PayPal Button
+-otvorimo link: https://www.npmjs.com/package/@paypal/react-paypal-js
+-u terminalu ukucamo komandu: npm i @paypal/react-paypal-js
+-u komponentu order-details-table.tsx importujemo komponente PayPalButtons, PayPalScriptProvider i funkciju usePayPalScriptReducer iz paketa @paypal/react-paypal-js
+-importujemo funkcije approvePayPalOrder i createPayPalOrder iz order.actions.ts fajla
+-funkciji OrderDetailsTable() dodajemo destruktuirani parametar paypalClientId sa tipom string
+-u komponenti order/[id]/page.tsx, u jsx-u dodajemo komponenti OrderDetailsTable prop paypalClientId
+-u komponenti order-details-table.tsx, u jsx-u dodajemo uslov za kondicionalno renderovanje isPaid && paymentMethod === 'PayPal' && (...)
+-u uslovu za kondicionalno renderovanje kreiramo div element
+-u div element dodajemo komponentu PayPalScriptProvider sa otvorenim i zatvorenim tagom
+-komponenti PayPalScriptProvider dodajemo prop options
+-kreiramo funkciju PrintLoadingState()
+-u komponentu PayPalScriptProvider dodajemo komponente PrintLoadingState i PayPalButtons
+-komponenti PayPalButtons dodajemo prop createOrder i onApprove
+-u funkciji PrintLoadingState() pozivamo funkciju usePayPalScriptReducer()
+-vrijednost funkcije usePayPalScriptReducer() pohranjujemo u varijable const [{ isPending, isRejected }]
+-kreiramo varijablu let status
+-dodajemo uslove if (isPending) - else if
+-importujemo funkciju toast iz use-toast.ts fajla
+-kreiramo funkcije handleCreatePayPalOrder() i handleApprovePayPalOrder()
+-u prop createOrder proslijedujemo funkciju handleCreatePayPalOrder
+-u prop onApprove proslijedujemo funkciju handleApprovePayPalOrder
+-u funkciji handleCreatePayPalOrder() pozivamo funkciju await createPayPalOrder(order.id)
+-u funkciji handleApprovePayPalOrder() pozivamo funkciju await approvePayPalOrder(order.id, data)
