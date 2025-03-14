@@ -1593,3 +1593,23 @@ Section 08: PayPal Payments
 -pozivamo funkciju expect(captureResponse)
 -pozivamo funkciju mockCapturePayment.mockRestore()
 -u terminalu ukucamo komandu npm test
+
+82. Create PayPal Order Action
+-u lib/validators.ts fajlu kreiramo i eksportujemo varijablu const paymentResultSchema
+-u types/index.ts fajl importujemo varijablu paymentResultSchema iz validators.ts fajla
+-kreiramo i eksportujemo tip PaymentResult
+-u order.actions.ts fajl importujemo tip PaymentResult iz types/index.ts fajla
+-importujemo varijablu paypal iz paypal.ts fajla
+-importujemo funkciju revalidatePath iz paketa next/cache
+-kreiramo i eksportujemo asinhronu funkciju createPayPalOrder()
+-funkciji createPayPalOrder() dodajemo parametar orderId sa tipom string
+-dodajemo blokove koda try - catch
+-u blok koda catch dodajemo izjavu objekt return poruku da je doslo do greske
+-u bloku koda try pozivamo funkciju await prisma.order.findFirst()
+-vrijednost funkcije await prisma.order.findFirst() pohranjujemo u varijablu const order
+-dodajemo uslov if (order) - else
+-u uslovu else pozivamo funkciju throw new Error()
+-u uslovu if (order) pozivamo funkciju await paypal.createOrder()
+-vrijednost funkcije await paypal.createOrder() pohranjujemo u varijablu const paypalOrder
+-pozivamo funkciju await prisma.order.update()
+-dodajemo izjavu objekt return poruku da je PayPal narudzba kreirana uspjesno
