@@ -1668,3 +1668,10 @@ Section 08: PayPal Payments
 -u prop onApprove proslijedujemo funkciju handleApprovePayPalOrder
 -u funkciji handleCreatePayPalOrder() pozivamo funkciju await createPayPalOrder(order.id)
 -u funkciji handleApprovePayPalOrder() pozivamo funkciju await approvePayPalOrder(order.id, data)
+-otvorimo rutu: http://localhost:3000/place-order i kliknemo dugme Place Order
+-otvorimo rutu: http://localhost:3000/order/[id] i kliknemo PayPal dugme za placanje
+
+
+Section 09: Order History & User Profile
+
+85. Section Intro
