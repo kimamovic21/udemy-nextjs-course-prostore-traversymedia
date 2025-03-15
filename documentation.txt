@@ -1675,3 +1675,47 @@ Section 08: PayPal Payments
 Section 09: Order History & User Profile
 
 85. Section Intro
+
+86. User Layout & Menu
+-u folderu app kreiramo folder user i komponentu layout.tsx
+-u komponenti user/layout.tsx kreiramo i eksportujemo funkciju UserLayout() kao default
+-funkciji UserLayout() dodajemo parametar destruktuirani prop children
+-importujemo varijablu APP_NAME iz constants/index.ts fajla
+-importujemo komponente Link i Image iz paketa next
+-importujemo komponentu Menu iz komponente header/menu.tsx
+-u jsx-u dodajemo prazan fragment kao roditelj element
+-u praznom fragmentu kreiramo div element sa Tailwind CSS flex klasama 
+-u div elementu sa Tailwind CSS flex klasama kreiramo div element sa Tailwind CSS klasama border-b container mx-auto
+-kreiramo div element za komponente Link i Menu
+-kreiramo div element u kojem dinamicki prikazujemo vrijednost varijable prop children
+-u folderu user kreiramo folder orders i komponentu page.tsx
+-u komponenti orders/page.tsx kreiramo i eksportujemo funkciju OrdersPage() kao default
+-otvorimo rutu: http://localhost:3000/user/orders
+-u folderu user kreiramo komponentu main-nav.tsx
+-u komponentu main-nav.tsx dodajemo direktivu 'use client'
+-importujemo komponentu Link iz paketa next/link
+-importujemo funkcije usePathname i cn
+-kreiramo i eksportujemo funkciju MainNav() kao default
+-funkciji Main() dodajemo parametre destruktuirane prop className i ...props
+-parametrima dodajemo tip React.HTMLAttributes<HTMLElement>
+-u funkciji MainNav() kreiramo varijablu const pathname
+-u jsx-u kreiramo nav element kao roditelj element
+-u komponentu orders/layout.tsx importujemo komponentu MainNav iz komponente main-nav.tsx
+-u jsx-u, u div element sa Tailwind CSS klasama flex h-16 items-center px-4 dodajemo komponentu MainNav sa samozatvarajucim tagom
+-komponenti MainNav dodajemo prop className
+-u komponenti main-nav.tsx nav elementu dodajemo prop className
+-u prop className proslijedujemo funkciju cn() sa dva argumenta
+-u funkciji cn() prvi argument su Tailwind CSS klase, dok je drugi argument prop className
+-nav elementu dodajemo prop {...props}
+-kreiramo varijablu niz const links
+-u nav elementu dodajemo funkciju links?.map()
+-u funkciju map() dodajemo komponentu Link sa prop key, href i className
+-u komponenti Link dinamicki prikazujemo vrijednost varijable item.title
+-u prop className proslijedujemo funkciju cn() sa dva argumenta
+-u funkciji cn() prvi argument su Tailwind CSS klase, dok je drugi argument ternarni uslov pathname.includes(item.href)
+-u folderu user kreiramo folder profile i komponentu page.tsx
+-u komponenti profile/page.tsx kreiramo i eksportujemo funkciju ProfilePage() kao default
+-otvorimo rutu: http://localhost:3000/user/profile
+-u komponentu user-button.tsx dodajemo dvije komponente DropdownMenuItem
+-u prvu komponentu DropdownMenuItem dodajemo komponentu Link sa tekstom Profile
+-u drugu komponentu DropdownMenuItem dodajemo komponentu Link sa tekstom Orders
