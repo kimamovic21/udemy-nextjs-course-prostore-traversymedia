@@ -1719,3 +1719,18 @@ Section 09: Order History & User Profile
 -u komponentu user-button.tsx dodajemo dvije komponente DropdownMenuItem
 -u prvu komponentu DropdownMenuItem dodajemo komponentu Link sa tekstom Profile
 -u drugu komponentu DropdownMenuItem dodajemo komponentu Link sa tekstom Orders
+
+87. Get My Orders Action
+-u .env fajlu kreiramo env varijablu PAGE_SIZE
+-u .example.env fajlu dodajemo primjer varijable koju je potrebno kreirati
+-u constants/index.ts fajlu kreiramo i eksportujemo varijablu PAGE_SIZE
+-u order.actions.ts fajl importujemo varijablu PAGE_SIZE iz constants/index.ts fajla
+-kreiramo i eksportujemo asinhronu funkciju getMyOrders()
+-funkciji getMyOrders() dodajemo destruktuirane parametre limit i page sa tipom number
+-u funkciji getMyOrders() kreiramo varijablu const session
+-dodajemo uslov if (!session)
+-pozivamo funkciju await prisma.order.findMany()
+-vrijednost funkcije await prisma.order.findMany() pohranjujemo u varijablu const data
+-pozivamo funkciju await prisma.order.count()
+-vrijednost funkcije await prisma.order.count() pohranjujemo u varijablu  const dataCount
+-dodajemo izjavu objekt return i varijable data i totalPages
