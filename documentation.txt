@@ -1734,3 +1734,28 @@ Section 09: Order History & User Profile
 -pozivamo funkciju await prisma.order.count()
 -vrijednost funkcije await prisma.order.count() pohranjujemo u varijablu  const dataCount
 -dodajemo izjavu objekt return i varijable data i totalPages
+
+88. Orders Page
+-u komponentu orders/page.tsx importujemo tip Metadata
+-importujemo funkcije formatCurrency, formatDateTime i formatId iz lib/utils.ts fajla
+-importujemo funkciju getMyOrders iz order.actions.ts fajla
+-importujemo komponente za tabelu iz komponente ui/table.tsx
+-importujemo komponentu Link iz paketa next/link
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-funkciji OrdersPage() dodajemo asinhronost
+-funkciji OrdersPage() dodajemo parametar props
+-u funkciji OrdersPage() pozivamo funkciju await props.searchParams
+-vrijednost funkcije await props.searchParams pohranjujemo u destruktuiranu varijablu const { page }
+-pozivamo funkciju await getMyOrders()
+-vrijednost funkcije await getMyOrders() pohranjujemo u varijablu const orders
+-u jsx-u kreiramo roditelj div element
+-u roditelj div elementu kreiramo h2 element sa Tailwind CSS klasama
+-u roditelj div elementu kreiramo div element sa Tailwind CSS klasom overflow-x-auto
+-u div element sa klasom overflow-x-auto dodajemo komponentu Table
+-u komponentu Table dodajemo komponente TableHeader i TableBody
+-u komponentu TableHeader dodajemo komponentu TableRow
+-u komponentu TableRow dodajemo pet komponenti TableHead
+-u komponenti TableBody pozivamo funkciju orders?.data?.map()
+-u funkciju map() dodajemo komponentu TableRow
+-u komponentu TableRow dodajemo sest komponenti TableCell u kojima dinamicki prikazujemo podatke o naruzdbi
+-otvorimo rutu: http://localhost:3000/user/orders

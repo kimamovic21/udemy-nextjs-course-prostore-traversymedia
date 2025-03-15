@@ -32,7 +32,10 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
       </h2>
       {!cart || cart.items.length === 0 ? (
         <div>
-          Cart is empty. <Link href='/'>Go Shopping</Link>
+          <span className='mr-1'>Cart is empty.</span>
+          <Link href='/' className='text-blue-400 hover:underline hover:text-blue-500'>
+            Go Shopping
+          </Link>
         </div>
       ) : (
         <div className='grid md:grid-cols-4 md:gap-5'>
