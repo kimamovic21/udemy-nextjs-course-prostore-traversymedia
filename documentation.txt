@@ -1759,3 +1759,42 @@ Section 09: Order History & User Profile
 -u funkciju map() dodajemo komponentu TableRow
 -u komponentu TableRow dodajemo sest komponenti TableCell u kojima dinamicki prikazujemo podatke o naruzdbi
 -otvorimo rutu: http://localhost:3000/user/orders
+
+89. Orders Pagination
+-otvorimo rutu: http://localhost:3000/user/orders
+-otvorimo rutu: http://localhost:3000/user/orders?page=2¸
+-u folderu components/shared kreiramo komponentu pagination.tsx
+-u komponenti pagination.tsx kreiramo i eksportujemo funkciju Pagination() kao default
+-dodajemo direktivu 'use client'
+-importujemo funkcije useRouter i useSearchParams iz paketa next/navigation
+-importujemo komponentu Button iz komponente ui/button.tsx
+-kreiramo tip PaginationProps
+-funkciji Pagination() dodajemo parametre destruktuirane prop page, totalPages i urlParamName
+-parametrima dodajemo tip PaginationProps
+-u funkciji Pagination() kreiramo varijable const router i const searchParams
+-u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
+-u komponentu user/orders/page.tsx importujemo komponentu Pagination iz komponente pagination.tsx
+-u jsx-u, dodajemo uslov za kondicionalno renderovanje orders.totalPages > 1 && (...)
+-u uslov za kondicionalno renderovanje dodajemo komponentu Pagination sa samozatvarajucim tagom
+-komponenti Pagination dodajemo prop page i totalPages
+-u komponenti pagination.tsx, u roditelj div element dodajemo dvije komponente Button
+-komponentama Button dodajemo prop size, variant, className i disabled
+-otvorimo link: https://www.npmjs.com/package/query-string
+-u terminalu ukucamo komandu: npm i query-string
+-kreiramo funkciju handlePagination()
+-funkciji handlePagination() dodajemo parametar btnType sa tipom string
+-u funkciji handlePagination() kreiramo varijablu const pageValue
+-komponentama Button dodajemo dogadaje onClick
+-u dogadaje onClick proslijedujemo funkciju handlePagination()
+-u lib/utils.ts fajl importujemo instancu qs iz paketa query-string
+-kreiramo funkciju formUrlQuery()
+-funkciji formUrlQuery() dodajemo destruktuirane parametre params, key i value
+-parametrima dodajemo tipove
+-u komponentu pagination.tsx importujemo funkciju formUrlQuery iz lib/utils.ts fajla
+-u funkciji handlePagination() pozivamo funkciju formUrlQuery()
+-u lib/utils.ts fajlu, u funkciji formUrlQuery() kreiramo varijablu const query
+-dodajemo metodu query[key] = value
+-dodajemo izjavu return qs.stringifyUrl()
+-u komponenti pagination.tsx vrijednost funkcije formUrlQuery() pohranjujemo u varijablu const newUrl
+-pozivamo funkciju router.push() sa dva argumenta
+-u funkciji push() prvi argument je varijabla newUrl, dok je drugi argument objekt
