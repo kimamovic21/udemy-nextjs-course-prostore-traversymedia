@@ -1822,3 +1822,45 @@ Orders Pagination - Alternative
 -dodajemo uslov if (!currentUser)
 -pozivamo funkciju prisma.user.update()
 -dodajemo izjavu objekt ruturn sa key - value parovima success i message
+
+91. Update Profile Form
+-otvorimo link: https://next-auth.js.org/getting-started/client
+-u komponentu user/profile/page.tsx importujemo komponentu SessionProvider iz paketa next-auth/react
+-importujemo tip Metadata iz paketa next
+-importujemo funkciju auth iz auth.ts fajla
+-kreiramo i eksportujemo varijablu const metadata
+-funkciji ProfilePage() dodajemo asinhronost
+-u funkciji ProfilePage() pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-u jsx-u dodajemo komponentu SessionProvider sa otvorenim i zatvorenim tagom
+-komponenti SessionProvider dodajemo prop session
+-u prop session proslijedujemo varijablu session
+-u komponenti SessionProvider kreiramo div element sa Tailwind CSS klasama max-w-md mx-auto space-y-4
+-u div elementu kreiramo h4 element
+-u folderu user/profile kreiramo komponentu profile-form.tsx
+-u komponenti profile-form.tsx kreiramo i eksportujemo funkciju ProfileForm() kao default
+-dodajemo direktivu 'use client'
+-importujemo funkciju useSession iz paketa next-auth/react
+-u funkciji ProfileForm() pozivamo funkciju useSession()
+-vrijednost funkcije useSession() pohranjujemo u destruktuirane varijable const { data: session, update }
+-u komponentu user/profile/page.tsx importujemo komponentu ProfileForm iz komponente profile-form.tsx
+-u jsx-u, u div element dodajemo komponentu ProfileForm sa samozatvarajucim tagom
+-u komponentu profile-form.tsx importujemo funkciju useForm iz paketa react-hook-form
+-importujemo instancu z iz paketa zod
+-importujemo varijablu updateProfileSchema iz validators.ts fajla
+-importujemo funkciju zodResolver iz paketa @hookform/resolvers/zod
+-u funkciji ProfileForm() kreiramo varijablu const form
+-kreiramo funkciju onSubmit()
+-importujemo komponente za formu iz komponente ui/form.tsx
+-u jsx-u dodajemo komponentu Form kao roditelj element
+-komponenti Form dodajemo prop {...prop}
+-u komponenti Form kreiramo form element sa Tailwind CSS klasama
+-form elementu dodajemo dogadaj onSubmit
+-u dogadaj onSubmit proslijedujemo funkciju form.handleSubmit(onSubmit)
+-u form elementu kreiramo div element sa Tailwind CSS klasama
+-importujemo komponentu Input iz komponente ui/input.tsx
+-u div element dodajemo komponentu FormField za email korisnika sa prop control, name i render
+-dodajemo komponentu FormField za ime korisnika
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u element form dodajemo komponentu Button sa prop type, size, className i disabled
+-u komponentu Button dodajemo uslov ternarni operator za varijablu form.formState.isSubmitting
