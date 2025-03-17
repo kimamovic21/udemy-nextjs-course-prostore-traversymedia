@@ -784,6 +784,7 @@ Section 05: Add To Cart
 -u jsx-u, u uslovu za kondicionalno renderovanje product?.stock > 0 && dodajemo komponentu AddToCart
 -komponenti AddToCart dodajemo prop item
 -u komponentu add-to-cart.tsx importujemo komponentu Button iz komponente ui/button.tsx
+-otvorimo link: https://nextjs.org/docs/pages/api-reference/functions/use-router
 -importujemo funkciju useRouter iz paketa next/navigation
 -importujemo React ikonicu Plus iz paketa lucide-react
 -otvorimo link: https://ui.shadcn.com/docs/components/toast
@@ -1766,6 +1767,7 @@ Section 09: Order History & User Profile
 -u folderu components/shared kreiramo komponentu pagination.tsx
 -u komponenti pagination.tsx kreiramo i eksportujemo funkciju Pagination() kao default
 -dodajemo direktivu 'use client'
+-otvorimo link: https://nextjs.org/docs/app/api-reference/functions/use-search-params
 -importujemo funkcije useRouter i useSearchParams iz paketa next/navigation
 -importujemo komponentu Button iz komponente ui/button.tsx
 -kreiramo tip PaginationProps
@@ -1798,3 +1800,11 @@ Section 09: Order History & User Profile
 -u komponenti pagination.tsx vrijednost funkcije formUrlQuery() pohranjujemo u varijablu const newUrl
 -pozivamo funkciju router.push() sa dva argumenta
 -u funkciji push() prvi argument je varijabla newUrl, dok je drugi argument objekt
+
+Orders Pagination - Alternative
+-otvorimo link: https://nextjs.org/docs/app/api-reference/functions/use-pathname
+-u komponentu pagination.tsx importujemo funkciju usePathname iz paketa next/navigation
+-u funkciji Pagination() kreiramo varijablu const pathname
+-kreiramo varijablu const params 
+-pozivamo funkciju params.set()
+-pozivamo funkciju router.replace()

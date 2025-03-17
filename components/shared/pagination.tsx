@@ -1,7 +1,6 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { formUrlQuery } from '@/lib/utils';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '../ui/button';
 
 type PaginationProps = {
@@ -13,17 +12,15 @@ type PaginationProps = {
 const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   const handlePagination = (btnType: string) => {
     const pageValue = btnType === 'next' ? Number(page) + 1 : Number(page) - 1;
-    
-    const newUrl = formUrlQuery({
-      params: searchParams.toString(),
-      key: urlParamName || 'page',
-      value: pageValue.toString()
-    });
 
-    router.push(newUrl, { scroll: false });
+    const params = new URLSearchParams(searchParams);
+    params.set(urlParamName || 'page', pageValue.toString());
+
+    router.replace(`${pathname}?${params.toString()}`);
   };
 
   return (
