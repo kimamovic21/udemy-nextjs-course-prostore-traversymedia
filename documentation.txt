@@ -1808,3 +1808,17 @@ Orders Pagination - Alternative
 -kreiramo varijablu const params 
 -pozivamo funkciju params.set()
 -pozivamo funkciju router.replace()
+
+90. Update Profile Action
+-u validators.ts fajlu kreiramo i eksportujemo varijablu const updateProfileSchema
+-u user.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju updateProfile()
+-funkciji updateProfile() dodajemo parametar objekt user
+-u funkciji updateProfile() dodajemo blokove koda try - catch
+-u blok koda catch dodajemo izjavu return objekt sa key - value parovima success i message
+-u bloku koda try pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-pozivamo funkciju await prisma.user.findFirst()
+-vrijednost funkcije await prisma.user.findFirst() pohranjujemo u varijablu const currentUser
+-dodajemo uslov if (!currentUser)
+-pozivamo funkciju prisma.user.update()
+-dodajemo izjavu objekt ruturn sa key - value parovima success i message
