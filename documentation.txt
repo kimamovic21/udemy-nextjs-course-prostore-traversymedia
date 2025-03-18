@@ -1885,3 +1885,21 @@ Orders Pagination - Alternative
 Section 10: Admin Overview & Orders
 
 93. Section Intro
+
+94. Admin Layout & Main Nav
+-u folderu app kreiramo folder admin
+-u folderu admin kreiramo komponente layout.tsx i main-nav.tsx
+-u komponenti main-nav.tsx kreiramo i eksportujemo funkciju MainNav() kao default
+-kreiramo varijablu niz const links
+-u komponenti admin/layout.tsx kreiramo i eksportujemo asinhronu funkciju AdminLayout() kao default
+-importujemo komponentu MainNav iz komponente main-nav.tsx
+-u folderu admin kreiramo folder overview
+-u folderu overview kreiramo komponentu page.tsx
+-u komponenti overview/page.tsx kreiramo i eskportujemo funkciju AdminOverviewPage() kao default
+-otvorimo rutu: http://localhost:3000/admin/overview
+-u komponenti user-button.tsx, u jsx-u dodajemo uslov za kondicionalno renderovanje session?.user?.role === 'admin' && (...)
+-otvorimo link: https://next-auth.js.org/getting-started/typescript
+-otvorimo link: https://stackoverflow.com/questions/73353973/type-error-property-role-does-not-exist-on-type-implementing-role-base
+-u folderu types kreiramo next-auth.d.ts fajl
+-u next-auth.d.ts fajl importujemo interfejs DefaultSession iz paketa next-auth
+-dodajemo kod iz dokumentacije
