@@ -1880,3 +1880,8 @@ Orders Pagination - Alternative
 -pozivamo funkciju toast()
 -u auth.ts fajlu, u funkciju jwt() dodajemo uslov if (session?.user.name && trigger === 'update')
 -u komponentu user/orders/page.tsx, u jsx-u dodajemo uslov orders?.data?.length > 0
+
+
+Section 10: Admin Overview & Orders
+
+93. Section Intro
