@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { updateProfileSchema } from '@/lib/validators';
+import { updateProfile } from '@/lib/actions/user.actions';
+import { useToast } from '@/hooks/use-toast';
 import {
   Form,
   FormControl,
@@ -26,7 +28,31 @@ const ProfileForm = () => {
     },
   });
 
-  const onSubmit = () => {};
+  const { toast } = useToast();
+
+  const onSubmit = async (values: z.infer<typeof updateProfileSchema>) => {
+    const res = await updateProfile(values);
+  
+    if (!res.success)
+      return toast({
+        variant: 'destructive',
+        description: res.message,
+      });
+  
+    const newSession = {
+      ...session,
+      user: {
+        ...session?.user,
+        name: values.name,
+      },
+    };
+  
+    await update(newSession);
+  
+    toast({
+      description: res.message,
+    });
+  };
 
   return (
     <Form {...form}>

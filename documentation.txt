@@ -1864,3 +1864,19 @@ Orders Pagination - Alternative
 -importujemo komponentu Button iz komponente ui/button.tsx
 -u element form dodajemo komponentu Button sa prop type, size, className i disabled
 -u komponentu Button dodajemo uslov ternarni operator za varijablu form.formState.isSubmitting
+
+92. Profile Form Submission
+-u komponenti profile-form.tsx, funkciji onSubmit dodajemo parametar values sa tipom
+-funkciji onSubmit() dodajemo asinhronost
+-importujemo funkciju updateProfile iz user.actions.ts fajla
+-importujemo funkciju useToast iz use-toast.ts fajla
+-u funkciji ProfileForm() pozivamo funkciju useToast()
+-vrijednost funkcije useToast() pohranjujemo u destruktuiranu varijablu const { toast }
+-u funkciji onSubmit pozivamo funkciju await updateProfile(values)
+-vrijednost funkcije await updateProfile(values) pohranjujemo u varijablu const res
+-dodajemo uslov if (!res.success)
+-kreiramo varijablu const newSession
+-pozivamo funkciju await update(newSession)
+-pozivamo funkciju toast()
+-u auth.ts fajlu, u funkciju jwt() dodajemo uslov if (session?.user.name && trigger === 'update')
+-u komponentu user/orders/page.tsx, u jsx-u dodajemo uslov orders?.data?.length > 0
