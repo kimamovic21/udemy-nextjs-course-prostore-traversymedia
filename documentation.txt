@@ -1903,3 +1903,19 @@ Section 10: Admin Overview & Orders
 -u folderu types kreiramo next-auth.d.ts fajl
 -u next-auth.d.ts fajl importujemo interfejs DefaultSession iz paketa next-auth
 -dodajemo kod iz dokumentacije
+
+95. Get Order Summary
+-u order.actions.ts fajl importujemo instancu Prisma iz paketa @prisma/client
+-kreiramo i eksportujemo asinhronu funkciju getOrderSummary()
+-u funkciji getOrderSummary() kreiramo varijable const ordersCount, const productsCount i const usersCount
+-pozivamo funkciju await prisma.order.aggregate()
+-vrijednost funkcije await prisma.order.aggregate() pohranjujemo u varijablu const totalSales
+-pozivamo funkciju await prisma.$queryRaw
+-vrijednost funkcije await prisma.$queryRaw pohranjujemo u varijablu const salesDataRaw
+-kreiramo tip SalesDataType 
+-pozivamo funkciju salesDataRaw?.map()
+-vrijednost funkcije salesDataRaw?.map() pohranjujemo u varijablu const salesData
+-varijabli const salesData dodajemo tip SalesDataType
+-pozivamo funkciju  await prisma.order.findMany()
+-vrijednost funkcije await prisma.order.findMany() pohranjujemo u varijablu const latestOrders
+-dodajemo izjavu objekt ruturn i varijable ordersCount, productsCount, usersCount, totalSales, latestOrders i salesData
