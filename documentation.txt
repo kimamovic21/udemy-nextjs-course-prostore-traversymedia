@@ -1951,3 +1951,18 @@ Section 10: Admin Overview & Orders
 -u komponentu Table dodajemo komponente TableHeader i TableBody
 -u komponenti TableBody pozivamo funkciju summary?.latestOrders?.map()
 -u komponenti TableBody prikazujemo podatke o zadnjim narudzbama
+
+97. Monthly Sales Chart
+-otvorimo web stranicu: https://recharts.org/en-US/
+-u terminalu ukucamo komandu: npm i recharts
+-u folderu app/overview kreiramo komponentu charts.tsx
+-u komponentu charts.tsx dodajemo direktivu 'use client'
+-kreiramo i eksportujemo funkciju Charts() kao default
+-importujemo komponente Bar, BarChart, ResponsiveContainer, XAxis i YAxis iz paketa recharts
+-funkciji Charts() dodajemo parametar destruktuirani prop objekt data
+-u jsx-u dodajemo komponentu ResponsiveContainer kao roditelj element sa otvorenim i zatvorenim tagom
+-u komponentu ResponsiveContainer dodajemo komponente BarChart
+-u komponentu BarChart dodajemo komponente XAxis, YAxis i Bar
+-u komponentu overview/page.tsx importujemo komponentu Charts iz komponente charts.tsx
+-u jsx-u, u div element za grafikon dodajemo komponentu Charts sa samozatvarajucim tagom
+-komponenti Charts dodajemo prop objekt data
