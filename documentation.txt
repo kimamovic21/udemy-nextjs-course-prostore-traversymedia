@@ -1919,3 +1919,35 @@ Section 10: Admin Overview & Orders
 -pozivamo funkciju  await prisma.order.findMany()
 -vrijednost funkcije await prisma.order.findMany() pohranjujemo u varijablu const latestOrders
 -dodajemo izjavu objekt ruturn i varijable ordersCount, productsCount, usersCount, totalSales, latestOrders i salesData
+
+96. Admin Overview Display Data
+-u komponentu overview/page.tsx importujemo funkciju auth iz auth.ts fajla
+-funkciji AdminOverviewPage() dodajemo asinhronost
+-u funkciji AdminOverviewPage() pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-dodajemo uslov if (session?.user?.role !== 'admin')
+-importujemo funkciju getOrderSummary iz order.actions.ts fajla
+-pozivamo funkciju await getOrderSummary()
+-vrijednost funkcije await getOrderSummary() pohranjujemo u varijablu const summary
+-importujemo komponente Card, CardContent, CardHeader i CardTitle iz komponente ui/card.tsx
+-importujemo React ikonice BadgeDollarSign, Barcode, CreditCard i Users iz paketa lucide-react
+-importujemo komponente za tabelu iz komponente ui/table.tsx
+-importujemo komponentu Link iz paketa next/link
+-u jsx-u dodajemo roditelj div elementu klasu space-y-2
+-u roditelj div elementu kreiramo h2 element sa Tailwind CSS klasom h2-bold
+-u roditelj div elementu kreiramo div element sa Tailwind CSS Grid klasama za komponente Card
+-u div element za komponente Card dodajemo cetiri komponente Card
+-u lib/utils.ts fajlu kreiramo i eksportujemo funkciju formatNumber()
+-kreiramo varijablu const NUMBER_FORMATTER 
+-u komponentu overview/page.tsx importujemo funkcije formatCurrency, formatDateTime i formatNumber
+-u div elementu za komponente Card prva komponenta Card je za prikazivanje ukupne zarade
+-druga komponenta Card je za prikazivanje ukupnog broja prodaja
+-treca komponenta Card je za prikazivanje ukupnog broja kupaca
+-cetvrta komponenta Card je za prikazivanje ukupnog broja artikala
+-kreiramo div element sa Tailwind CSS Grid klasama za dvije komponente Card
+-u prvoj komponenti Card cemo dodati grafikon
+-u drugu komponentu Card dodajemo komponente za tabelu
+-u komponentu Card dodajemo komponentu Table
+-u komponentu Table dodajemo komponente TableHeader i TableBody
+-u komponenti TableBody pozivamo funkciju summary?.latestOrders?.map()
+-u komponenti TableBody prikazujemo podatke o zadnjim narudzbama
