@@ -1966,3 +1966,25 @@ Section 10: Admin Overview & Orders
 -u komponentu overview/page.tsx importujemo komponentu Charts iz komponente charts.tsx
 -u jsx-u, u div element za grafikon dodajemo komponentu Charts sa samozatvarajucim tagom
 -komponenti Charts dodajemo prop objekt data
+
+98. Protecting Admin Routes
+-otvorimo link: https://www.youtube.com/watch?v=kbCzZzXTjuw
+-u folderu lib kreiramo auth-guard.ts fajl
+-u auth-guard.ts fajl importujemo funkcije auth i redirect
+-kreiramo i eksportujemo asinhronu funkciju requireAdmin()
+-u funkciji requireAdmin() pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-dodajemo uslov if (session?.user?.role !== 'admin')
+-u uslovu if pozivamo funkciju redirect('/unauthorized')
+-dodajemo izjavu return session
+-u folderu app kreiramo folder unauthorized i komponentu page.tsx
+-u komponenti unauthorized/page.tsx kreiramo i eksportujemo funkciju UnauthorizedPage() kao default
+-otvorimo rutu: http://localhost:3000/unauthorized
+-importujemo tip Metadata iz paketa next
+-importujemo komponentu Link iz paketa next/link
+-importujemo komponentu Button iz komponente ui/button.tsx
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-u jsx-u roditelj div elementu dodajemo Tailwind CSS flex klase
+-u komponentu overview/page.tsx importujemo funkciju iz auth-guard.ts fajla
+-u funkciji AdminOverviewPage() pozivamo funkciju await requireAdmin()
+-otvorimo rutu: http://localhost:3000/admin/overview sa korisnikom koji nije admin

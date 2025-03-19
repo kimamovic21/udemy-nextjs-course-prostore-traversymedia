@@ -1,6 +1,6 @@
 import { type Metadata } from 'next';
 import { BadgeDollarSign, Barcode, CreditCard, Users } from 'lucide-react';
-import { auth } from '@/auth';
+import { requireAdmin } from '@/lib/auth-guard';
 import { getOrderSummary } from '@/lib/actions/order.actions';
 import { formatCurrency, formatDateTime, formatNumber } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,9 +20,7 @@ export const metadata: Metadata = {
 };
 
 const AdminOverviewPage = async () => {
-  const session = await auth();
-
-  if (session?.user?.role !== 'admin') throw new Error('User is not authorized');
+  await requireAdmin();
 
   const summary = await getOrderSummary();
 
