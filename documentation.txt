@@ -845,6 +845,7 @@ Section 05: Add To Cart
 
 Vercel Deploy Error Edge Function "middleware" fix
 -Error: The Edge Function "middleware" size is 1.02 MB and your plan size limit is 1 MB. Learn More: https://vercel.link/edge-function-size
+-otvorimo link: https://authjs.dev/guides/edge-compatibility
 -otvorimo link: https://gist.github.com/bushblade/73a85d7bb145d17d7dbb6bea68f11f9e
 -kreiramo auth.config.ts fajl
 -u auth.config.ts fajl importujemo tip NextAuthConfig i funkciju NextResponse iz paketa next
@@ -2018,3 +2019,9 @@ Section 10: Admin Overview & Orders
 -u komponentu Button dodajemo komponentu Link sa prop dinamicki href
 -u komponenti user/orders/page.tsx uradimo isti postupak za komponentu TableCell u kojoj se nalazi komponenta Button
 -otvorimo rutu: http://localhost:3000/admin/orders
+
+Cart Persist On Sign Out Fix
+-u user.actions.ts fajl importujemo funkciju getMyCart iz cart.actions.ts fajla
+-u funkciji signOutUser() pozivamo funkciju await getMyCart()
+-vrijednost funkcije await getMyCart() pohranjujemo u varijablu const currentCart
+-pozivamo funkciju await prisma.cart.delete()
