@@ -2025,3 +2025,47 @@ Cart Persist On Sign Out Fix
 -u funkciji signOutUser() pozivamo funkciju await getMyCart()
 -vrijednost funkcije await getMyCart() pohranjujemo u varijablu const currentCart
 -pozivamo funkciju await prisma.cart.delete()
+
+100. Delete Orders
+-u user.actions.ts fajl, u funkciju signOutUser() dodajemo uslov if (currentCart)
+-u order.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju  deleteOrder()
+-funkciji deleteOrder() dodajemo parametar id sa tipom string
+-dodajemo blokove koda try - catch
+-u blok koda catch dodajemo izjavu return objekt sa key - value parovima success i message
+-u bloku koda try pozivamo funkciju await prisma.order.delete()
+-pozivamo funkciju revalidatePath('/admin/orders')
+-dodajemo izjavu return objekt sa key - value parovima success i message
+-otvorimo link: https://ui.shadcn.com/docs/components/dialog
+-u terminalu ukucamo komandu: npx shadcn@latest add dialog
+-otvorimo link: https://ui.shadcn.com/docs/components/alert-dialog
+-u terminalu ukucamo komandu: npx shadcn@latest add alert-dialog
+-u folderu components/shared kreiramo komponentu delete-dialog.tsx
+-u komponentu delete-dialog.tsx dodajemo direktivu 'use client'
+-kreiramo i eksportujemo funkciju DeleteDialog() kao default
+-funkciji DeleteDialog() dodajemo parametre destruktuirane prop id i action
+-parametrima id i action dodajemo tipove
+-u komponentu admin/orders/page.tsx importujemo komponentu DeleteDialog iz komponente delete-dialog.tsx
+-importujemo funkciju deleteOrder iz order.actions.ts fajla
+-u jsx-u, u komponentu TableCell gdje se nalazi komponenta Button dodajemo komponentu DeleteDialog sa samozatvarajucim tagom
+-komponenti DeleteDialog dodajemo prop id i action
+-u komponentu delete-dialog.tsx importujemo funkcije useState i useTransition iz paketa react
+-importujemo funkciju useToast iz use-toast.ts fajla
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u funkciji DeleteDialog kreiramo state varijablu const open i set funkciju setOpen
+-kreiramo varijablu const isPending i funkciju startTransition
+-pozivamo funkciju useToast()
+-vrijednost funkcije useToast() pohranjujemo u destruktuiranu varijablu const { toast }
+-importujemo komponente alert iz komponente ui/alert-dialog.tsx
+-u jsx-u dodajemo komponentu AlertDialog kao roditelj komponentu
+-komponenti AlertDialog dodajemo prop open i onOpenChange
+-u komponentu AlertDialog dodajemo komponente AlertDialogTrigger i AlertDialogContent
+-u komponentu AlertDialogTrigger dodajemo komponentu Button
+-u komponentu AlertDialogContent dodajemo komponente AlertDialogHeader i AlertDialogFooter
+-u komponentu AlertDialogHeader dodajemo komponente AlertDialogTitle i AlertDialogDescription
+-u komponentu AlertDialogFooter dodajemo komponente AlertDialogCancel i Button
+-komponenti Button dodajemo prop variant, size, disabled i dogadaj onClick
+-u prop disabled proslijedujemo varijablu isPending
+-u komponentu Button dodajemo ternarni operator za varijablu isPending
+-kreiramo funkciju handleDeleteOrder()
+-u funkciji handleDeleteOrder() pozivamo funkciju startTransition()
+-u dogadaj onClick proslijedujemo funkciju handleDeleteOrder

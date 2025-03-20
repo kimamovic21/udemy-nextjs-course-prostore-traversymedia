@@ -1,6 +1,6 @@
 import { type Metadata } from 'next';
 import { requireAdmin } from '@/lib/auth-guard';
-import { getAllOrders } from '@/lib/actions/order.actions';
+import { deleteOrder, getAllOrders } from '@/lib/actions/order.actions';
 import { formatCurrency, formatDateTime, formatId } from '@/lib/utils';
 import {
   Table,
@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Pagination from '@/components/shared/pagination';
+import DeleteDialog from '@/components/shared/delete-dialog';
 
 export const metadata: Metadata = {
   title: 'Admin Orders',
@@ -76,11 +77,15 @@ const AdminOrdersPage = async (props: {
                     )}
                   </TableCell>
 
-                  <TableCell>
+                  <TableCell className='flex gap-2'>
                     <Button asChild variant='outline' size='sm'>
                       <Link href={`/order/${order.id}`}>Details</Link>
                     </Button>
-                    {/* DELETE BUTTON */}
+                    
+                    <DeleteDialog 
+                      id={order.id} 
+                      action={deleteOrder}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
