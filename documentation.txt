@@ -1988,3 +1988,33 @@ Section 10: Admin Overview & Orders
 -u komponentu overview/page.tsx importujemo funkciju iz auth-guard.ts fajla
 -u funkciji AdminOverviewPage() pozivamo funkciju await requireAdmin()
 -otvorimo rutu: http://localhost:3000/admin/overview sa korisnikom koji nije admin
+
+99. Admin Orders Page & Action
+-u order.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju getAllOrders()
+-funkciji getAllOrders() dodajemo destruktuirane parametre limit i page
+-parametrima dodajemo tipove
+-u funkciji getAllOrders() pozivamo funkciju await prisma.order.findMany()
+-vrijednost funkcije await prisma.order.findMany() pohranjujemo u varijablu const data
+-pozivamo funkciju await prisma.order.count()
+-vrijednost funkcije await prisma.order.count() pohranjujemo u varijablu const dataCount
+-dodajemo izjavu objekt return varijable data i totalPages
+-u folderu app/admin kreiramo folder orders i komponentu page.tsx
+-u komponenti orders/page.tsx kreiramo i eksportujemo asinhronu funkciju AdminOrdersPage() kao default
+-importujemo tip Metadata iz paketa next
+-importujemo funkcije requireAdmin i getAllOrders iz foldera lib
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-funkciji AdminOrdersPage() dodajemo parametar props
+-u funkciji AdminOrdersPage() pozivamo funkciju await requireAdmin()
+-pozivamo funkciju await props.searchParams()
+-vrijednost funkcije await props.searchParams() pohranjujemo u destruktuiranu varijablu const { page = '1' } 
+-pozivamo funkciju await getAllOrders()
+-vrijednost funkcije await getAllOrders() pohranjujemo u varijablu const orders
+-importujemo funkcije formatCurrency, formatDateTime i formatId iz lib/utils.ts fajla
+-importujemo komponente za tablue iz komponente ui/table.tsx
+-importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo komponentu Pagination iz komponente shared/pagination.tsx
+-kod za jsx kopiramo iz komponente user/orders/page.tsx i dodajemo ga u komponentu admin/orders/page.tsx
+-u zadnjoj komponenti TableCell u komponenti TableRow dodajemo komponentu Button sa prop asChild, variant i size
+-u komponentu Button dodajemo komponentu Link sa prop dinamicki href
+-u komponenti user/orders/page.tsx uradimo isti postupak za komponentu TableCell u kojoj se nalazi komponenta Button
+-otvorimo rutu: http://localhost:3000/admin/orders

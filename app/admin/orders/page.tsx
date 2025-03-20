@@ -1,6 +1,7 @@
 import { type Metadata } from 'next';
+import { requireAdmin } from '@/lib/auth-guard';
+import { getAllOrders } from '@/lib/actions/order.actions';
 import { formatCurrency, formatDateTime, formatId } from '@/lib/utils';
-import { getMyOrders } from '@/lib/actions/order.actions';
 import {
   Table,
   TableBody,
@@ -14,16 +15,19 @@ import Link from 'next/link';
 import Pagination from '@/components/shared/pagination';
 
 export const metadata: Metadata = {
-  title: 'My Orders',
+  title: 'Admin Orders',
 };
 
-const OrdersPage = async (props: {
+const AdminOrdersPage = async (props: {
   searchParams: Promise<{ page: string }>;
 }) => {
-  const { page } = await props.searchParams;
+  await requireAdmin();
 
-  const orders = await getMyOrders({
-    page: Number(page) || 1,
+  const { page = '1' } = await props.searchParams;
+
+  const orders = await getAllOrders({
+    page: Number(page),
+    // limit: 2
   });
 
   return (
@@ -71,11 +75,12 @@ const OrdersPage = async (props: {
                       <span className='text-red-600'>Not Delivered</span>
                     )}
                   </TableCell>
-                  
+
                   <TableCell>
                     <Button asChild variant='outline' size='sm'>
                       <Link href={`/order/${order.id}`}>Details</Link>
                     </Button>
+                    {/* DELETE BUTTON */}
                   </TableCell>
                 </TableRow>
               ))}
@@ -96,4 +101,4 @@ const OrdersPage = async (props: {
   );
 };
 
-export default OrdersPage;
+export default AdminOrdersPage;
