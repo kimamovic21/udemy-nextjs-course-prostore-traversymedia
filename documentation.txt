@@ -2069,3 +2069,23 @@ Cart Persist On Sign Out Fix
 -kreiramo funkciju handleDeleteOrder()
 -u funkciji handleDeleteOrder() pozivamo funkciju startTransition()
 -u dogadaj onClick proslijedujemo funkciju handleDeleteOrder
+
+101. Update Order Actions (Cash On Delivery)
+-u order.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju updateOrderToPaidCOD()
+-funkciji updateOrderToPaidCOD() dodajemo parametar orderId sa tipom string
+-u funkciju updateOrderToPaidCOD() dodajemo blokove koda try - catch
+-u bloku koda try pozivamo funkciju await updateOrderToPaid({ orderId })
+-pozivamo funkciju revalidatePath(`/order/${orderId}`)
+-dodajemo izjavu objekt ruturn sa porukom da je narudzba oznacena kao placena
+-u blok koda catch dodajemo izjavu objekt return sa key - value parovima success i message
+-kreiramo i eskportujemo funkciju deliverOrder()
+-funkciji deliverOrder() dodajemo parametar orderId sa tipom string
+-dodajemo blokove koda try - catch
+-u bloku koda try pozivamo funkciju await prisma.order.findFirst()
+-vrijednost funkcije await prisma.order.findFirst() pohranjujemo u varijablu const order
+-dodajemo uslov if (!order)
+-dodajemo uslov if (!order.isPaid) 
+-pozivamo funkciju await prisma.order.update()
+-pozivamo funkciju revalidatePath(`/order/${orderId}`)
+-dodajemo izjavu ojekt return sa porukom da je narudzba oznacena kao uspjesno isporucena
+-u blok koda catch dodajemo izjavu objekt return sa key - value parovima success i message
