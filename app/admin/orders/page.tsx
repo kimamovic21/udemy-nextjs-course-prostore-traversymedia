@@ -51,11 +51,17 @@ const AdminOrdersPage = async (props: {
             <TableBody>
               {orders?.data?.map((order) => (
                 <TableRow key={order.id}>
-                  <TableCell>{formatId(order.id)}</TableCell>
+                  <TableCell>
+                    {formatId(order.id)}
+                  </TableCell>
 
-                  <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
+                  <TableCell>
+                    {formatDateTime(order.createdAt).dateTime}
+                  </TableCell>
 
-                  <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
+                  <TableCell>
+                    {formatCurrency(order.totalPrice)}
+                  </TableCell>
 
                   <TableCell>
                     {order.isPaid && order.paidAt ? (

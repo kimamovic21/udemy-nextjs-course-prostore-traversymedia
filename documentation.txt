@@ -2089,3 +2089,19 @@ Cart Persist On Sign Out Fix
 -pozivamo funkciju revalidatePath(`/order/${orderId}`)
 -dodajemo izjavu ojekt return sa porukom da je narudzba oznacena kao uspjesno isporucena
 -u blok koda catch dodajemo izjavu objekt return sa key - value parovima success i message
+
+102. Update Order Buttons (Cash on Delivery)
+-u komponentu (root)/order/[id]/page.tsx importujemo funkciju auth iz auth.ts fajla
+-u funkciji OrderDetailsPage() pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-u jsx-u komponenti OrderDetailsTable dodajemo prop isAdmin
+-u komponenti order-details-table.tsx, funkciji OrderDetailsTable() dodajemo parametar isAdmin sa tipom boolean
+-importujemo funkcije updateOrderToPaidCOD i deliverOrder iz order.actions.ts fajla
+-importujemo funkciju useTransition iz paketa react
+-importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo funkciju useToast iz use-toast.ts fajla
+-u funkciji OrderDetailsTable() pozivamo funkciju useToast()
+-vrijednost funkcije useToast() pohranjujemo u destruktuiranu varijablu const { toast } 
+-kreiramo funkcije MarkAsPaidButton() i MarkAsDeliveredButton()
+-u jsx-u dodajemo uslov za kondicionalno renderovanje isAdmin && !isPaid && paymentMethod === 'CashOnDelivery' && ()
+-dodajemo uslov za kondicionalno renderovanje isAdmin && isPaid && !isDelivered && ()

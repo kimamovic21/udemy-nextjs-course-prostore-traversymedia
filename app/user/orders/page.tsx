@@ -46,11 +46,17 @@ const OrdersPage = async (props: {
             <TableBody>
               {orders?.data?.map((order) => (
                 <TableRow key={order.id}>
-                  <TableCell>{formatId(order.id)}</TableCell>
+                  <TableCell>
+                    {formatId(order.id)}
+                  </TableCell>
 
-                  <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
+                  <TableCell>
+                    {formatDateTime(order.createdAt).dateTime}
+                  </TableCell>
 
-                  <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
+                  <TableCell>
+                    {formatCurrency(order.totalPrice)}
+                  </TableCell>
 
                   <TableCell>
                     {order.isPaid && order.paidAt ? (
@@ -82,7 +88,9 @@ const OrdersPage = async (props: {
             </TableBody>
           </Table>
         ) : (
-          <p className='text-center text-gray-600 mt-4'>No orders found.</p>
+          <p className='text-center text-gray-600 mt-4'>
+            No orders found.
+          </p>
         )}
 
         {orders.totalPages > 1 && (
