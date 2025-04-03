@@ -2135,3 +2135,20 @@ Section 11: Admin Products & Image Upload
 -importujemo komponentu Link iz paketa next/link
 -u funkciji AdminProductsPage() pozivamo funkciju await getAllProducts()
 -vrijednost funkcije await getAllProducts() pohranjujemo u varijablu const products
+
+105. Display Products
+-u komponentu admin/products/page.tsx importujemo komponentu Button iz komponenti ui/button.tsx
+-u jsx-u, u div element sa klasom flex-between dodajemo komponentu Button sa prop asChild i variant
+-importujemo komponente za tabelu iz komponente ui/table.tsx
+-importujemo komponentu Pagination iz komponente shared/pagination.tsx
+-u roditelj div elementu kreiramo div element za komponentu Table
+-u komponentu Table dodajemo komponente TableHeader i TableBody
+-u komponentu TableHeader dodajemo komponentu TableRow
+-u komponentu TableRow dodajemo sedam komponenti TableHead
+-u komponentu TableBody dodajemo funkciju products?.data?.map()
+-u funkciju map() dodajemo komponentu TableRow
+-u komponentu TableRow dodajemo sedam komponenti TableCell u kojima dinamicki prikazujemo podatke o proizvodima
+-u div elementu za tabelu dodajemo uslov za kondicionalno renderovanje products?.totalPages && products.totalPages > 1 && ()
+-u uslov za kondicionalno renderovanje dodajemo komponentu Pagination
+-komponenti Pagination dodajemo prop page i totalPages
+-u pretrazivacu otvorimo rutu: http://localhost:3000/admin/products
