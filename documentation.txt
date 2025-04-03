@@ -2110,3 +2110,28 @@ Cart Persist On Sign Out Fix
 Section 11: Admin Products & Image Upload
 
 103. Section Intro
+
+104. Get Products For Admin Page
+-u folderu admin kreiramo folder products i komponentu page.tsx
+-u komponenti products/page.tsx kreiramo i eksportujemo funkciju AdminProductsPage() kao default
+-u jsx-u kreiramo HTML elemente sa Tailwind CSS klasama
+-u pretrazivacu otvorimo rutu: http://localhost:3000/admin/products
+-funkciji AdminProductsPage() dodajemo parametar props
+-funkcije AdminProductsPage() dodajemo asinhronost
+-kreiramo varijable const searchParams, const page, const searchText i const category
+-funkciji AdminProductsPage() dodajemo asinhronost
+-importujemo funkciju requireAdmin iz auth-guard.ts fajla
+-pozivamo funkciju await requireAdmin()
+-u product.actions.ts fajl importujemo varijablu PAGE_SIZE iz constants/index.ts fajla
+-kreiramo i eksportujemo asinhronu funkciju getAllProducts()
+-funkciji getAllProducts() dodajemo parametre query, limit, page i category
+-pozivamo funkciju await prisma.product.findMany()
+-vrijednost funkcije await prisma.product.findMany() pohranjujemo u varijablu const data
+-pozivamo funkciju await prisma.product.count()
+-vrijednost funkcije await prisma.product.count() pohranjujemo u varijablu const dataCount
+-dodajemo izjavu objekt return i varijable data, totalPages
+-u komponentu admin/products/page.tsx importujemo funkciju getAllProducts iz product.actions.ts fajla
+-importujemo funkcije formatCurrency i formatId iz lib/utils.ts fajla
+-importujemo komponentu Link iz paketa next/link
+-u funkciji AdminProductsPage() pozivamo funkciju await getAllProducts()
+-vrijednost funkcije await getAllProducts() pohranjujemo u varijablu const products
