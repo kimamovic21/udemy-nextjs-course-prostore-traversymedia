@@ -2152,3 +2152,21 @@ Section 11: Admin Products & Image Upload
 -u uslov za kondicionalno renderovanje dodajemo komponentu Pagination
 -komponenti Pagination dodajemo prop page i totalPages
 -u pretrazivacu otvorimo rutu: http://localhost:3000/admin/products
+
+106. Delete Products
+-u product.actions.ts fajl importujemo funkciju revalidatePath iz paketa next/cache
+-importujemo funkciju formatError iz utils.ts fajla
+-kreiramo i eksportujemo asinhronu funkciju deleteProduct()
+-funkciji deleteProduct() dodajemo parametar id sa tipom string
+-dodajemo blokove koda try - catch
+-u bloku koda catch dodajemo izjavu return objekt sa porukom da je doslo do greske prilikom brisanja artikla
+-u bloku koda try pozivamo funkciju await prisma.product.findFirst()
+-vrijednost funkcije await prisma.product.findFirst() pohranjujemo u varijablu const productExists
+-dodajemo uslov if (!productExists)
+-u uslovu if (!productExists) pozivamo funkciju throw new Error()
+-pozivamo funkciju await prisma.product.delete()
+-pozivamo funkciju revalidatePath('/admin/products')
+-dodajemo izjavu return objekt sa porukom da je artikl uspjesno obrisan
+-u komponentu admin/products/page.tsx importujemo funkciju deleteProduct iz product.actions.ts fajla
+-importujemo komponentu DeleteDialog iz komponente shared/delete-dialog.tsx
+-u jsx-u, u zadnju komponentu TableCell dodajemo komponentu DeleteDialog sa prop id i action
