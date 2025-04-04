@@ -2170,3 +2170,34 @@ Section 11: Admin Products & Image Upload
 -u komponentu admin/products/page.tsx importujemo funkciju deleteProduct iz product.actions.ts fajla
 -importujemo komponentu DeleteDialog iz komponente shared/delete-dialog.tsx
 -u jsx-u, u zadnju komponentu TableCell dodajemo komponentu DeleteDialog sa prop id i action
+
+107. Create and Update Actions
+-u validators.ts fajlu kreiramo i eksportujemo varijablu const updateProductSchema
+-u constants/index.ts fajlu kreiramo i eksportujemo varijablu const productDefaultValues
+-u product.actions.ts fajl importujemo instancu z iz paketa zod
+-importujemo varijablu insertProductSchema iz validators.ts fajla
+-kreiramo i eksportujemo asinhronu funkciju createProduct()
+-funkciji createProduct() dodajemo parametar data
+-parametru data dodajemo tip z.infer<typeof insertProductSchema>
+-dodajemo blokove koda try - catch
+-u blok koda catch dodajemo izjavu return objekt sa porukom da je doslo do greske prilikom kreiranja artikla
+-u bloku koda try pozivamo funkciju insertProductSchema.parse(data)
+-vrijednost funkcije insertProductSchema.parse(data) pohranjujemo u varijablu const product
+-pozivamo funkciju await prisma.product.create()
+-pozivamo funkciju evalidatePath('/admin/products')
+-dodajemo izjavu return objekt poruku da je artikl uspjesno kreiran
+-importujemo varijablu updateProductSchema iz validators.ts fajla
+-kreiramo i eksportujemo asinhronu funkciju updateProduct()
+-funkciji updateProduct() dodajemo parametar data
+-parametru data dodajemo tip z.infer<typeof updateProductSchema>
+-dodajemo blokove koda try - catch
+-u blok koda catch dodajemo izjavu return objekt sa porukom da je doslo do greske prilikom azuriranja artikla
+-u bloku koda try pozivamo funkciju updateProductSchema.parse(data)
+-vrijednost funkcije updateProductSchema.parse(data) pohranjujemo u varijablu const product
+-pozivamo funkciju await prisma.product.findFirst()
+-vrijednost funkcije await prisma.product.findFirst() pohranjujemo u varijablu const productExists
+-dodajemo uslov if (!productExists)
+-u uslovu if (!productExists) pozivamo funkciju throw new Error()
+-pozivamo funkciju await prisma.product.update()
+-pozivamo funkciju revalidatePath('/admin/products')
+-dodajemo izjavu return objekt poruku da je artikl uspjesno azuriran
