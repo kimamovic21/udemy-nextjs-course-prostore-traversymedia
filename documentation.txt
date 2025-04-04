@@ -2201,3 +2201,34 @@ Section 11: Admin Products & Image Upload
 -pozivamo funkciju await prisma.product.update()
 -pozivamo funkciju revalidatePath('/admin/products')
 -dodajemo izjavu return objekt poruku da je artikl uspjesno azuriran
+
+108. Create Product Page & Form
+-u folderu admin/products kreiramo folder create i komponentu page.tsx
+-u folderu create/page.tsx kreiramo i eksportujemo asinhronu funkciju CreateProductPage() kao default
+-importujemo tip Metadata iz paketa next
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-u funkciji CreateProductPage() pozivamo funkciju await requireAdmin()
+-u jsx-u kreiramo HTML elemente h2 i div sa Tailwind CSS klasama
+-importujemo funkciju requireAdmin iz auth-guard.ts fajla
+-u pretrazivacu otvorimo rutu: http://localhost:3000/admin/products/create
+-u folderu create kreiramo komponentu product-form.tsx
+-u komponenti product-form.tsx kreiramo i eksportujemo funkciju ProductForm() kao default
+-dodajemo direktivu 'use client'
+-u komponentu create/page.tsx importujemo komponentu ProductForm iz komponente product-form.tsx
+-u jsx-u, u div element dodajemo komponentu ProductForm
+-komponenti ProductForm dodajemo prop type
+-u komponentu product-form.tsx importujemo tip Product iz types/index.ts fajla
+-funkciji ProductForm() dodajemo parametre destruktuirane prop type, product i productId sa tipovima
+-importujemo i pozivamo funkciju useRouter()
+-vrijednost funkcije useRouter() pohranjujemo u varijablu const router
+-importujemo i pozivamo funkciju useToast()
+-vrijednost funkcije useToast() pohranjujemo u destruktuiranu varijablu const { toast }
+-importujemo funkciju useForm iz paketa react-hook-form
+-importujemo instancu z iz paketa zod
+-importujemo varijable insertProductSchema i updateProductSchema iz validators.ts fajla
+-importujemo funkciju zodResolver iz paketa @hookform/resolvers/zod
+-importujemo varijablu productDefaultValues iz constants/index.ts fajla
+-kreiramo varijablu const form
+-importujemo komponentu Form iz komponente ui/form.tsx
+-u komponenti Form kreiramo form element sa Tailwind CSS klasom space-y-8
+-u form elementu kreiramo sedam div elemenata sa Tailwind CSS klasama
