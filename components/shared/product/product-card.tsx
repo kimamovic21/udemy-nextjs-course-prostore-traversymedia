@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Product } from '@/types';
+import { type Product } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductPrice from './product-price';
@@ -10,7 +10,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       <CardHeader className='p-0 items-center'>
         <Link href={`/product/${product.slug}`}>
           <Image
-            src={product.images![0]}
+            src={product?.images![0]}
             alt={product.name}
             width={300}
             height={300}

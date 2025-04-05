@@ -2252,3 +2252,27 @@ Section 11: Admin Products & Image Upload
 -u zadnji div element dodajemo komponentu Button sa prop type, size, disabled i className
 -u komponentu Button dodajemo ternarni uslov za varijablu form.formState.isSubmitting
 -u pretrazivac otvorimo rutu: http://localhost:3000/admin/products/create
+
+110. Create Product Form Submission
+-u komponentu product-form.tsx importujemo tip SubmitHandler iz paketa react-hook-form
+-importujemo funkcije createProduct i updateProduct iz product.actions.ts fajla
+-kreiramo asinhronu funkciju onSubmit() sa parametrom values
+-form elementu dodajemo atribute method, className i dogadaj onSubmit
+-u dogadaj onSubmit proslijedujemo funkciju form.handleSubmit(onSubmit)
+-funkciji onSubmit() dodajemo tip SubmitHandler<z.infer<typeof insertProductSchema>>
+-dodajemo dva uslova if (type === 'Create') i if (type === 'Update')
+-u uslovu if (type === 'Create') pozivamo funkciju await createProduct(values)
+-vrijednost funkcije await createProduct(values) pohranjujemo u varijablu const res
+-dodajemo uslove if (!res.success) - else
+-u uslovu if (!res.success) pozivamo funkciju toast()
+-u uslovu else pozivamo funkcije toast() i router.push(`/admin/products`)
+-u uslovu if (type === 'Update') dodajemo uslov if (!productId)
+-u uslovu if (!productId) pozivamo funkciju router.push(`/admin/products`) i izjavu return
+-pozivamo funkciju await updateProduct({ ... })
+-vrijednost funkcije await updateProduct({ ... }) pohranjujemo u varijablu const res
+-dodajemo uslove if (!res.success) - else
+-u uslovu if (!res.success) pozivamo funkciju toast()
+-u uslovu else pozivamo funkciju router.push(`/admin/products`)
+-u validators.ts fajlu zakomentarisemo polja za images, isFeatured i banner
+-u product.actions.ts fajlu, u funkciji getAllProducts(), u funkciju findMany() dodajemo objekt orderBy
+-otvorimo rutu: http://localhost:3000/admin/products/create i kreiramo artikl

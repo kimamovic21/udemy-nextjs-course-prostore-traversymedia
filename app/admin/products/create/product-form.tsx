@@ -1,13 +1,18 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useForm, type ControllerRenderProps } from 'react-hook-form';
+import { 
+  useForm, 
+  type SubmitHandler, 
+  type ControllerRenderProps 
+} from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type Product } from '@/types';
 import { useToast } from '@/hooks/use-toast';
 import { insertProductSchema, updateProductSchema } from '@/lib/validators';
 import { productDefaultValues } from '@/lib/constants';
+import { createProduct, updateProduct } from '@/lib/actions/product.actions';
 import {
   Form,
   FormControl,
@@ -38,9 +43,51 @@ const ProductForm = ({
     defaultValues: product && type === 'Update' ? product : productDefaultValues,
   });
 
+  const onSubmit: SubmitHandler<z.infer<typeof insertProductSchema>> = async (
+    values
+  ) => {
+    if (type === 'Create') {
+      const res = await createProduct(values);
+  
+      if (!res.success) {
+        toast({
+          variant: 'destructive',
+          description: res.message,
+        });
+      } else {
+        toast({
+          description: res.message,
+        });
+        router.push(`/admin/products`);
+      };
+    };
+
+    if (type === 'Update') {
+      if (!productId) {
+        router.push(`/admin/products`);
+        return;
+      };
+  
+      const res = await updateProduct({ ...values, id: productId });
+  
+      if (!res.success) {
+        toast({
+          variant: 'destructive',
+          description: res.message,
+        });
+      } else {
+        router.push(`/admin/products`);
+      };
+    };
+  };
+
   return (
     <Form {...form}>
-      <form className='space-y-8'>
+      <form 
+        method='POST'
+        onSubmit={form.handleSubmit(onSubmit)}
+        className='space-y-8'
+      >
         <div className='flex flex-col gap-5 md:flex-row'>
           {/* Name */}
           <FormField
