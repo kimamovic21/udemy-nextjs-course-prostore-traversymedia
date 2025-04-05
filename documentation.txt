@@ -2276,3 +2276,16 @@ Section 11: Admin Products & Image Upload
 -u validators.ts fajlu zakomentarisemo polja za images, isFeatured i banner
 -u product.actions.ts fajlu, u funkciji getAllProducts(), u funkciju findMany() dodajemo objekt orderBy
 -otvorimo rutu: http://localhost:3000/admin/products/create i kreiramo artikl
+
+111. Uploadthing Configuration
+-otvorimo web stranicu: https://uploadthing.com/
+-u terminalu ukucamo komandu: npm install uploadthing @uploadthing/react
+-na web stranici uploadthing kreiramo novu aplikaciju sa imenom prostore
+-otvorimo link: https://docs.uploadthing.com/getting-started/appdir
+-u .env fajlu kreiramo varijable UPLOADTHING_TOKEN, UPLOADTHING_SECRET i UPLOADTHING_APPID
+-u example.env fajl dodajemo primjer varijabli koje je potrebno kreirati
+-u folderu api kreiramo folder uploadthing
+-u folderu uploadthing kreiramo fajlove core.ts i route.ts fajl
+-u folderu lib kreiramo uploadthing.ts fajl
+-u kreirane fajlove dodajemo kod iz dokumentacije
+-u next.config.ts fajl dodajemo objekt images
