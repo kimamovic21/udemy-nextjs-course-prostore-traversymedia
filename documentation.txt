@@ -2232,3 +2232,23 @@ Section 11: Admin Products & Image Upload
 -importujemo komponentu Form iz komponente ui/form.tsx
 -u komponenti Form kreiramo form element sa Tailwind CSS klasom space-y-8
 -u form elementu kreiramo sedam div elemenata sa Tailwind CSS klasama
+
+109. Form Fields & Slugify
+-otvorimo link: https://www.npmjs.com/package/slugify
+-u terminalu ukucamo komandu npm install slugify
+-u komponentu product-form.tsx importujemo instancu slugify iz paketa slugify
+-importujemo komponentu za formu iz komponente ui/form.tsx
+-importujemo tip ControllerRenderProps iz paketa react-hook-form
+-importujemo komponentu Input iz komponente ui/input.tsx
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u jsx-u dodajemo komponente FormField za ime i slug artikla
+-dodajemo komponente FormField za kategoriju i brand
+-dodajemo komponente FormField za cijenu i kolicinu u zalihama
+-u komponenti FormField za slug artikla dodajemo komponentu Button
+-komponenti Button dodajemo prop type, className i dogadaj onClick
+-otvorimo link: https://ui.shadcn.com/docs/components/textarea
+-u terminalu ukucamo komandu: npx shadcn@latest add textarea
+-importujemo komponentu Textarea iz komponente ui/textarea.tsx
+-u zadnji div element dodajemo komponentu Button sa prop type, size, disabled i className
+-u komponentu Button dodajemo ternarni uslov za varijablu form.formState.isSubmitting
+-u pretrazivac otvorimo rutu: http://localhost:3000/admin/products/create
