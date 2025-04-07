@@ -2317,3 +2317,8 @@ Section 11: Admin Products & Image Upload
 -otvorimo web stranicu uploadthing i folder files
 -kreirani artikl treba da ima sliku kao link, npr: https://utfs.io/f/ZYaPZhbDOB8SBRbbNxmVRESjYw3u95LGrKdyPxZicXNvozJ2
 -otvorimo link: https://docs.uploadthing.com/api-reference/ut-api#delete-files
+
+113. Product Cleanup
+-obrisemo sve postojece artikle i kreiramo nove artikle sa slikama
+-u komponenti admin/products/page.tsx dodajemo ternarni uslov products?.data?.length === 0
+-umjesto uslova products?.totalPages && products.totalPages > 1 dodajemo samo uslov products?.totalPages > 1 && (...)

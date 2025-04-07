@@ -46,68 +46,76 @@ const AdminProductsPage = async (props: {
       </div>
 
       <div>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>ID</TableHead>
-              <TableHead>NAME</TableHead>
-              <TableHead className='text-right'>PRICE</TableHead>
-              <TableHead>CATEGORY</TableHead>
-              <TableHead>STOCK</TableHead>
-              <TableHead>RATING</TableHead>
-              <TableHead className='w-[100px]'>ACTIONS</TableHead>
-            </TableRow>
-          </TableHeader>
+        {products?.data?.length === 0 ? (
+          <p className='text-center text-gray-500 py-10'>
+            No products found.
+          </p>
+        ) : (
+          <>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>ID</TableHead>
+                  <TableHead>NAME</TableHead>
+                  <TableHead className='text-right'>PRICE</TableHead>
+                  <TableHead>CATEGORY</TableHead>
+                  <TableHead>STOCK</TableHead>
+                  <TableHead>RATING</TableHead>
+                  <TableHead className='w-[100px]'>ACTIONS</TableHead>
+                </TableRow>
+              </TableHeader>
 
-          <TableBody>
-            {products?.data?.map((product) => (
-              <TableRow key={product.id}>
-                <TableCell>
-                  {formatId(product.id)}
-                </TableCell>
+              <TableBody>
+                {products?.data?.map((product) => (
+                  <TableRow key={product.id}>
+                    <TableCell>
+                      {formatId(product.id)}
+                    </TableCell>
 
-                <TableCell>
-                  {product.name}
-                </TableCell>
+                    <TableCell>
+                      {product.name}
+                    </TableCell>
 
-                <TableCell className='text-right'>
-                  {formatCurrency(product.price)}
-                </TableCell>
-                
-                <TableCell>
-                  {product.category}
-                </TableCell>
+                    <TableCell className='text-right'>
+                      {formatCurrency(product.price)}
+                    </TableCell>
 
-                <TableCell>
-                  {product.stock}
-                </TableCell>
+                    <TableCell>
+                      {product.category}
+                    </TableCell>
 
-                <TableCell>
-                  {product.rating}
-                </TableCell>
+                    <TableCell>
+                      {product.stock}
+                    </TableCell>
 
-                <TableCell className='flex gap-1'>
-                  <Button asChild variant='outline' size='sm'>
-                    <Link href={`/admin/products/${product.id}`}>
-                      Edit
-                    </Link>
-                  </Button>
+                    <TableCell>
+                      {product.rating}
+                    </TableCell>
 
-                  <DeleteDialog 
-                    id={product.id} 
-                    action={deleteProduct} 
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+                    <TableCell className='flex gap-1'>
+                      <Button asChild variant='outline' size='sm'>
+                        <Link href={`/admin/products/${product.id}`}>
+                          Edit
+                        </Link>
+                      </Button>
+                      
+                      <DeleteDialog 
+                        id={product.id} 
+                        action={deleteProduct} 
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
 
-        {products?.totalPages && products.totalPages > 1 && (
-          <Pagination 
-            page={page} 
-            totalPages={products.totalPages} 
-          />
+            {products?.totalPages > 1 && (
+              <Pagination 
+                page={page} 
+                totalPages={products.totalPages} 
+              />
+            )}
+          </>
         )}
       </div>
     </div>
