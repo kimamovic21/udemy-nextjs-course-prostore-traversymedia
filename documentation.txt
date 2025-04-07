@@ -2279,6 +2279,8 @@ Section 11: Admin Products & Image Upload
 
 111. Uploadthing Configuration
 -otvorimo web stranicu: https://uploadthing.com/
+-otvorimo link: https://www.npmjs.com/package/uploadthing
+-otvorimo link: https://www.npmjs.com/package/@uploadthing/react
 -u terminalu ukucamo komandu: npm install uploadthing @uploadthing/react
 -na web stranici uploadthing kreiramo novu aplikaciju sa imenom prostore
 -otvorimo link: https://docs.uploadthing.com/getting-started/appdir
@@ -2289,3 +2291,29 @@ Section 11: Admin Products & Image Upload
 -u folderu lib kreiramo uploadthing.ts fajl
 -u kreirane fajlove dodajemo kod iz dokumentacije
 -u next.config.ts fajl dodajemo objekt images
+
+112. Add Image Uploads
+-na web stranici Vercel, dodajemo env varijable u projekt
+-u validators.ts fajlu otkomentarise polje za images
+-u komponentu product-form.tsx importujemo komponentu UploadButton iz lib/uploadthing.ts fajla
+-kreiramo varijablu const images
+-importujemo komponente Card i CardContent iz komponente ui/card.tsx
+-importujemo komponentu Image iz paketa next/image
+-u jsx-u, u div element za slike dodajemo komponentu FormField
+-komponenti FormField dodajemo prop control, name i render
+-u prop render proslijedujemo anonimnu funkciju
+-u anonimnu funkciju proslijedujemo komponentu FormItem kao roditelj element
+-u komponentu FormItem dodajemo komponente FormLabel, Card i FormMessage
+-u komponentu Card dodajemo komponentu CardContent
+-u komponenti CardContent kreiramo div element sa Tailwind CSS klasama
+-u div elementu pozivamo funkciju images?.map()
+-u funkciju map() dodajemo komponentu Image sa sest prop
+-u div element dodajemo komponentu FormControl
+-u komponentu FormControl dodajemo komponentu UploadButton sa samozatvarajucim tagom
+-komponenti UploadButton dodajemo prop endpoint, onClientUploadComplete i onUploadError
+-u globals.css fajl dodajemo CSS stil za klasu upload-field
+-u pretrazivacu otvorimo rutu: http://localhost:3000/admin/products/create i kreiramo artikl sa slikom
+-otvorimo Prisma Studio tabelu za artikle 
+-otvorimo web stranicu uploadthing i folder files
+-kreirani artikl treba da ima sliku kao link, npr: https://utfs.io/f/ZYaPZhbDOB8SBRbbNxmVRESjYw3u95LGrKdyPxZicXNvozJ2
+-otvorimo link: https://docs.uploadthing.com/api-reference/ut-api#delete-files
