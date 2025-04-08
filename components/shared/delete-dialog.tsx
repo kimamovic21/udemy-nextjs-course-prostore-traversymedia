@@ -36,6 +36,7 @@ const DeleteDialog = ({
       } else {
         setOpen(false);
         toast({
+          variant: 'default',
           description: res.message,
         });
       };
@@ -80,4 +81,4 @@ const DeleteDialog = ({
   );
 };
 
-export default DeleteDialog
+export default DeleteDialog;
