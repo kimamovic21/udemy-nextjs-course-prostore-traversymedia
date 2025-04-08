@@ -14,7 +14,7 @@ import Link from 'next/link';
 import Pagination from '@/components/shared/pagination';
 import DeleteDialog from '@/components/shared/delete-dialog';
 
-const AdminProductsPage = async (props: {
+const AdminCreateProductPage = async (props: {
   searchParams: Promise<{
     page: string;
     query: string;
@@ -122,4 +122,4 @@ const AdminProductsPage = async (props: {
   );
 };
 
-export default AdminProductsPage;
+export default AdminCreateProductPage;

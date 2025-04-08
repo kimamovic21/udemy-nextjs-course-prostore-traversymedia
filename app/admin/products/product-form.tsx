@@ -60,6 +60,7 @@ const ProductForm = ({
         });
       } else {
         toast({
+          variant: 'default',
           description: res.message,
         });
         router.push(`/admin/products`);
@@ -80,6 +81,10 @@ const ProductForm = ({
           description: res.message,
         });
       } else {
+        toast({
+          variant: 'default',
+          description: res.message,
+        });
         router.push(`/admin/products`);
       };
     };

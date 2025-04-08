@@ -2335,3 +2335,30 @@ Section 11: Admin Products & Image Upload
 -u uslov za kondicionalno renderovanje dodajemo komponentu Image
 -dodajemo uslov za kondicionalno renderovanje isFeatured && !banner && ()
 -u uslov za kondicionalno renderovanje dodajemo komponentu UploadButton
+-otvorimo rutu: http://localhost:3000/admin/products/create i kreiramo artikl sa slikom banner
+
+115. Product Update Form
+-u product.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju getProductById()
+-funkciji getProductById() dodajemo parametar productId sa tipom string
+-u funkciji getProductById() pozivamo funkciju await prisma.product.findFirst()
+-vrijednost funkcije await prisma.product.findFirst() pohranjujemo u varijablu const data
+-dodajemo izjavu return convertToPlainObject(data)
+-komponentu product-form.tsx premjestamo u folderu products
+-u folderu products kreiramo folder [id] i komponentu page.tsx
+-u komponenti [id]/page.tsx kreiramo i eksportujemo asinhronu funkciju AdminUpdateProductPage() kao default
+-importujemo tip Metadata iz paketa next
+-importujemo funkciju notFound iz paketa next/navigation
+-importujemo funkciju getProductById iz product.actions.ts fajla
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-importujemo komponentu ProductForm iz komponente product-form.tsx
+-funkciji AdminUpdateProductPage() dodajemo parametar props
+-u funkciji AdminUpdateProductPage() pozivamo funkciju await props.params
+-vrijednost funkcije await props.params pohranjujemo u destruktuiranu varijablu const { id }
+-pozivamo funkciju await getProductById(id)
+-vrijednost funkcije await getProductById(id) pohranjujemo u varijablu const product
+-dodajemo uslov if (!product)
+-u uslovu if (!product) pozivamo funkciju return notFound()
+-u jsx-u dodajemo roditelj div elementu Tailwind CSS klase
+-u div elementu kreiramo h2 element sa Tailwind CSS klasama
+-u roditelj div element dodajemo komponentu ProductForm sa prop type, product i productId
+-otvorimo rutu: http://localhost:3000/admin/products/fdd0dffc-6e82-47c5-8426-faae481fb40a i izmjenimo podatke o artiklu

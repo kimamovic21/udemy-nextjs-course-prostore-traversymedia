@@ -1,6 +1,6 @@
 import { type Metadata } from 'next';
 import { requireAdmin } from '@/lib/auth-guard';
-import ProductForm from './product-form';
+import ProductForm from '../product-form';
 
 export const metadata: Metadata = {
   title: 'Create product',
