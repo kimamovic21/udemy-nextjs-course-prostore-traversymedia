@@ -2362,3 +2362,8 @@ Section 11: Admin Products & Image Upload
 -u div elementu kreiramo h2 element sa Tailwind CSS klasama
 -u roditelj div element dodajemo komponentu ProductForm sa prop type, product i productId
 -otvorimo rutu: http://localhost:3000/admin/products/fdd0dffc-6e82-47c5-8426-faae481fb40a i izmjenimo podatke o artiklu
+
+
+Section 12: Admin Users & Search
+
+116. Section Intro
