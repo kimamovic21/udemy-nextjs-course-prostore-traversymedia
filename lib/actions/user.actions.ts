@@ -14,6 +14,7 @@ import { prisma } from '@/db/prisma';
 import { formatError } from '../utils';
 import { type ShippingAddress } from '@/types';
 import { getMyCart } from './cart.actions';
+import { PAGE_SIZE } from '../constants';
 
 // Sign in the user with credentials
 export async function signInWithCredentials(prevState: unknown, formData: FormData) {
@@ -193,5 +194,27 @@ export async function updateProfile(user: { name: string; email: string }) {
       success: false, 
       message: formatError(error) 
     };
+  };
+};
+
+// Get all the users
+export async function getAllUsers({
+  limit = PAGE_SIZE,
+  page,
+}: {
+  limit?: number;
+  page: number;
+}) {
+  const data = await prisma.user.findMany({
+    orderBy: { createdAt: 'desc' },
+    take: limit,
+    skip: (page - 1) * limit,
+  });
+
+  const dataCount = await prisma.user.count();
+
+  return {
+    data,
+    totalPages: Math.ceil(dataCount / limit),
   };
 };

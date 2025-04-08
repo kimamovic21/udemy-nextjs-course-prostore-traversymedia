@@ -2367,3 +2367,42 @@ Section 11: Admin Products & Image Upload
 Section 12: Admin Users & Search
 
 116. Section Intro
+
+117. Get & Display Users
+-u user.actions.ts fajl importujemo varijablu PAGE_SIZE iz constants/index.ts fajla
+-kreiramo i eksportujemo asinhronu funkciju getAllUsers()
+-funkciji getAllUsers() dodajemo destruktuirane parametre limit i page sa tipom number
+-u funkciji getAllUsers() pozivamo funkciju await prisma.user.findMany()
+-vrijednost funkcije await prisma.user.findMany() pohranjujemo u varijablu const data
+-pozivamo funkciju await prisma.user.count()
+-vrijednost funkcije await prisma.user.count() pohranjujemo u varijablu const dataCount
+-dodajemo izjavu return objekt sa varijablama data i totalPages
+-u folderu admin kreiramo folder users i komponentu page.tsx
+-u komponenti users/page.tsx kreiramo i eksportujemo asinhronu funkciju  AdminUsersPage() kao default
+-importujemo tip Metadata iz paketa next
+-importujemo funkciju getAllUsers iz user.actions.ts fajla
+-importujemo funkciju requireAdmin iz auth-guard.ts fajla
+-kreiramo varijablu const metadata sa tipom Metadata
+-u funkciji AdminUsersPage() pozivamo funkciju await requireAdmin()
+-pozivamo funkciju await getAllUsers()
+-vrijednost funkcije await getAllUsers() pohranjujemo u varijablu const users
+-funkciji AdminUsersPage() dodajemo parametar props
+-u funkciji AdminUsersPage() pozivamo funkciju await props.searchParams
+-vrijednost funkcije await props.searchParams pohranjujemo u varijablu const searchParams
+-iz varijable searchParams destruktuiramo varijablu const { page = '1' }
+-importujemo komponente za tabelu iz komponente ui/table.tsx
+-importujemo funkciju formatId iz lib/utils.ts fajla
+-importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo komponentu Link iz komponente next/link
+-importujemo komponentu Pagination iz komponente pagination.tsx
+-u jsx-u kreiramo h2 element sa klasom h2-bold
+-u roditelj div elementu kreiramo div element za komponentu Table
+-u komponentu Table dodajemo komponente TableHeader i TableBody
+-u komponenti TableBody pozivamo funkciju users?.data?.map()
+-u funkciju map() dodajemo komponentu TableRow
+-u komponentu TableRow dodajemo pet komponenti TableCell u kojima dinamicki ispisujemo podatke o korisnicima
+-u div element u kojoj se nalazi komponente Table dodajemo uslov za kondicionalno renderovanje users.totalPages > 1
+-importujemo komponentu Badge iz komponente ui/badge.tsx
+-u komponenti TableCell za rolu korisnika dodajemo uslov ternarni operator user.role === 'user'
+-otvorimo rutu: http://localhost:3000/admin/users
+-otvorimo rutu: http://localhost:3000/admin/users?page=2
