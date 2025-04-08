@@ -1,10 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { 
-  useForm, 
-  type SubmitHandler, 
-  type ControllerRenderProps 
+import {
+  useForm,
+  type SubmitHandler,
+  type ControllerRenderProps
 } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -25,6 +25,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { UploadButton } from '@/lib/uploadthing';
 import slugify from 'slugify';
 import Image from 'next/image';
@@ -51,7 +52,7 @@ const ProductForm = ({
   ) => {
     if (type === 'Create') {
       const res = await createProduct(values);
-  
+
       if (!res.success) {
         toast({
           variant: 'destructive',
@@ -70,9 +71,9 @@ const ProductForm = ({
         router.push(`/admin/products`);
         return;
       };
-  
+
       const res = await updateProduct({ ...values, id: productId });
-  
+
       if (!res.success) {
         toast({
           variant: 'destructive',
@@ -85,10 +86,12 @@ const ProductForm = ({
   };
 
   const images = form.watch('images');
+  const isFeatured = form.watch('isFeatured');
+  const banner = form.watch('banner');
 
   return (
     <Form {...form}>
-      <form 
+      <form
         method='POST'
         onSubmit={form.handleSubmit(onSubmit)}
         className='space-y-8'
@@ -286,6 +289,50 @@ const ProductForm = ({
 
         <div className='upload-field'>
           {/* Is Featured */}
+          <Card>
+            <CardContent className='space-y-2 mt-2'>
+              <FormField
+                control={form.control}
+                name='isFeatured'
+                render={({ field }) => (
+                  <FormItem className='space-x-2 items-center'>
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormLabel>Is Featured?</FormLabel>
+                  </FormItem>
+                )}
+              />
+
+              {isFeatured && banner && (
+                <Image
+                  src={banner}
+                  alt='banner image'
+                  className=' w-full object-cover object-center rounded-sm'
+                  width={1920}
+                  height={680}
+                />
+              )}
+
+              {isFeatured && !banner && (
+                <UploadButton
+                  endpoint='imageUploader'
+                  onClientUploadComplete={(res: { url: string }[]) => {
+                    form.setValue('banner', res[0].url);
+                  }}
+                  onUploadError={(error: Error) => {
+                    toast({
+                      variant: 'destructive',
+                      description: `ERROR! ${error.message}`,
+                    });
+                  }}
+                />
+              )}
+            </CardContent>
+          </Card>
         </div>
 
         <div>

@@ -2294,7 +2294,7 @@ Section 11: Admin Products & Image Upload
 
 112. Add Image Uploads
 -na web stranici Vercel, dodajemo env varijable u projekt
--u validators.ts fajlu otkomentarise polje za images
+-u validators.ts fajlu otkomentarisemo polje za images
 -u komponentu product-form.tsx importujemo komponentu UploadButton iz lib/uploadthing.ts fajla
 -kreiramo varijablu const images
 -importujemo komponente Card i CardContent iz komponente ui/card.tsx
@@ -2322,3 +2322,16 @@ Section 11: Admin Products & Image Upload
 -obrisemo sve postojece artikle i kreiramo nove artikle sa slikama
 -u komponenti admin/products/page.tsx dodajemo ternarni uslov products?.data?.length === 0
 -umjesto uslova products?.totalPages && products.totalPages > 1 dodajemo samo uslov products?.totalPages > 1 && (...)
+
+114. Is Featured & Banner
+-u validators.ts fajlu, otkomentarisemo polja za isFeatured i banner
+-otvorimo link: https://ui.shadcn.com/docs/components/checkbox
+-u terminalu ukucamo komandu: npx shadcn@latest add checkbox
+-u komponenti products/create/product-form.tsx kreiramo varijable const isFeatured i const banner
+-u div element za sliku isFeatured dodajemo komponentu Card
+-u komponentu Card dodajemo komponentu CardContent
+-u komponentu CardContent dodajemo komponentu FormField sa prop name, control i render
+-u komponentu CardContent dodajemo uslov za kondicionalno renderovanje isFeatured && banner && ()
+-u uslov za kondicionalno renderovanje dodajemo komponentu Image
+-dodajemo uslov za kondicionalno renderovanje isFeatured && !banner && ()
+-u uslov za kondicionalno renderovanje dodajemo komponentu UploadButton
