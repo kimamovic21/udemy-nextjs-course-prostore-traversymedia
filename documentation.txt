@@ -2487,3 +2487,25 @@ Section 12: Admin Users & Search
 -kreiramo div element za komponentu Button
 -komponenti Button dodajemo prop type, className i disabled
 -u komponentu Button dodajemo uslov ternarni operator form.formState.isSubmitting
+
+121. Update User Action
+-u user.actions.ts fajl importujemo varijablu updateUserSchema iz validators.ts fajla
+-kreiramo i eksportujemo asinhronu funkciju updateUser()
+-funkciji updateUser() dodajemo parametar user sa tipom z.infer<typeof updateUserSchema
+-u funkciju updateUser() dodajemo blokove koda try - catch
+-u blok koda catch dodajemo izjavu return objekt sa key - value parovima success i message
+-u bloku koda try pozivamo funkciju await prisma.user.update()
+-pozivamo funkciju revalidatePath('/admin/users')
+-dodajemo izjavu return objekt sa porukom da je korisnik uspjesno azuriran
+-u komponenti update-user-form.tsx, funkciji onSubmit() dodajemo asinhronost i parametar values
+-parametru values dodajemo tip z.infer<typeof updateUserSchema>
+-importujemo funkciju updateUser iz user.actions.ts fajla
+-dodajemo blokove koda try - catch
+-u bloku koda catch pozivamo funkciju toast()
+-u bloku koda try pozivamo funkciju await updateUser()
+-vrijednost funkcije await updateUser() pohranjujemo u varijablu const res
+-dodajemo uslov if (!res.success)
+-u uslovu if (!res.success) pozivamo funkciju return toast()
+-nakon uslova if (!res.success) pozivamo funkciju toast()
+-pozivamo funkciju form.reset()
+-pozivamo funkciju router.push('/admin/users')
