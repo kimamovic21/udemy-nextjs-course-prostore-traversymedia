@@ -47,7 +47,7 @@ export const signUpFormSchema = z
     path: ['confirmPassword'],
 });
 
-// Cart Schemas
+// Schema for cart item
 export const cartItemSchema = z.object({
   productId: z.string().min(1, 'Product is required'),
   name: z.string().min(1, 'Name is required'),
@@ -124,4 +124,10 @@ export const paymentResultSchema = z.object({
 export const updateProfileSchema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   email: z.string().min(3, 'Email must be at least 3 characters'),
+});
+
+// Schema for updating users
+export const updateUserSchema = updateProfileSchema.extend({
+  id: z.string().min(1, 'Id is required'),
+  role: z.string().min(1, 'Role is required'),
 });

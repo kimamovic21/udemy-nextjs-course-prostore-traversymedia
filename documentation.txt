@@ -2420,3 +2420,27 @@ Section 12: Admin Users & Search
 -importujemo komponentu DeleteDialog iz komponente shared/delete-dialog.tsx
 -u zadnju komponentu TableCell dodajemo komponentu DeleteDialog sa prop id i action
 -otvorimo rutu http://localhost:3000/admin/users i obrisemo jednog korisnika
+
+119. User Edit Page
+-u folderu admin/users kreiramo folder [id] i komponentu page.tsx
+-u komponenti [id]/page.tsx kreiramo i eksportujemo asinhronu funkciju AdminUserUpdatePage() kao default
+-u validators.ts fajlu kreiramo i eksportujemo varijablu const updateUserSchema
+-u .env fajlu kreiramo varijablu USER_ROLES
+-u example.env fajl dodajemo primjer varijable koju je potrebno kreirati
+-u constants/index.ts fajlu kreiramo i eksportujemo varijablu const USER_ROLES
+-otvorimo link: https://ui.shadcn.com/docs/components/select
+-u terminalu ukucamo komandu: npx shadcn@latest add select
+-u komponentu users/[id]/page.tsx importujemo tip Metadata iz paketa next
+-importujemo funkciju notFound iz paketa next/navigation
+-importujemo funkciju getUserById iz user.actions.ts fajla
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-funkciji AdminUserUpdatePage() dodajemo parametar props
+-u funkciji AdminUserUpdatePage() pozivamo funkciju await props.params
+-vrijednost funkcije await props.params pohranjujemo u destruktuiranu varijablu const { id }
+-pozivamo funkciju await getUserById(id)
+-vrijednost funkcije await getUserById(id) pohranjujemo u varijablu const user
+-dodajemo uslov if (!user)
+-u uslovu if (!user) pozivamo funkciju notFound()
+-u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
+-kreiramo h2 element sa klasom h2-bold
+-otvorimo rutu: http://localhost:3000/admin/users/[id]
