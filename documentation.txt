@@ -2444,3 +2444,46 @@ Section 12: Admin Users & Search
 -u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
 -kreiramo h2 element sa klasom h2-bold
 -otvorimo rutu: http://localhost:3000/admin/users/[id]
+
+120. Update User Form
+-u folderu users/[id] kreiramo komponentu update-user-form.tsx
+-u komponenti update-user-form.tsx kreiramo i eksportujemo funkciju UpdateUserForm() kao default
+-dodajemo direktivu 'use client'
+-u komponentu [id]/page.tsx importujemo komponentu UpdateUserForm iz komponente update-user-form.tsx
+-u roditelj div element dodajemo komponentu UpdateUserForm sa prop user
+-u komponenti update-user-form.tsx, funkciji UpdateUserForm() dodajemo destruktuirani parametar user
+-importujemo instancu z iz paketa zod
+-importujemo varijablu updateUserSchema iz validators.ts fajla
+-parametru user dodajemo tip z.infer<typeof updateUserSchema>
+-importujemo funkciju useRouter iz paketa next/navigation
+-importujemo funkciju useToast iz use-toast.ts fajla
+-u funkciji UpdateUserForm() pozivamo funkciju useRouter()
+-vrijednost funkcije useRouter() pohranjujemo u varijablu const router
+-pozivamo funkciju useToast()
+-vrijednost funkcije useToast() pohranjujemo u destruktuiranu varijablu const { toast }
+-importujemo funkciju react-hook-form iz paketa react-hook-form
+-importujemo funkciju zodResolver iz paketa @hookform/resolvers/zod
+-kreiramo varijablu const form
+-importujemo komponente za formu iz komponente ui/form.tsx
+-u jsx-u dodajemo komponentu Form kao roditelj komponentu
+-komponenti Form dodajemo prop {...form}
+-u komponenti Form kreiramo form element
+-form elementu dodajemo atribut method i dogadaj onSubmit
+-kreiramo funkciju onSubmit()
+-u dogadaj onSubmit proslijedujemo funkciju form.handleSubmit(onSubmit)
+-importujemo tip ControllerRenderProps iz paketa react-hook-form
+-importujemo komponentu Input iz komponente ui/input.tsx
+-u form elementu kreiramo div element za Email polje
+-u div element za Email polje dodajemo komponentu FormField
+-kreiramo div element za Name polje
+-u div element za Name polje dodajemo komponentu FormField
+-importujemo select komponente iz komponente ui/select.tsx
+-kreiramo div element za Role polje
+-u div element za Rolje polje dodajemo komponentu FormField
+-u prop render dodajemo komponentu FormItem
+-u komponentu FormItem dodajemo komponente FormLabel, Select i FormMessage
+-importujemo varijablu USER_ROLES iz constants/index.ts fajla
+-importujemo komponentu Button iz komponente ui/button.tsx
+-kreiramo div element za komponentu Button
+-komponenti Button dodajemo prop type, className i disabled
+-u komponentu Button dodajemo uslov ternarni operator form.formState.isSubmitting
