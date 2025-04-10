@@ -120,7 +120,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                     </TableCell>
 
                     <TableCell className='text-right'>
-                      ${item.price}
+                      {formatCurrency(item.price)} 
                     </TableCell>
                   </TableRow>
                 ))}

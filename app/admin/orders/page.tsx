@@ -20,20 +20,37 @@ export const metadata: Metadata = {
 };
 
 const AdminOrdersPage = async (props: {
-  searchParams: Promise<{ page: string }>;
+  searchParams: Promise<{ page: string, query: string }>;
 }) => {
   await requireAdmin();
 
-  const { page = '1' } = await props.searchParams;
+  const { page = '1', query: searchText } = await props.searchParams;
 
   const orders = await getAllOrders({
     page: Number(page),
+    query: searchText,
     // limit: 2
   });
 
   return (
     <div className='space-y-2'>
-      <h2 className='h2-bold'>Orders</h2>
+      <div className='flex items-center gap-2'>
+        <h2 className='h2-bold'>Orders</h2>
+        {searchText && (
+          <div className='flex items-center gap-4'>
+            <p>
+              <span className='mr-1'>Filtered by</span>
+              <span className='italic'>&quot;{searchText}&quot;</span>
+            </p>
+            <Link href={'/admin/orders'}>
+              <Button variant='outline' size='sm'>
+                Remove Filter
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
+      
       <div className='overflow-x-auto'>
         {orders?.data?.length > 0 ? (
           <Table>
@@ -41,6 +58,7 @@ const AdminOrdersPage = async (props: {
               <TableRow>
                 <TableHead>ID</TableHead>
                 <TableHead>DATE</TableHead>
+                <TableHead>BUYER</TableHead>
                 <TableHead>TOTAL</TableHead>
                 <TableHead>PAID</TableHead>
                 <TableHead>DELIVERED</TableHead>
@@ -57,6 +75,10 @@ const AdminOrdersPage = async (props: {
 
                   <TableCell>
                     {formatDateTime(order.createdAt).dateTime}
+                  </TableCell>
+
+                  <TableCell>
+                    {order.user.name}
                   </TableCell>
 
                   <TableCell>
@@ -87,9 +109,9 @@ const AdminOrdersPage = async (props: {
                     <Button asChild variant='outline' size='sm'>
                       <Link href={`/order/${order.id}`}>Details</Link>
                     </Button>
-                    
-                    <DeleteDialog 
-                      id={order.id} 
+
+                    <DeleteDialog
+                      id={order.id}
                       action={deleteOrder}
                     />
                   </TableCell>

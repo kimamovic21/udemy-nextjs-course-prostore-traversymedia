@@ -46,7 +46,7 @@ const AdminProductsPage = async (props: {
                 <span className='mr-1'>Filtered by</span> 
                 <span className='italic'>&quot;{searchText}&quot;</span> 
               </p> 
-              <Link href={`/admin/products`}>
+              <Link href={'/admin/products'}>
                 <Button variant='outline' size='sm'>
                   Remove Filter
                 </Button>

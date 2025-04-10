@@ -240,7 +240,7 @@ DropdownMenu, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dro
 -u komponenti CardContent kreiramo div element sa Tailwind CSS klasama
 -u div elementu kreiramo p element
 -u p elementu kreiramo dva span elementa
--dodajemo uslvo ternarni operator product?.stock > 0
+-dodajemo uslov ternarni operator product?.stock > 0
 -u prvi dio ternarnog operatora dodajemo p element u kojem dinamicki prikazujemo cijenu artikla
 -u drugi dio ternarnog operatora dodajemo p element sa klasom text-destructive u kojem prikazujemo poruku kako artikl nije dostupan
 
@@ -2539,3 +2539,14 @@ Section 12: Admin Users & Search
 -kreiramo button element sa atributima type i className
 -u komponenti admin/products/page.tsx kreiramo div element sa Tailwind CSS klasama flex items-center gap-3
 -u div element dodajemo h2 element i uslov za kondicionalno renderovanje searchText
+
+123. Admin Order Search
+-u komponenti admin/orders/page.tsx kreiramo komponentu TableHead za polje BUYER
+-kreiramo komponentu TableCell za dinamicko prikazivanje informacije o kupcu
+-u order.actions.ts fajlu, funkciji getAllOrders() dodajemo destruktuirani parametar query
+-parametru query dodajemo tip string
+-kreiramo varijablu const queryFilter sa tipom Prisma.OrderWhereInput
+-u funkciju prisma.order.findMany() dodajemo objekt where
+-u komponenti admin/orders/page.tsx, u jsx-u kreiramo div element sa Tailwind CSS klasama
+-u div element sa Tailwind CSS klasama dodajemo h2 element
+-dodajemo uslov za kondicionalno renderovanje searchText && (...)
