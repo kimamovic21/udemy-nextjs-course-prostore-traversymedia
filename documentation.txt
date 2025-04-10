@@ -2509,3 +2509,33 @@ Section 12: Admin Users & Search
 -nakon uslova if (!res.success) pozivamo funkciju toast()
 -pozivamo funkciju form.reset()
 -pozivamo funkciju router.push('/admin/users')
+
+122. Admin Search Form
+-u folderu app/admin kreiramo komponentu admin-search.tsx
+-u komponenti admin-search.tsx kreiramo i eksportujemo funkciju AdminSearch() kao default
+-dodajemo direktivu 'use client'
+-u komponentu admin/layout.tsx importujemo komponentu AdminSearch iz komponente admin-search.tsx
+-u jsx-u, u div element gdje se nalazi komponentu Menu dodajemo komponentu AdminSearch
+-u komponentu admin-search.tsx importujemo funkciju usePathname iz paketa next/navigation
+-importujemo funkciju useSearchParams iz paketa next/navigation
+-importujemo funkcije useEffect i useState iz paketa react
+-importujemo komponentu Input iz komponente ui/input.tsx
+-u funkciji AdminSearch() pozivamo funkciju usePathname()
+-vrijednost funkcije usePathname() pohranjujemo u varijablu const pathname
+-kreiramo varijablu formActionUrl
+-pozivamo funkciju useSearchParams()
+-vrijednost funkcije useSearchParams() pohranjujemo u varijablu const searchParams
+-pozivamo funkciju useState()
+-vrijednost funkcije useState() pohranjujemo u state varijablu const queryValue i set funkciju setQueryValue
+-pozivamo funkciju useEffect() sa dva argumenta
+-u funkciji useEffect() prvi argument je anonimna funkcija, dok je drugi argument niz
+-u anonimnoj funkciji pozivamo funkciju setQueryValue
+-u niz dodajemo varijablu searchParams
+-u jsx-u kreiramo form element kao roditelj element
+-form elementu dodajemo dogadaj action i atribut method
+-u dogadaj action proslijedujemo varijablu formActionUrl
+-u form element dodajemo komponentu Input 
+-komponenti Input dodajemo prop type, placeholder, name, value, onChange i className
+-kreiramo button element sa atributima type i className
+-u komponenti admin/products/page.tsx kreiramo div element sa Tailwind CSS klasama flex items-center gap-3
+-u div element dodajemo h2 element i uslov za kondicionalno renderovanje searchText
