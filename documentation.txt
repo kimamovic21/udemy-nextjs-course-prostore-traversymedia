@@ -2547,6 +2547,31 @@ Section 12: Admin Users & Search
 -parametru query dodajemo tip string
 -kreiramo varijablu const queryFilter sa tipom Prisma.OrderWhereInput
 -u funkciju prisma.order.findMany() dodajemo objekt where
--u komponenti admin/orders/page.tsx, u jsx-u kreiramo div element sa Tailwind CSS klasama
+-u komponenti admin/orders/page.tsx, funkciji AdminOrdersPage() dodajemo parametar query
+-parametru query dodajemo tip string
+-iz funkcije await props.searchParams destruktuiramo varijablu query: searchText
+-funkciji getAllOrders() dodajemo parametar query: searchText
+-u jsx-u kreiramo div element sa Tailwind CSS klasama
 -u div element sa Tailwind CSS klasama dodajemo h2 element
 -dodajemo uslov za kondicionalno renderovanje searchText && (...)
+-otvorimo rutu: http://localhost:3000/admin/orders
+
+124. Admin User Search
+-u user.actions.ts fajl importujemo instancu Prisma iz paketa @prisma/client
+-funkciji getAllUsers() dodajemo destruktuirani parametar query
+-parametru query dodajemo tip string
+-kreiramo varijablu const queryFilter sa tipom Prisma.UserWhereInput
+-u funkciju prisma.order.findMany() dodajemo objekt where
+-u komponenti admin/users/page.tsx, funkciji AdminUsersPage() dodajemo parametar query
+-parametru query dodajemo tip string
+-iz funkcije await props.searchParams destruktuiramo varijablu query: searchText
+-funkciji getAllUsers() dodajemo parametar query: searchText
+-u roditelj div elementu kreiramo div element sa Tailwind CSS klasama
+-u div element sa Tailwind CSS klasama dodajemo h2 element
+-dodajemo uslov za kondicionalno renderovanje searchText && (...)
+-dodajemo ternarni uslov users?.data?.length > 0
+-otvorimo rutu: http://localhost:3000/admin/users
+-u product.actions.ts fajl importujemo instancu Prisma iz paketa @prisma/client
+-u funkciji getAllProducts() kreiramo varijablu const queryFilter sa tipom Prisma.ProductWhereInput
+-u funkciju findMany() dodajemo objekt where
+-otvorimo rutu: http://localhost:3000/admin/products

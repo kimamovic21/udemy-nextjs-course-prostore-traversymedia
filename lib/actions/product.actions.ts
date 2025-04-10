@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
+import { Prisma } from '@prisma/client';
 import { prisma } from '@/db/prisma';
 import { convertToPlainObject, formatError } from '../utils';
 import { insertProductSchema, updateProductSchema } from '../validators'; 
@@ -45,10 +46,23 @@ export async function getAllProducts({
   page: number;
   category: string;
 }) {
+  const queryFilter: Prisma.ProductWhereInput =
+    query && query !== 'all'
+      ? {
+          name: {
+            contains: query,
+            mode: 'insensitive',
+          } as Prisma.StringFilter,
+        }
+      : {};
+
   const data = await prisma.product.findMany({
     orderBy: { createdAt: 'desc' },
     skip: (page - 1) * limit,
     take: limit,
+    where: {
+      ...queryFilter,
+    },
   });
 
   const dataCount = await prisma.product.count();
@@ -97,7 +111,10 @@ export async function createProduct(data: z.infer<typeof insertProductSchema>) {
       message: 'Product created successfully',
     };
   } catch (error) {
-    return { success: false, message: formatError(error) };
+    return { 
+      success: false, 
+      message: formatError(error) 
+    };
   };
 };
 

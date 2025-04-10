@@ -20,7 +20,10 @@ export const metadata: Metadata = {
 };
 
 const AdminOrdersPage = async (props: {
-  searchParams: Promise<{ page: string, query: string }>;
+  searchParams: Promise<{ 
+    page: string, 
+    query: string 
+  }>;
 }) => {
   await requireAdmin();
 
