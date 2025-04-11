@@ -2603,3 +2603,8 @@ Update product image(s) - uploadthing
 -kreiramo varijablu const filteredImages
 -pozivamo funkciju form.setValue()
 -funkciji updateProduct() dodajemo destruktuirani argument imagesToBeDeleted
+
+
+Section 13: Search Filtering, Drawer & Carousel
+
+125. Section Intro
