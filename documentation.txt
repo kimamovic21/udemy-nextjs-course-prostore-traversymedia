@@ -2608,3 +2608,34 @@ Update product image(s) - uploadthing
 Section 13: Search Filtering, Drawer & Carousel
 
 125. Section Intro
+
+126. Categories Drawer
+-u product.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju getAllCategories()
+-u funkciji getAllCategories() pozivamo funkciju await prisma.product.groupBy()
+-vrijednost funkcije await prisma.product.groupBy() pohranjujemo u varijablu const data
+-dodajemo izjavu return data
+-otvorimo link: https://ui.shadcn.com/docs/components/drawer
+-u terminalu ukucamo komandu: npx shadcn@latest add drawer
+-u folderu components/shared/header kreiramo komponentu categories-drawer.tsx
+-u komponenti categories-drawer.tsx kreiramo i eksportujemo asinhronu funkciju CategoriesDrawer.tsx
+-importujemo funkciju getAllCategories iz product.actions.ts fajla
+-u funkciji CategoriesDrawer() pozivamo funkciju await getAllCategories()
+-vrijednost funkcije await getAllCategories() pohranjujemo u varijablu const categories
+-importujemo komponente Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle i DrawerTrigger iz komponente ui/drawer.tsx
+-importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo React ikonicu MenuIcon iz paketa lucide-react
+-importujemo komponentu Link iz paketa next/link
+-u jsx-u dodajemo komponentu Drawer kao roditelj komponentu
+-u komponentu Drawer dodajemo komponente DrawerTrigger i DrawerContent
+-u komponentu DrawerTrigger dodajemo komponentu Button
+-u komponentu Button dodajemo komponentu MenuIcon
+-u komponentu DrawerContent dodajemo komponentu DrawerHeader
+-u komponentu DrawerHeader dodajemo komponentu DrawerTitle
+-kreiramo div element sa Tailwind CSS klasama
+-u div element pozivamo funkciju categories?.map()
+-u funkciju map() dodajemo komponentu Button
+-komponenti Button dodajemo prop key, className, variant i asChild
+-u komponentu Button dodajemo komponentu DrawerClose
+-u komponentu DrawerClose dodajemo komponentu Link
+-u komponentu shared/header/index.tsx importujemo komponentu CategoriesDrawer iz komponente categories-drawer.tsx
+-u div element sa klasom flex-start dodajemo komponentu CategoriesDrawer
