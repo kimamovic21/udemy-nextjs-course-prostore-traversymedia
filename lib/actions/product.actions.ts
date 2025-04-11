@@ -4,9 +4,9 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { Prisma } from '@prisma/client';
 import { prisma } from '@/db/prisma';
-import { utapi } from '@/app/api/uploadthing/core';
 import { convertToPlainObject, formatError } from '../utils';
 import { insertProductSchema, updateProductSchema } from '../validators'; 
+import { deleteImages } from './image.actions';
 import { LATEST_PRODUCTS_LIMIT, PAGE_SIZE } from '../constants';
 
 // Get the latest products
@@ -77,36 +77,36 @@ export async function getAllProducts({
 // Delete a product
 export async function deleteProduct(id: string) {
 	try {
-		const productExists = await prisma.product.findFirst({
-			where: { id },
-		});
+    const productExists = await prisma.product.findFirst({
+      where: { id },
+    });
  
-		if (!productExists) throw new Error('Product not found');
+    if (!productExists) throw new Error('Product not found');
 
-		const imagesToBeDeleted = [...productExists.images];
+    const imagesToBeDeleted = [...productExists.images];
  
-		if (productExists.isFeatured && productExists.banner) {
-			imagesToBeDeleted.push(productExists.banner);
-		};
-
-		const imageKeys = imagesToBeDeleted?.map(image => image.split('/').pop());
- 
-		await utapi.deleteFiles(imageKeys as string[]);
- 
-		await prisma.product.delete({ where: { id } });
- 
-		revalidatePath('/admin/products');
-
-		return { 
-      success: true, 
-      message: 'Product deleted successfully', 
+    if (productExists.isFeatured && productExists.banner) {
+      imagesToBeDeleted.push(productExists.banner);
     };
-	} catch (error) {
-		return { 
+
+    const imageKeys = imagesToBeDeleted?.map(image => image.split('/').pop());
+ 
+    await deleteImages(imageKeys as string[]);
+ 
+    await prisma.product.delete({ where: { id } });
+
+    revalidatePath('/admin/products');
+
+    return { 
+      success: true, 
+      message: 'Product deleted successfully',
+    };
+  } catch (error) {
+    return { 
       success: false, 
       message: formatError(error), 
     };
-	};
+  };
 };
 
 // Create a product
@@ -130,7 +130,9 @@ export async function createProduct(data: z.infer<typeof insertProductSchema>) {
 };
 
 // Update a product
-export async function updateProduct(data: z.infer<typeof updateProductSchema>) {
+export async function updateProduct(
+  data: z.infer<typeof updateProductSchema> & { imagesToBeDeleted?: string[] }
+) {
   try {
     const product = updateProductSchema.parse(data);
     const productExists = await prisma.product.findFirst({
@@ -139,9 +141,13 @@ export async function updateProduct(data: z.infer<typeof updateProductSchema>) {
 
     if (!productExists) throw new Error('Product not found');
 
+    if (data.imagesToBeDeleted && data.imagesToBeDeleted.length > 0) {
+      await deleteImages(data.imagesToBeDeleted);
+    };
+
     await prisma.product.update({ 
       where: { id: product.id }, 
-      data: product 
+      data: product, 
     });
 
     revalidatePath('/admin/products');
@@ -153,7 +159,7 @@ export async function updateProduct(data: z.infer<typeof updateProductSchema>) {
   } catch (error) {
     return { 
       success: false, 
-      message: formatError(error) 
+      message: formatError(error), 
     };
   };
 };

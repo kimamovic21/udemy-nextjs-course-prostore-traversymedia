@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   useForm,
@@ -27,6 +28,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { UploadButton } from '@/lib/uploadthing';
+import { Trash } from 'lucide-react';
 import slugify from 'slugify';
 import Image from 'next/image';
 
@@ -73,7 +75,11 @@ const ProductForm = ({
         return;
       };
 
-      const res = await updateProduct({ ...values, id: productId });
+      const res = await updateProduct({ 
+        ...values, 
+        id: productId,
+        imagesToBeDeleted,
+      });
 
       if (!res.success) {
         toast({
@@ -93,6 +99,16 @@ const ProductForm = ({
   const images = form.watch('images');
   const isFeatured = form.watch('isFeatured');
   const banner = form.watch('banner');
+  
+  const [imagesToBeDeleted, setImagesToBeDeleted] = useState<string[]>([]);
+ 
+  const handleImageRemove = async (removedImage: string) => {
+    const imageKey = removedImage.split('/').pop() as string;
+    setImagesToBeDeleted(prev => [...prev, imageKey]);
+
+    const filteredImages = images.filter(image => image !== removedImage);
+    form.setValue('images', filteredImages);
+	};
 
   return (
     <Form {...form}>
@@ -248,30 +264,44 @@ const ProductForm = ({
           />
         </div>
 
-        <div className='upload-field flex flex-col gap-5 md:flex-row'>
-          {/* Images */}
+        {/* Images */}
+        <div className='upload-field flex flex-col md:flex-row gap-5'>
           <FormField
             control={form.control}
             name='images'
             render={() => (
               <FormItem className='w-full'>
                 <FormLabel>Images</FormLabel>
-                <Card>
-                  <CardContent className='space-y-2 mt-2 min-h-48'>
+                <Card className='p-0 pt-2'>
+                  <CardContent className='space-y-2 min-h-48'>
                     <div className='flex-start space-x-2'>
                       {images?.map((image: string) => (
-                        <Image
+                        <div
                           key={image}
-                          src={image}
-                          alt='product image'
-                          className='w-20 h-20 object-cover object-center rounded-sm'
-                          width={100}
-                          height={100}
-                        />
+                          className='border relative rounded-md'
+                        >
+                          <Image
+                            src={image}
+                            alt='product image'
+                            className='w-20 h-20 object-cover object-center rounded-sm'
+                            width={100}
+                            height={100}
+                          />
+                          <Button
+                            variant={'destructive'}
+                            className='absolute top-1 right-1 w-7 h-7 rounded-full'
+                            onClick={() => handleImageRemove(image)}
+                          >
+                            <Trash
+                              className='w-4 h-4'
+                              style={{ color: 'white' }}
+                            />
+                          </Button>
+                        </div>
                       ))}
                       <FormControl>
                         <UploadButton
-                          endpoint='imageUploader'
+                          endpoint={'imageUploader'}
                           onClientUploadComplete={(res: { url: string }[]) => {
                             form.setValue('images', [...images, res[0].url]);
                           }}
@@ -292,8 +322,8 @@ const ProductForm = ({
           />
         </div>
 
+        {/* Is Featured */}
         <div className='upload-field'>
-          {/* Is Featured */}
           <Card>
             <CardContent className='space-y-2 mt-2'>
               <FormField
@@ -340,8 +370,8 @@ const ProductForm = ({
           </Card>
         </div>
 
+        {/* Description */}
         <div>
-          {/* Description */}
           <FormField
             control={form.control}
             name='description'
@@ -368,8 +398,8 @@ const ProductForm = ({
           />
         </div>
 
+        {/* Submit */}
         <div>
-          {/* Submit */}
           <Button
             type='submit'
             size='lg'

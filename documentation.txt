@@ -2583,3 +2583,23 @@ Delete product image(s) - uploadthing
 -eskportujemo varijablu const utapi
 -u product.actions.ts fajl importujemo varijablu utapi iz core.ts fajla
 -u funkciju deleteProduct() dodajemo logiku za brisanje slike ili slika sa web stranice uploadthing nakon brisanja artikla
+
+Update product image(s) - uploadthing
+-kreiramo image.actions.ts fajl
+-u image.actions.ts fajl dodajemo direktivu 'use server'
+-importujemo funkcije UTApi i formatError
+-kreiramo i eskportujemo asinhronu funkciju deleteImages()
+-u product.actions.ts fajl importujemo funkciju deleteImages()
+-u funkciji deleteProduct() pozivamo funkciju deleteImages()
+-funkciji updateProduct() dodajemo parametar imagesToBeDeleted
+-u funkciju updateProduct() dodajemo uslov if (data.imagesToBeDeleted && data.imagesToBeDeleted.length > 0)
+-u uslovu if pozivamo funkciju await deleteImages(data.imagesToBeDeleted)
+-u komponentu product-form.tsx dodajemo logiku za brisanje slike i azuriranje nove slike
+-importujemo i pozivamo funkciju useState() iz paketa react
+-vrijednost funkcije useState pohranjujemo u state varijablu imagesToBeDeleted i set funkciju setImagesToBeDeleted()
+-kreiramo asinhronu funkciju handleImageRemove()
+-u funkciji handleImageRemove() kreiramo varijablu const imageKey
+-pozivamo funkciju setImagesToBeDeleted()
+-kreiramo varijablu const filteredImages
+-pozivamo funkciju form.setValue()
+-funkciji updateProduct() dodajemo destruktuirani argument imagesToBeDeleted
