@@ -2639,3 +2639,40 @@ Section 13: Search Filtering, Drawer & Carousel
 -u komponentu DrawerClose dodajemo komponentu Link
 -u komponentu shared/header/index.tsx importujemo komponentu CategoriesDrawer iz komponente categories-drawer.tsx
 -u div element sa klasom flex-start dodajemo komponentu CategoriesDrawer
+
+127. Featured Products Carousel
+-otvorimo web stranicu: https://www.embla-carousel.com/
+-otvorimo link: https://ui.shadcn.com/docs/components/carousel
+-u terminalu ukucamo komandu: npx shadcn@latest add carousel
+-otvorimo link: https://www.npmjs.com/package/embla-carousel-autoplay
+-u terminalu ukucamo komandu: npm install embla-carousel-autoplay
+-u product.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju getFeaturedProducts()
+-u funkciji getFeaturedProducts() pozivamo funkciju await prisma.product.findMany()
+-vrijednost funkcije await prisma.product.findMany() pohranjujemo u varijablu const data
+-pozivamo funkciju return convertToPlainObject(data)
+-u folderu components/shared/products kreiramo komponentu product-carousel.tsx
+-u komponenti product-carousel.tsx kreiramo i eksportujemo funkciju ProductCarousel() kao default
+-dodajemo direktivu 'use client'
+-u komponentu app/(root)/page.tsx importujemo funkciju getFeaturedProducts iz product.actions.ts fajla
+-importujemo komponentu ProductCarousel iz komponente product-carousel.tsx
+-u funkciji Homepage() pozivamo funkciju await getFeaturedProducts()
+-vrijednost funkcije await getFeaturedProducts() pohranjujemo u varijablu const featuredProducts
+-u jsx-u dodajemo uslov za kondicionalno renderovanje featuredProducts.length > 0 && (...)
+-u uslov za kondicionalno renderovanje dodajemo komponentu ProductCarousel sa prop data
+-u komponenti product-carousel.tsx, funkciji ProductCarousel dodajemo parametar destruktuirani prop data
+-importujemo tip Product iz types/index.ts fajla
+-parametru data dodajemo tip Product
+-importujemo komponente Carousel, CarouselContent, CarouselItem, CarouselNext i CarouselPrevious iz komponente ui/carousel.tsx
+-importujemo komponentu Autoplay iz paketa embla-carousel-autoplay
+-u jsx-u dodajemo komponentu Carousel kao roditelj element
+-importujemo komponente Image i Next iz paketa next
+-komponenti Carousel dodajemo prop className, opts i plugins
+-u prop plugins dodajemo niz
+-u niz dodajemo komponentu Autoplay sa prop delay, stopOnInteraction i stopOnMouseEnter
+-u komponentu Carousel dodajemo komponentu CarouselContent
+-u komponenti CarouselContent pozivamo funkciju data?.map()
+-u funkciju map() dodajemo komponentu CarouselItem
+-u komponentu CarouselItem dodajemo komponentu Link
+-u komponenti Link kreiramo div element sa Tailwind CSS klasama
+-u div element dodajemo komponentu Image i kreiramo div element sa Tailwind CSS klasama
+-u komponentu CarouselContent dodajemo komponente CarouselPrevious i CarouselNext
