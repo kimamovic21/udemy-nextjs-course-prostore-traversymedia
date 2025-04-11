@@ -2575,3 +2575,11 @@ Section 12: Admin Users & Search
 -u funkciji getAllProducts() kreiramo varijablu const queryFilter sa tipom Prisma.ProductWhereInput
 -u funkciju findMany() dodajemo objekt where
 -otvorimo rutu: http://localhost:3000/admin/products
+
+Delete product image(s) - uploadthing
+-u core.ts fajl importujemo funkciju UTApi iz paketa uploadthing/server
+-pozivamo funkciju new UTApi()
+-vrijednost funkcije new UTApi() pohranjujemo u varijablu const utapi
+-eskportujemo varijablu const utapi
+-u product.actions.ts fajl importujemo varijablu utapi iz core.ts fajla
+-u funkciju deleteProduct() dodajemo logiku za brisanje slike ili slika sa web stranice uploadthing nakon brisanja artikla

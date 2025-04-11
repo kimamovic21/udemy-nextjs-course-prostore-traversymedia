@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { Prisma } from '@prisma/client';
 import { prisma } from '@/db/prisma';
+import { utapi } from '@/app/api/uploadthing/core';
 import { convertToPlainObject, formatError } from '../utils';
 import { insertProductSchema, updateProductSchema } from '../validators'; 
 import { LATEST_PRODUCTS_LIMIT, PAGE_SIZE } from '../constants';
@@ -75,27 +76,37 @@ export async function getAllProducts({
 
 // Delete a product
 export async function deleteProduct(id: string) {
-  try {
-    const productExists = await prisma.product.findFirst({
-      where: { id },
-    });
+	try {
+		const productExists = await prisma.product.findFirst({
+			where: { id },
+		});
+ 
+		if (!productExists) throw new Error('Product not found');
 
-    if (!productExists) throw new Error('Product not found');
+		const imagesToBeDeleted = [...productExists.images];
+ 
+		if (productExists.isFeatured && productExists.banner) {
+			imagesToBeDeleted.push(productExists.banner);
+		};
 
-    await prisma.product.delete({ where: { id } });
+		const imageKeys = imagesToBeDeleted?.map(image => image.split('/').pop());
+ 
+		await utapi.deleteFiles(imageKeys as string[]);
+ 
+		await prisma.product.delete({ where: { id } });
+ 
+		revalidatePath('/admin/products');
 
-    revalidatePath('/admin/products');
-
-    return {
-      success: true,
-      message: 'Product deleted successfully',
+		return { 
+      success: true, 
+      message: 'Product deleted successfully', 
     };
-  } catch (error) {
-    return { 
+	} catch (error) {
+		return { 
       success: false, 
-      message: formatError(error) 
+      message: formatError(error), 
     };
-  };
+	};
 };
 
 // Create a product
