@@ -2639,6 +2639,7 @@ Section 13: Search Filtering, Drawer & Carousel
 -u komponentu DrawerClose dodajemo komponentu Link
 -u komponentu shared/header/index.tsx importujemo komponentu CategoriesDrawer iz komponente categories-drawer.tsx
 -u div element sa klasom flex-start dodajemo komponentu CategoriesDrawer
+-otvorimo rutu: http://localhost:3000/ i kliknemo dugme u gornjem lijevom cosku
 
 127. Featured Products Carousel
 -otvorimo web stranicu: https://www.embla-carousel.com/
@@ -2676,3 +2677,33 @@ Section 13: Search Filtering, Drawer & Carousel
 -u komponenti Link kreiramo div element sa Tailwind CSS klasama
 -u div element dodajemo komponentu Image i kreiramo div element sa Tailwind CSS klasama
 -u komponentu CarouselContent dodajemo komponente CarouselPrevious i CarouselNext
+-otvorimo rutu: http://localhost:3000/ da vidimo proizvode koji su oznaceni kao featured
+
+128. Search Component
+-u folderu components/shared/header kreiramo komponentu search.tsx
+-u komponenti search.tsx kreiramo i eksportujemo asinhronu funkciju Search() kao default
+-importujemo funkciju getAllCategories iz product.actions.ts fajla
+-importujemo React ikonicu SearchIcon iz paketa lucide-react
+-u funkciji Search() pozivamo funkciju await getAllCategories()
+-vrijednost funkcije await getAllCategories() pohranjujemo u varijablu const categories
+-u jsx-u kreiramo form element kao roditelj element
+-form elementu dodajemo dogadaj action i atribut method
+-u form elementu kreiramo div element sa Tailwind CSS flex klasama
+-importujemo select komponente iz komponente ui/select.tsx
+-u div element dodajemo komponentu Select
+-u komponentu Select dodajemo komponente SelectTrigger i SelectContent
+-u komponentu SelectTrigger dodajemo komponentu SelectValue
+-u komponentu SelectContent dodajemo komponentu SelectItem sa prop key i value
+-pozivamo funkciju categories?.map()
+-u funkciju map() dodajemo komponentu SelectItem sa prop key i value
+-u div element dodajemo komponentu Input sa prop name, type, placeholder i className
+-u div element dodajemo komponentu Button
+-u komponentu Button dodajemo komponentu SearchIcon
+-u komponentu header/index.tsx importujemo komponentu Search iz komponente search.tsx
+-u jsx-u kreiramo div element sa Tailwind CSS klasama hidden i md:block
+-u div element dodajemo komponentu Search
+-u folderu (root) kreiramo folder search i komponentu page.tsx
+-u komponenti search/page.tsx kreiramo i eksportujemo funkciju SearchPage() kao default
+-u komponentu menu.tsx importujemo komponentu Search iz komponente search.tsx
+-u komponenti SheetContent kreiramo div element sa Tailwind CSS klasom mt-10
+-u div element dodajemo komponentu Search

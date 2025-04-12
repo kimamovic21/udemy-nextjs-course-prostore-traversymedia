@@ -10,6 +10,7 @@ import {
 import Link from 'next/link';
 import ModeToggle from './mode-toggle';
 import UserButton from './user-button';
+import Search from './search';
 
 const Menu = () => {
   return (
@@ -19,11 +20,11 @@ const Menu = () => {
 
         <Button asChild variant='ghost'>
           <Link href='/cart'>
-            <span><ShoppingCart /></span> 
-            <span>Cart</span> 
+            <span><ShoppingCart /></span>
+            <span>Cart</span>
           </Link>
         </Button>
-        
+
         <UserButton />
       </nav>
 
@@ -37,17 +38,21 @@ const Menu = () => {
             <SheetTitle>
               Menu
             </SheetTitle>
-            
+
             <ModeToggle />
 
             <Button asChild variant='ghost'>
               <Link href='/cart'>
                 <span><ShoppingCart /></span>
-                <span>Cart</span> 
+                <span>Cart</span>
               </Link>
             </Button>
 
             <UserButton />
+
+            <div className='mt-10'>
+              <Search />
+            </div>
 
             <SheetDescription></SheetDescription>
           </SheetContent>
