@@ -2707,3 +2707,38 @@ Section 13: Search Filtering, Drawer & Carousel
 -u komponentu menu.tsx importujemo komponentu Search iz komponente search.tsx
 -u komponenti SheetContent kreiramo div element sa Tailwind CSS klasom mt-10
 -u div element dodajemo komponentu Search
+-otvorimo rutu: http://localhost:3000/search
+
+129. Search Page
+-u komponenti search/page.tsx funkciji SearchPage() dodajemo asinhronost
+-funkciji SearchPage() dodajemo parametar props
+-parametar props destruktuiramo u parametar searchParams sa tipom Promise
+-iz parametra searchParams destruktuiramo parametre q, category, price, rating, sort i page
+-parametrima dodajemo tip string
+-u funkciji SearchPage() pozivamo funkciju await props.searchParams
+-vrijednost funkcije await props.searchParams pohranjujemo u sest destruktuiranih varijabli
+-importujemo funkciju getAllProducts iz product.actions.ts fajla
+-u product.actions.ts fajlu funkciji getAllProducts() dodajemo destruktuirane parametre price, rating i sort
+-parametrima dodajemo tip string
+-u komponenti search/page.tsx, u jsx-u kreiramo roditelj div element sa Tailwind CSS Grid klasama
+-importujemo komponentu ProductCard iz komponente product-card.tsx
+-importujemo komponentu Pagination iz komponente pagination.tsx
+-u roditelj div elementu kreiramo div element sa klasom filter-links
+-u roditelj div elementu kreiramo div element sa Tailwind CSS klasama md:col-span-4 space-y-4
+-kreiramo div element sa Tailwind CSS klasama grid grid-cols-1 gap-4 md:grid-cols-3
+-dodajemo uslov za kondicionalno renderovanje products?.data?.length === 0 && (...)
+-u uslov za kondicionalno renderovanje dodajemo element p sa porukom kako artikl nije pronaden
+-pozivamo funkciju products?.data?.map()
+-u funkciju map() dodajemo komponentu ProductCard sa prop key i product
+-u div element sa Tailwind CSS klasama md:col-span-4 space-y-4 dodajemo uslov za kondicionalno renderovanje products?.totalPages > 1 && (...)
+-u uslov za kondicionalno renderovanje dodajemo komponentu Pagination sa prop page i totalPages
+-u folderu components kreiramo komponentu view-all-products-button.tsx
+-u komponenti view-all-products-button.tsx kreiramo i eksportujemo funkciju ViewAllProductsButton() kao default
+-importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo komponentu Link iz paketa next/link
+-u jsx-u kreiramo roditelj div element sa Tailwind CSS flex klasama
+-u div element dodajemo komponentu Button sa prop asChild i className
+-u komponentu Button dodajemo komponentu Link sa prop href
+-u komponentu (root)/page.tsx importujemo komponentu ViewAllProductsButton iz komponente view-all-products-button.tsx
+-u jsx-u ispod komponente ProductList dodajemo komponentu ViewAllProductsButton
+-otvorimo rutu: http://localhost:3000 i kliknemo dugme da pogledamo sve artikle
