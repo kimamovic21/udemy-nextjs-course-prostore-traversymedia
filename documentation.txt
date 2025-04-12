@@ -2742,3 +2742,15 @@ Section 13: Search Filtering, Drawer & Carousel
 -u komponentu (root)/page.tsx importujemo komponentu ViewAllProductsButton iz komponente view-all-products-button.tsx
 -u jsx-u ispod komponente ProductList dodajemo komponentu ViewAllProductsButton
 -otvorimo rutu: http://localhost:3000 i kliknemo dugme da pogledamo sve artikle
+
+130. Search Filters
+-u product.actions.ts fajlu, u funkciji getAllProducts() kreiramo varijablu const categoryFilter
+-u funkciju findMany(), u objekt where dodajemo varijablu ...categoryFilter
+-otvorimo rutu: http://localhost:3000/search?category=t-shirts&q=
+-kreiramo varijablu const priceFilter sa tipom Prisma.ProductWhereInput
+-u funkciju findMany(), u objekt where dodajemo varijablu ...priceFilter
+-otvorimo rutu: http://localhost:3000/search?price=10-40
+-kreiramo varijablu const const ratingFilter
+-u funkciju findMany(), u objekt where dodajemo varijablu ...ratingFilter
+-otvorimo rutu: http://localhost:3000/search?rating=0
+-otvorimo rutu: http://localhost:3000/search?rating=5
