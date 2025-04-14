@@ -2799,3 +2799,17 @@ Section 13: Search Filtering, Drawer & Carousel
 -u funkciju map() dodajemo komponentu Link
 -komponenti Link dodajemo prop key, href i className
 -otvorimo rutu: http://localhost:3000/search i pretrazujemo artikle
+
+135. Dynamic Metadata
+-otvorimo link: https://nextjs.org/docs/app/api-reference/functions/generate-metadata
+-u komponenti search/page.tsx kreiramo i eksportujemo funkciju generateMetadata()
+-funkciji generateMetadata() dodajemo parametar objekt props
+-parametar props destruktuiramo u parametar objekt searchParams
+-parametar objektu searchParams dodajemo tip Promise
+-u funkciji generateMetadata() pozivamo funkciju await props.searchParams
+-vrijednost funkcije await props.searchParams pohranjujemo u destruktuirane varijable q, category, price i rating
+-kreiramo cetiri varijable const isQuerySet, const isCategorySet, const isPriceSet i const isRatingSet
+-dodajemo uslov if (isQuerySet || isCategorySet || isPriceSet || isRatingSet) - else
+-u uslov if dodajemo izjavu return objekt u kojem prikazujemo upite nakon pretrage
+-u uslov else dodajemo izjavu return objekt u kojem prikazujemo samo naslov stranice Search Product
+-otvorimo rutu: http://localhost:3000/search i pretrazujemo artikle
