@@ -1,0 +1,1 @@
+export const ratings = [4, 3, 2, 1];

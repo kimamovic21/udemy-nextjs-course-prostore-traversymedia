@@ -2764,6 +2764,7 @@ Section 13: Search Filtering, Drawer & Carousel
 -iz varijable params destruktuiramo varijable q, category, price, rating, sort i page 
 -dodajemo pet if uslova
 -dodajemo izjavu return u kojoj pozivamo funkciju new URLSearchParams(params)
+-otvorimo rutu: http://localhost:3000/search i pretrazimo jedan artikl
 
 132. Category & Price UI Filters
 -u komponentu search/page.tsx importujemo funkciju getAllCategories iz product.actions.ts fajla
@@ -2774,3 +2775,14 @@ Section 13: Search Filtering, Drawer & Carousel
 -kreiramo folder helpers i prices.ts fajl
 -u prices.ts fajlu kreiramo i eksportujemo niz const prices
 -u komponentu search/page.tsx importujemo niz prices iz prices.ts fajla
+-otvorimo rutu: http://localhost:3000/search i pretrazimo jedan artikl
+
+133. Rating Filter & Filter Display
+-u folderu helpers kreiramo ratings.ts fajl
+-ratings.ts fajlu kreiramo i eksportujemo varijablu niz const ratings
+-u komponentu search/page.tsx importujemo niz ratings
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u jsx-u, u div elementu sa klasom filter-links kreiramo div element za prikazivanje filtera za recenzije
+-u div element dodajemo logiku za sortiranje artikala na osnovu recenzije
+-u div elementu sa Tailwind CSS klasama md:col-span-4 space-y-4 kreiramo div element sa Tailwind CSS flex klasama 
+-u div elementu sa Tailwind CSS flex klasama dodajemo logiku za prikazivanje trazenih upita korisniku iznad artikala
