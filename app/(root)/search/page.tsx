@@ -23,6 +23,32 @@ const SearchPage = async (props: {
 
   console.log(q, category, price, rating, sort, page);
 
+  type GetFilterUrlProps = {
+    c?: string;
+    s?: string;
+    p?: string;
+    r?: string;
+    pg?: string;
+  };
+
+  const getFilterUrl = ({
+    c, // (category)
+    s, // (sort order)
+    p, // (price)
+    r, // (rating)
+    pg // (page number)
+  }: GetFilterUrlProps) => {
+    const params = { q, category, price, rating, sort, page };
+
+    if (c) params.category = c;
+    if (p) params.price = p;
+    if (r) params.rating = r;
+    if (pg) params.page = pg;
+    if (s) params.sort = s;
+
+    return `/search?${new URLSearchParams(params).toString()}`;
+  };
+
   const products = await getAllProducts({
     query: q,
     category,
@@ -47,17 +73,17 @@ const SearchPage = async (props: {
           )}
 
           {products?.data?.map((product) => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
+            <ProductCard
+              key={product.id}
+              product={product}
             />
           ))}
         </div>
-        
+
         {products?.totalPages > 1 && (
-          <Pagination 
-            page={page} 
-            totalPages={products!.totalPages} 
+          <Pagination
+            page={page}
+            totalPages={products!.totalPages}
           />
         )}
       </div>

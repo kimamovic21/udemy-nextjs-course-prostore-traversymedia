@@ -2754,3 +2754,13 @@ Section 13: Search Filtering, Drawer & Carousel
 -u funkciju findMany(), u objekt where dodajemo varijablu ...ratingFilter
 -otvorimo rutu: http://localhost:3000/search?rating=0
 -otvorimo rutu: http://localhost:3000/search?rating=5
+
+131. Get Filter URL Function
+-u komponenti search/page.tsx, u funkciji SearchPage() kreiramo funkciju getFilterUrl()
+-funkciji getFilterUrl() dodajemo destruktuirane parametre c, s, p, r i pg
+-kreiramo tip GetFilterUrlProps
+-u funkciji getFilterUrl() destruktuiranim parametrima dodajemo tip GetFilterUrlProps
+-kreiramo varijablu const params
+-iz varijable params destruktuiramo varijable q, category, price, rating, sort i page 
+-dodajemo pet if uslova
+-dodajemo izjavu return u kojoj pozivamo funkciju new URLSearchParams(params)
