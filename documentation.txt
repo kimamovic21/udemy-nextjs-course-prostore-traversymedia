@@ -2764,3 +2764,13 @@ Section 13: Search Filtering, Drawer & Carousel
 -iz varijable params destruktuiramo varijable q, category, price, rating, sort i page 
 -dodajemo pet if uslova
 -dodajemo izjavu return u kojoj pozivamo funkciju new URLSearchParams(params)
+
+132. Category & Price UI Filters
+-u komponentu search/page.tsx importujemo funkciju getAllCategories iz product.actions.ts fajla
+-u funkciji SearchPage() pozivamo funkciju await getAllCategories()
+-vrijednost funkcije getAllCategories() pohranjujemo u varijablu const categories
+-importujemo komponentu Link iz paketa next/link
+-u jsx-u, u div elementu sa klasom filter-links kreiramo div elemente za prikazivanje filtera kategorije i cijene
+-kreiramo folder helpers i prices.ts fajl
+-u prices.ts fajlu kreiramo i eksportujemo niz const prices
+-u komponentu search/page.tsx importujemo niz prices iz prices.ts fajla

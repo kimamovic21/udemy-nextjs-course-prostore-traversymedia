@@ -1,4 +1,9 @@
-import { getAllProducts } from '@/lib/actions/product.actions';
+import {
+  getAllProducts,
+  getAllCategories
+} from '@/lib/actions/product.actions';
+import { prices } from '@/helpers/prices';
+import Link from 'next/link';
 import ProductCard from '@/components/shared/product/product-card';
 import Pagination from '@/components/shared/pagination';
 
@@ -58,10 +63,61 @@ const SearchPage = async (props: {
     page: Number(page),
   });
 
+  const categories = await getAllCategories();
+
   return (
     <div className='grid md:grid-cols-5 md:gap-5'>
       <div className='filter-links'>
-        FILTERS
+        {/* Category Links */}
+        <div className='text-xl mt-3 mb-2'>Categories</div>
+        <div>
+          <ul className='space-y-1'>
+            <li>
+              <Link
+                href={getFilterUrl({ c: 'all' })}
+                className={`${('all' === category || '' === category) && 'font-bold'}`}
+              >
+                Any
+              </Link>
+            </li>
+
+            {categories?.map((categoryItem) => (
+              <li key={categoryItem.category}>
+                <Link
+                  href={getFilterUrl({ c: categoryItem.category })}
+                  className={`${categoryItem.category === category && 'font-bold'}`}
+                >
+                  {categoryItem.category}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Price Links */}
+        <div className='text-xl mb-2 mt-8'>Prices</div>
+        <div>
+          <ul className='space-y-1'>
+            <li>
+              <Link
+                className={`${price === 'all' && 'font-bold'}`}
+                href={getFilterUrl({ p: 'all' })}
+              >
+                Any
+              </Link>
+            </li>
+            {prices?.map((p) => (
+              <li key={p.value}>
+                <Link
+                  className={`${price === p.value && 'font-bold'}`}
+                  href={getFilterUrl({ p: p.value })}
+                >
+                  {p.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <div className='md:col-span-4 space-y-4'>
@@ -83,7 +139,7 @@ const SearchPage = async (props: {
         {products?.totalPages > 1 && (
           <Pagination
             page={page}
-            totalPages={products!.totalPages}
+            totalPages={products?.totalPages}
           />
         )}
       </div>
