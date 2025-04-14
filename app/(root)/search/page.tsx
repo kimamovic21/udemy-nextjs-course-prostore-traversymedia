@@ -4,6 +4,7 @@ import {
 } from '@/lib/actions/product.actions';
 import { prices } from '@/helpers/prices';
 import { ratings } from '@/helpers/ratings';
+import { sortOrders } from '@/helpers/sort-orders';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import ProductCard from '@/components/shared/product/product-card';
@@ -181,8 +182,19 @@ const SearchPage = async (props: {
             ) : null}
           </div>
 
-          <div>
-            SORTING
+          <div className='flex'>
+            <span>Sort by:</span>
+            <div>
+              {sortOrders?.map((sortOrder) => (
+                <Link
+                  key={sortOrder}
+                  href={getFilterUrl({ s: sortOrder })}
+                  className={`mx-2 ${sort == sortOrder && 'font-bold'}`}
+                >
+                  {sortOrder}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 

@@ -1,0 +1,1 @@
+export const sortOrders = ['newest', 'lowest', 'highest', 'rating'];

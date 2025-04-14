@@ -2764,7 +2764,7 @@ Section 13: Search Filtering, Drawer & Carousel
 -iz varijable params destruktuiramo varijable q, category, price, rating, sort i page 
 -dodajemo pet if uslova
 -dodajemo izjavu return u kojoj pozivamo funkciju new URLSearchParams(params)
--otvorimo rutu: http://localhost:3000/search i pretrazimo jedan artikl
+-otvorimo rutu: http://localhost:3000/search i pretrazujemo artikle
 
 132. Category & Price UI Filters
 -u komponentu search/page.tsx importujemo funkciju getAllCategories iz product.actions.ts fajla
@@ -2775,7 +2775,7 @@ Section 13: Search Filtering, Drawer & Carousel
 -kreiramo folder helpers i prices.ts fajl
 -u prices.ts fajlu kreiramo i eksportujemo niz const prices
 -u komponentu search/page.tsx importujemo niz prices iz prices.ts fajla
--otvorimo rutu: http://localhost:3000/search i pretrazimo jedan artikl
+-otvorimo rutu: http://localhost:3000/search i pretrazujemo artikle
 
 133. Rating Filter & Filter Display
 -u folderu helpers kreiramo ratings.ts fajl
@@ -2786,3 +2786,16 @@ Section 13: Search Filtering, Drawer & Carousel
 -u div element dodajemo logiku za sortiranje artikala na osnovu recenzije
 -u div elementu sa Tailwind CSS klasama md:col-span-4 space-y-4 kreiramo div element sa Tailwind CSS flex klasama 
 -u div elementu sa Tailwind CSS flex klasama dodajemo logiku za prikazivanje trazenih upita korisniku iznad artikala
+-otvorimo rutu: http://localhost:3000/search i pretrazujemo artikle
+
+134. Sorting Products
+-u product.actions.ts fajlu, u funkciji getAllProducts(), u funkciju findMany(), u objekt orderBy dodajemo uslov ternarni operator sort === 'lowest'
+-u folderu helpers kreirana sort-orders.ts fajl
+-u sort-orders.ts fajlu kreiramo i eksportujemo varijablu niz const sortOrders
+-u komponentu search/page.tsx importujemo niz sortOrders iz sort-orders.ts fajla
+-u jsx-u, u div element za sortiranje pozivamo funkciju sortOrders.map()
+-u div elementu kreiramo span i div elemente
+-u div elementu pozivamo funkciju sortOrders?.map()
+-u funkciju map() dodajemo komponentu Link
+-komponenti Link dodajemo prop key, href i className
+-otvorimo rutu: http://localhost:3000/search i pretrazujemo artikle
