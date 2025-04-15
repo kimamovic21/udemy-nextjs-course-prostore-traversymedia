@@ -2832,6 +2832,7 @@ Section 14: Ratings & Reviews
 138. Review List Component
 -u folderu app/(root)/product/[slug] kreiramo komponentu review-list.tsx
 -u komponenti review-list.tsx kreiramo i eksportujemo funkciju ReviewList() kao default
+-dodajemo direktivu 'use client'
 -funkciji ReviewList() doda parametre destruktuirane prop userId, productId i productSlug
 -parametrima dodajemo tipove string
 -u komponentu [slug]/page.tsx importujemo funkciju auth iz auth.ts fajla
@@ -2858,3 +2859,55 @@ Section 14: Ratings & Reviews
 -u div elementu kreiramo dva span elementa i dodajemo komponentu Link
 -komponenti Link dodajemo prop className i dinamicki prop href
 -u roditelj div elementu kreiramo div element sa Tailwind CSS klasama
+
+139. Review Form Dialog Component
+-u folderu product/[slug] kreiramo komponentu review-form.tsx
+-u komponenti review-form.tsx kreiramo i eksportujemo funkciju ReviewForm() kao default
+-dodajemo direktivu 'use client'
+-funkciji ReviewForm() dodajemo destruktuirane parametre prop userId, productId i onReviewSubmitted
+-destruktuiranim parametrima dodajemo tipove
+-u komponentu review-list.tsx importujemo komponentu ReviewForm iz komponente review-form.tsx
+-u prvi dio ternarnog uslova za varijablu userId dodajemo komponentu ReviewForm
+-komponenti ReviewForm dodajemo prop userId i productId
+-u komponentu review-form.tsx importujemo funkciju useState iz paketa react
+-u funkciji ReviewForm() pozivamo funkciju useState()
+-vrijednost funkcije useState pohranjujemo u state varijablu const open i set funkciju setOpen
+-importujemo funkciju useToast iz use-toast.ts fajla
+-u funkciji ReviewForm() pozivamo funkciju useToast()
+-vrijednost funkcije useToast() pohranjujemo u destruktuiranu varijablu const { toast }
+-importujemo funkciju useForm iz paketa react-hook-form
+-importujemo instancu z iz paketa zod
+-importujemo varijablu insertReviewSchema iz validators.ts fajla
+-importujemo funkciju zodResolver iz paketa @hookform/resolvers/zod
+-importujemo varijablu reviewFormDefaultValues iz constants/index.ts fajla
+-u funkciji ReviewForm() pozivamo funkciju useForm()
+-funkciji useForm() dodajemo tip z.infer<typeof insertReviewSchema>
+-funkciji useForm() dodajemo konfiguracioni objekt sa key - value parovima resolver i defaultValues
+-vrijednost funkcije useForm() pohranjujemo u varijablu const form
+-importujemo komponente za dialog iz komponente ui/dialog.tsx
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u jsx-u dodajemo komponentu Dialog kao roditelj komponentu
+-komponenti Dialog dodajemo prop open i onOpenChange
+-u komponentu Dialog dodajemo komponentu Button
+-komponenti Button dodajemo dogadaj Click i prop variant
+-kreiramo funkciju handleOpenForm()
+-u funkciju handleOpenForm() proslijedujemo funkciju setOpen(true)
+-u dogadaj onClick proslijedujemo funkciju handleOpenForm
+-u komponentu Dialog dodajemo komponentu DialogContent
+-importujemo komponente za formu iz komponente ui/button.tsx
+-importujemo komponentu Input iz komponente ui/input.tsx
+-u komponentu DialogContent dodajemo komponentu Form sa prop {...form}
+-u komponenti Form kreiramo form element sa atributom method
+-u form element dodajemo komponentu DialogHeader
+-u komponentu DialogHeader dodajemo komponentu DialogTitle
+-u komponentu DialogHeader dodajemo komponentu DialogDescription
+-kreiramo div element sa Tailwind CSS Grid klasama
+-u div element dodajemo komponentu FormField za naslov recenzije
+-importujemo komponentu Textarea iz komponente ui/textarea.tsx
+-dodajemo komponentu FormField za opis recenzije
+-importujemo komponente select iz komponente ui/select.tsx
+-importujemo React ikonicu StarIcon iz paketa lucide-react
+-dodajemo komponentu FormField za ocjenu
+-u form element dodajemo komponentu DialogFooter
+-u komponentu DialogFooter dodajemo komponentu Button
+-u komponentu Button dodajemo uslov ternarni operator form.formState.isSubmitting

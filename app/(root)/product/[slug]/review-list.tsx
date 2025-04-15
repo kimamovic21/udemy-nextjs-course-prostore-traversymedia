@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { type Review } from '@/types';
 import Link from 'next/link';
+import ReviewForm from './review-form';
 
 const ReviewList = ({
   userId,
@@ -22,7 +23,10 @@ const ReviewList = ({
 
       {userId ? (
         <>
-          {/* REVIEW FORM HERE */}
+          <ReviewForm 
+            userId={userId}
+            productId={productId} 
+          />
         </>
       ) : (
         <div>
