@@ -2813,3 +2813,8 @@ Section 13: Search Filtering, Drawer & Carousel
 -u uslov if dodajemo izjavu return objekt u kojem prikazujemo upite nakon pretrage
 -u uslov else dodajemo izjavu return objekt u kojem prikazujemo samo naslov stranice Search Product
 -otvorimo rutu: http://localhost:3000/search i pretrazujemo artikle
+
+
+Section 14: Ratings & Reviews
+
+136. Section Intro
