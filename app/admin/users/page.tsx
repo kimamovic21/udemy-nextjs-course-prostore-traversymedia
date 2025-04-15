@@ -47,7 +47,7 @@ const AdminUsersPage = async (props: {
               <span className='mr-1'>Filtered by</span>
               <span className='italic'>&quot;{searchText}&quot;</span>
             </p>
-            <Link href={'/admin/orders'}>
+            <Link href={'/admin/users'}>
               <Button variant='outline' size='sm'>
                 Remove Filter
               </Button>
@@ -112,7 +112,9 @@ const AdminUsersPage = async (props: {
             </TableBody>
           </Table>
         ) : (
-          <p className='text-center text-gray-600 mt-4'>No users found.</p>
+          <p className='text-center mt-4'>
+            No users found.
+          </p>
         )}
 
         {users.totalPages > 1 && (

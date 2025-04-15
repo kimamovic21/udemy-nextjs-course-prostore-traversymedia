@@ -62,7 +62,7 @@ const AdminProductsPage = async (props: {
 
       <div>
         {products?.data?.length === 0 ? (
-          <p className='text-center text-gray-500 py-10'>
+          <p className='text-center py-10'>
             No products found.
           </p>
         ) : (

@@ -88,7 +88,7 @@ const OrdersPage = async (props: {
             </TableBody>
           </Table>
         ) : (
-          <p className='text-center text-gray-600 mt-4'>
+          <p className='text-center mt-4'>
             No orders found.
           </p>
         )}

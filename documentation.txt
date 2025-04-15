@@ -2828,3 +2828,33 @@ Section 14: Ratings & Reviews
 -u constants/index.ts fajl importujemo varijablu insertReviewSchema iz validators.ts fajla
 -kreiramo i eksportujemo tip Review
 -u lib/constants/index.ts fajlu kreiramo i eksportujemo varijablu objekt const reviewFormDefaultValues
+
+138. Review List Component
+-u folderu app/(root)/product/[slug] kreiramo komponentu review-list.tsx
+-u komponenti review-list.tsx kreiramo i eksportujemo funkciju ReviewList() kao default
+-funkciji ReviewList() doda parametre destruktuirane prop userId, productId i productSlug
+-parametrima dodajemo tipove string
+-u komponentu [slug]/page.tsx importujemo funkciju auth iz auth.ts fajla
+-importujemo komponentu ReviewList iz komponente review-list.tsx
+-u funkciji ProductDetailsPage() pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-kreiramo varijablu const userId
+-u jsx-u dodajemo prazan fragment kao roditelj element
+-u praznom fragmentu kreiramo section element sa Tailwind CSS klasama
+-u section elementu kreiramo h2 element
+-u section element dodajemo komponentu ReviewList 
+-komponenti ReviewList dodajemo prop productId, productSlug i userId
+-otvorimo rutu: http://localhost:3000/product/[productSlug]
+-u komponentu review-list.tsx importujemo funkciju useState iz paketa react
+-importujemo tip Review iz types/index.ts fajla
+-importujemo komponentu Link iz paketa next/link
+-u funkciji ReviewList() pozivamo funkciju useState() sa tipom Review[]
+-vrijednost funkcije useState() pohranjujemo u state varijablu const reviews i set funkciju setReviews
+-u jsx-u kreiramo div element sa Tailwind CSS klasom space-y-4
+-u div element dodajemo uslov za kondicionalno renderovanje reviews.length === 0 && (...)
+-dodajemo uslov ternarni operator za varijablu userId
+-u prvi dio ternarnog operatora dodat cemo formu za recenzije
+-u drugi dio ternarnog operatora kreiramo div element
+-u div elementu kreiramo dva span elementa i dodajemo komponentu Link
+-komponenti Link dodajemo prop className i dinamicki prop href
+-u roditelj div elementu kreiramo div element sa Tailwind CSS klasama

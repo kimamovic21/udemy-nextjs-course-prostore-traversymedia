@@ -123,7 +123,9 @@ const AdminOrdersPage = async (props: {
             </TableBody>
           </Table>
         ) : (
-          <p className='text-center text-gray-600 mt-4'>No orders found.</p>
+          <p className='text-center mt-4'>
+            No orders found.
+          </p>
         )}
 
         {orders.totalPages > 1 && (
