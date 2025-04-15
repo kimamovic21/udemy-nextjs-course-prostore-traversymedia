@@ -2818,3 +2818,13 @@ Section 13: Search Filtering, Drawer & Carousel
 Section 14: Ratings & Reviews
 
 136. Section Intro
+
+137. Reviews Prisma Schema, Zod & Type
+-u schema.prisma fajlu kreiramo model Review
+-u modele User i Product dodajemo model Review
+-u terminalu ukucamo komandu: npx prisma generate
+-u terminalu ukucamo komandu: npx prisma migrate dev --name add-review
+-u lib/validators.ts fajlu kreiramo i eksportujemo varijablu const insertReviewSchema
+-u constants/index.ts fajl importujemo varijablu insertReviewSchema iz validators.ts fajla
+-kreiramo i eksportujemo tip Review
+-u lib/constants/index.ts fajlu kreiramo i eksportujemo varijablu objekt const reviewFormDefaultValues
