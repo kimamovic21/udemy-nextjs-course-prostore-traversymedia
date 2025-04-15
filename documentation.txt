@@ -2911,6 +2911,7 @@ Section 14: Ratings & Reviews
 -u form element dodajemo komponentu DialogFooter
 -u komponentu DialogFooter dodajemo komponentu Button
 -u komponentu Button dodajemo uslov ternarni operator form.formState.isSubmitting
+-otvorimo rutu: -otvorimo rutu: http://localhost:3000/product/[productSlug]
 
 140. Create & Update Review Action
 -u komponentu (root)/order/[id]/page.tsx importujemo funkciju redirect iz paketa next/navigation
@@ -2944,3 +2945,21 @@ Section 14: Ratings & Reviews
 -pozivamo funkciju await tx.product.update()
 -pozivamo funkciju revalidatePath(`/product/${product.slug}`)
 -dodajemo izjavu return objekt sa key - value parovima success i message
+
+141. Connect Review Form To Action
+-u komponentu review-form.tsx importujemo tip SubmitHandler iz paketa react-hook-form
+-importujemo funkciju createUpdateReview iz review.actions.ts fajla
+-u funkciji ReviewList() kreiramo asinhronu funkciju onSubmit() sa tipom SubmitHandler
+-funkciji onSubmit() dodajemo parametar values
+-u funkciji onSubmit() pozivamo funkciju await createUpdateReview()
+-vrijednost funkcije await createUpdateReview() pohranjujemo u varijablu const res
+-dodajemo uslov if (!res.success)
+-u uslovu if (!res.success) pozivamo funkciju return toast()
+-pozivamo funkcije setOpen(false), onReviewSubmitted() i toast()
+-u jsx-u form elementu dodajemo dogadaj onSubmit
+-u dogadaj onSubmit proslijedujemo funkciju form.handleSubmit(onSubmit)
+-u funkciji handleOpenForm() pozivamo dvije funkcije form.setValue()
+-u komponenti review-list.tsx kreiramo asinhronu funkciju reload
+-u jsx-u komponenti ReviewForm dodajemo prop onReviewSubmitted
+-u prop onReviewSubmitted proslijedujemo funkciju reload
+-otvorimo rutu: http://localhost:3000/product/[productSlug]

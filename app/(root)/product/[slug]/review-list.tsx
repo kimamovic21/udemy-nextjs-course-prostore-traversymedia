@@ -15,7 +15,12 @@ const ReviewList = ({
   productSlug: string;
 }) => {
   // console.log(userId, productId, productSlug);
+  
   const [reviews, setReviews] = useState<Review[]>([]);
+
+  const reload = async () => {
+    console.log('review submitted');
+  };
 
   return (
     <div className='space-y-4'>
@@ -25,7 +30,8 @@ const ReviewList = ({
         <>
           <ReviewForm 
             userId={userId}
-            productId={productId} 
+            productId={productId}
+            onReviewSubmitted={reload}
           />
         </>
       ) : (

@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { StarIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { insertReviewSchema } from '@/lib/validators';
 import { reviewFormDefaultValues } from '@/lib/constants';
+import { createUpdateReview } from '@/lib/actions/review.actions';
 import {
   Dialog,
   DialogContent,
@@ -17,22 +18,22 @@ import {
   DialogTitle
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { 
-  Form, 
-  FormControl, 
-  FormField, 
-  FormItem, 
-  FormLabel, 
-  FormMessage 
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from '@/components/ui/select';
 
 const ReviewForm = ({
@@ -42,7 +43,7 @@ const ReviewForm = ({
 }: {
   userId: string;
   productId: string;
-  onReviewSubmitted?: () => void;
+  onReviewSubmitted: () => void;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -54,7 +55,29 @@ const ReviewForm = ({
   });
 
   const handleOpenForm = () => {
+    form.setValue('productId', productId);
+    form.setValue('userId', userId);
+    
     setOpen(true);
+  };
+
+  const onSubmit: SubmitHandler<z.infer<typeof insertReviewSchema>> = async (values) => {
+    const res = await createUpdateReview({ ...values, productId });
+
+    if (!res.success)
+      return toast({
+        variant: 'destructive',
+        description: res.message,
+      });
+
+    setOpen(false);
+
+    onReviewSubmitted();
+
+    toast({
+      variant: 'default',
+      description: res.message,
+    });
   };
 
   return (
@@ -65,7 +88,7 @@ const ReviewForm = ({
 
       <DialogContent className='sm:max-w-[425px]'>
         <Form {...form}>
-          <form method='post'>
+          <form method='post' onSubmit={form.handleSubmit(onSubmit)}>
             <DialogHeader>
               <DialogTitle>Write a review</DialogTitle>
 
