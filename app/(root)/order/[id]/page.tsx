@@ -1,5 +1,5 @@
 import { type Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getOrderById } from '@/lib/actions/order.actions';
 import { auth } from '@/auth';
 import { type ShippingAddress } from '@/types';
@@ -22,6 +22,10 @@ const OrderDetailsPage = async (props: {
 
   const order = await getOrderById(id);
   if (!order) notFound();
+
+  if (order.userId !== session?.user.id && session?.user.role !== 'admin') {
+    return redirect('/unauthorized');
+  };
 
   return (
     <>

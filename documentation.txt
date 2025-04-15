@@ -2911,3 +2911,36 @@ Section 14: Ratings & Reviews
 -u form element dodajemo komponentu DialogFooter
 -u komponentu DialogFooter dodajemo komponentu Button
 -u komponentu Button dodajemo uslov ternarni operator form.formState.isSubmitting
+
+140. Create & Update Review Action
+-u komponentu (root)/order/[id]/page.tsx importujemo funkciju redirect iz paketa next/navigation
+-dodajemo uslov if da jedan korisnik ne moze da vidi narudzbu drugog korisnika
+-u uslovu if pozivamo funkciju return redirect('/unauthorized')
+-u folderu actions kreiramo review.actions.ts fajl
+-u review.actions.ts fajl dodajemo direktivu 'use server'
+-kreiramo i eksportujemo asinhronu funkciju createUpdateReview() sa parametrom data
+-importujemo instancu z iz paketa zod
+-importujemo varijablu insertReviewSchema iz validators.ts fajla
+-parametru data dodajemo tip z.infer<typeof insertReviewSchema>
+-dodajemo blokove koda try - catch
+-importujemo funkciju formatError iz utils.ts fajla
+-u blok koda catch dodajemo izjavu objekt return sa key - value parovima success i message
+-importujemo funkciju auth iz auth.ts fajla
+-u bloku koda try pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-dodajemo uslov if(!session)
+-kreiramo varijablu const review
+-importujemo funkciju prisma iz prisma.ts fajla
+-kreiramo varijablu const product
+-dodajemo uslov if (!product)
+-kreiramo varijablu const reviewExists
+-pozivamo funkciju await prisma.$transaction()
+-u funkciji $transaction() pozivamo anonimnu asinhronu funkciju sa parametrom tx
+-u anonimnu funkciju dodajemo uslove if (reviewExists) - else
+-u uslovu if (reviewExists) pozivamo funkciju await tx.review.update()
+-u uslovu else pozivamo funkciju await tx.review.create()
+-nakon uslova if (reviewExists) - else kreiramo varijablu const averageRating
+-kreiramo varijablu const numReviews
+-pozivamo funkciju await tx.product.update()
+-pozivamo funkciju revalidatePath(`/product/${product.slug}`)
+-dodajemo izjavu return objekt sa key - value parovima success i message
