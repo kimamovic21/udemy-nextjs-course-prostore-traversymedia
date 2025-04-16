@@ -3014,3 +3014,22 @@ Section 14: Ratings & Reviews
 -u jsx-u, u div element sa Tailwind CSS flex klasama dodajemo komponentu Rating sa prop value
 -otvorimo rutu: http://localhost:3000/ da vidimo recenzije artikla
 -otvorimo rutu: http://localhost:3000/product/[productSlug] da vidimo recenzije artikla
+
+144. Update & Reload Reviews
+-u komponentu review-form.tsx importujemo funkciju getReviewByProductId iz review.actions.ts fajla
+-funkciji handleOpenForm() dodajemo asinhronost
+-pozivamo funkciju await getReviewByProductId({ productId })
+-vrijednost funkcije await getReviewByProductId() pohranjujemo u varijablu const review
+-dodajemo uslov if (review)
+-u uslovu if (review) pozivamo tri funkcije form.setValue()
+-nakon uslova if (review) pozivamo funkciju setOpen(true)
+-u komponentu review-list.tsx importujemo funkciju useToast iz use-toast.ts fajla
+-u funkciji ReviewList() pozivamo funkciju useToast()
+-vrijednost funkcije useToast() pohranjujemo u destruktuiranu varijablu const { toast }
+-funkciji reload() dodajemo asinhronost
+-u funkciju reload() dodajemo blokove koda try - catch
+-u bloku koda try pozivamo funkciju await getReviews({ productId })
+-vrijednost funkcije await getReviews() pohranjujemo u varijablu const res
+-pozivamo funkciju setReviews([...res.data])
+-u bloku koda catch pozivamo funkciju toast()
+-otvorimo rutu: http://localhost:3000/product/[productSlug] da vidimo recenzije artikla

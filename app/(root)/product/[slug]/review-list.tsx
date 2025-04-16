@@ -4,16 +4,17 @@ import { useState, useEffect } from 'react';
 import { Calendar, User } from 'lucide-react';
 import { type Review } from '@/types';
 import { getReviews } from '@/lib/actions/review.actions';
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle 
+import { formatDateTime } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
 } from '@/components/ui/card';
 import Link from 'next/link';
 import ReviewForm from './review-form';
-import { formatDateTime } from '@/lib/utils';
 import Rating from '@/components/shared/product/rating';
 
 const ReviewList = ({
@@ -36,8 +37,18 @@ const ReviewList = ({
     loadReviews();
   }, [productId]);
 
+  const { toast } = useToast();
+
   const reload = async () => {
-    console.log('review submitted');
+    try {
+      const res = await getReviews({ productId });
+      setReviews([...res.data]);
+    } catch (err) {
+      toast({
+        variant: 'destructive',
+        description: 'Error in fetching reviews',
+      });
+    };
   };
 
   return (
