@@ -10,6 +10,7 @@
   .flex-start {
     @apply flex justify-start items-center;
   }
+  
   .flex-center {
     @apply flex justify-center items-center;
   }

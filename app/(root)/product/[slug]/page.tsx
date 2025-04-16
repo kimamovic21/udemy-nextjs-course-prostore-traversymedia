@@ -50,7 +50,7 @@ const ProductDetailsPage = async (props: {
 
               <p className='flex gap-1'>
                 <span>{product.numReviews}</span>  
-                <span>reviews</span>
+                <span>{product.numReviews === 1 ? 'review' : 'reviews'}</span>
               </p>
 
               <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
