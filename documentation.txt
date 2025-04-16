@@ -2963,3 +2963,19 @@ Section 14: Ratings & Reviews
 -u jsx-u komponenti ReviewForm dodajemo prop onReviewSubmitted
 -u prop onReviewSubmitted proslijedujemo funkciju reload
 -otvorimo rutu: http://localhost:3000/product/[productSlug]
+
+142. Get Reviews Actions
+-u review.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju getReviews()
+-funkciji getReviews() dodajemo destruktuirani parametar productId sa tipom string
+-u funkciji getReviews() pozivamo funkciju await prisma.review.findMany()
+-vrijednost funkcije await prisma.review.findMany() pohranjujemo u varijablu const data
+-u funkciju findMany() dodajemo objekte where, include i orderBy
+-dodajemo izjavu return objekt data
+-kreiramo i eksportujemo asinhronu funkciju getReviewByProductId()
+-funkciji getReviewByProductId() dodajemo destruktuirani parametar productId sa tipom string
+-u funkciji getReviewByProductId() pozivamo funkciju await auth()
+-vrijednost funkcije await auth() pohranjujemo u varijablu const session
+-dodajemo uslov if (!session)
+-u uslovu if (!session) pozivamo funkciju throw new Error()
+-pozivamo funkciju return await prisma.review.findFirst()
+-u funkciju findFirst() dodajemo objekt where
