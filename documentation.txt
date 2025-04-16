@@ -2979,3 +2979,38 @@ Section 14: Ratings & Reviews
 -u uslovu if (!session) pozivamo funkciju throw new Error()
 -pozivamo funkciju return await prisma.review.findFirst()
 -u funkciju findFirst() dodajemo objekt where
+
+143. Display Reviews
+-u types/index.ts fajl, u tip Product dodajemo polje numReviews sa tipom number
+-u komponentu review-list.tsx importujemo funkciju useEffect iz paketa react
+-importujemo funkciju getReviews iz review.actions.ts fajla
+-pozivamo funkciju useEffect() sa dva argumenta
+-prvi argument u funkciji useEffect() je anonimna funkcija, dok je drugi argument niz
+-u niz dodajemo varijablu productId
+-u anonimnoj funkciji kreiramo asinhronu funkciju loadReviews()
+-u funkciji loadReviews() pozivamo funkciju await getReviews({ productId })
+-vrijednost funkcije getReviews() pohranjujemo u varijablu const res
+-pozivamo funkciju setReviews(res.data)
+-u anonimnoj funkciji pozivamo funkciju loadReviews()
+-importujemo card komponente iz komponente ui/card.tsx
+-importujemo React ikonice User i Calendar iz paketa lucide-react
+-importujemo funkciju formatDateTime iz utils.ts fajla
+-u jsx-u, u roditelj div elementu, u zadnji div element sa Tailwind CSS flex klasama pozivamo funkciju reviews.map()
+-u funkciju map() dodajemo komponentu Card kao roditelj element
+-u komponentu Card dodajemo komponente CardHeader i CardContent
+-u komponenti Card dinamicki prikazujemo podatke o recenzijama
+-u folderu components/shared/product kreiramo komponentu rating.tsx
+-u komponenti rating kreiramo i eksportujemo funkciju Rating()
+-funkciji Rating() dodajemo parametre destruktuirane prop value i caption
+-u funkciji Rating() kreiramo tri funkcije Full(), Half() i Empty()
+-u jsx-u dodajemo pet ternarnih uslova za varijablu value
+-dodajemo uslov za kondicionalno renderovanje caption && (...)
+-u komponentu review-list.tsx importujemo komponentu Rating iz komponente rating.tsx
+-u komponentu CardContent dodajemo komponentu Rating
+-komponenti Rating dodajemo prop value
+-u komponentu product/[slug]/page.tsx importujemo komponentu Rating iz komponente rating.tsx
+-u jsx-u, u div elemente za detalje artikla dodajemo komponentu Rating sa prop value
+-u komponentu product-card.tsx importujemo komponentu komponentu Rating iz komponente rating.tsx
+-u jsx-u, u div element sa Tailwind CSS flex klasama dodajemo komponentu Rating sa prop value
+-otvorimo rutu: http://localhost:3000/ da vidimo recenzije artikla
+-otvorimo rutu: http://localhost:3000/product/[productSlug] da vidimo recenzije artikla

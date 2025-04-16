@@ -1,9 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Calendar, User } from 'lucide-react';
 import { type Review } from '@/types';
+import { getReviews } from '@/lib/actions/review.actions';
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardHeader, 
+  CardTitle 
+} from '@/components/ui/card';
 import Link from 'next/link';
 import ReviewForm from './review-form';
+import { formatDateTime } from '@/lib/utils';
+import Rating from '@/components/shared/product/rating';
 
 const ReviewList = ({
   userId,
@@ -14,9 +25,16 @@ const ReviewList = ({
   productId: string;
   productSlug: string;
 }) => {
-  // console.log(userId, productId, productSlug);
-  
   const [reviews, setReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    const loadReviews = async () => {
+      const res = await getReviews({ productId });
+      setReviews(res.data);
+    };
+
+    loadReviews();
+  }, [productId]);
 
   const reload = async () => {
     console.log('review submitted');
@@ -28,7 +46,7 @@ const ReviewList = ({
 
       {userId ? (
         <>
-          <ReviewForm 
+          <ReviewForm
             userId={userId}
             productId={productId}
             onReviewSubmitted={reload}
@@ -48,7 +66,36 @@ const ReviewList = ({
       )}
 
       <div className='flex flex-col gap-3'>
-        {/* REVIEWS HERE */}
+        {reviews?.map((review) => (
+          <Card key={review.id}>
+            <CardHeader>
+              <div className='flex-between'>
+                <CardTitle>
+                  {review.title}
+                </CardTitle>
+              </div>
+
+              <CardDescription>
+                {review.description}
+              </CardDescription>
+            </CardHeader>
+
+            <CardContent>
+              <div className='flex space-x-4 text-sm text-muted-foreground'>
+                <Rating value={review.rating} />
+
+                <div className='flex items-center'>
+                  <span><User className='mr-1 h-3 w-3' /></span>
+                  <span>{review.user ? review.user.name : 'Deleted User'}</span>
+                </div>
+                <div className='flex items-center'>
+                  <span><Calendar className='mr-1 h-3 w-3' /></span>
+                  <span>{formatDateTime(review.createdAt).dateTime}</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );

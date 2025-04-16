@@ -8,6 +8,7 @@ import ProductPrice from '@/components/shared/product/product-price';
 import ProductImages from '@/components/shared/product/product-images';
 import AddToCart from '@/components/shared/product/add-to-cart';
 import ReviewList from './review-list';
+import Rating from '@/components/shared/product/rating';
 
 const ProductDetailsPage = async (props: {
   params: Promise<{ slug: string }>;
@@ -40,13 +41,15 @@ const ProductDetailsPage = async (props: {
                 <span>{product.brand}</span>
                 <span>{product.category}</span>
               </h3>
+
               <h2 className='h3-bold'>
                 {product.name}
               </h2>
+              
+              <Rating value={Number(product.rating)} />
+
               <p className='flex gap-1'>
-                <span>{product.rating}</span>
-                <span>of</span>
-                <span>{product.numReviews} </span>
+                <span>{product.numReviews}</span>  
                 <span>reviews</span>
               </p>
 
@@ -107,6 +110,7 @@ const ProductDetailsPage = async (props: {
 
       <section className='mt-10'>
         <h2 className='h2-bold mb-5'>Customer Reviews</h2>
+        
         <ReviewList
           productId={product.id}
           productSlug={product.slug}
