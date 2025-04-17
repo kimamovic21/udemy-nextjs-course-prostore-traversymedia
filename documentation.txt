@@ -3040,3 +3040,8 @@ React Icons package added
 -u komponentu product/[slug]/page.tsx, u span element dodajemo uslov ternarni operator product.numReviews === 1
 -otvorimo rutu: http://localhost:3000/ da vidimo recenzije artikla
 -otvorimo rutu: http://localhost:3000/product/[productSlug] da vidimo recenzije artikla
+
+
+Section 15: Stripe Payments
+
+145. Section Intro
