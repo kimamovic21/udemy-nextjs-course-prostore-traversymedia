@@ -3083,3 +3083,48 @@ Section 15: Stripe Payments
 -otvorimo rutu: http://localhost:3000/payment-method, odaberemo opciju Stripe i kliknemo dugme nastavi
 -otvorimo rutu: http://localhost:3000/place-order i kliknemo dugme naruci narudzbu
 -otvorimo rutu: http://localhost:3000/order/[orderId]
+
+148. Stripe Payment Component
+-u komponentu stripe-payment.tsx importujemo funkciju loadStripe iz paketa @stripe/stripe-js/pure
+-u funkciji StripePayment() pozivamo funkciju loadStripe() sa argumentom env varijablom
+-vrijednost funkcije loadStripe() pohranjujemo u varijablu const stripePromise
+-importujemo funkciju
+-importujemo komponente Elements, LinkAuthenticationElement i PaymentElement iz paketa @stripe/react-stripe-js
+-importujemo funkciju useTheme iz paketa next-themes
+-pozivamo funkciju useTheme()
+-vrijednost funkcije useTheme() pohranjujemo u destruktuirane varijable const { theme, systemTheme }
+-u jsx-u dodajemo komponentu Elements kao roditelj komponentu
+-komponenti Elements dodajemo prop options i stripe
+-kreiramo funkciju StripeForm()
+-u komponentu Elements dodajemo komponentu StripeForm sa samozatvarajucim tagom
+-importujemo funkcije useElements i useStripe iz paketa @stripe/react-stripe-js
+-u funkciji StripeForm() pozivamo funkcije useStripe() i useElements()
+-vrijednost funkcije useStripe() pohranjujemo u varijablu const stripe
+-vrijednost funkcije useElements() pohranjujemo u varijablu const elements
+-importujemo funkciju useState i tip FormEvent iz paketa react
+-u funkciji StripeForm() pozivamo tri funkcije useState sa tipovima
+-vrijednost prve funkcije useState() pohranjujemo u state varijablu isLoading i set funkciju setIsLoading
+-vrijednost druge funkcije useState() pohranjujemo u state varijablu errorMessage i set funkciju setErrorMessage
+-vrijednost trece funkcije useState() pohranjujemo u state varijablu email i set funkciju setEmail
+-importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo funkciju formatCurrency iz utils.ts fajla
+-u funkciji StripeForm, u jsx-u kreiramo form element kao roditelj element
+-u form elementu kreiramo div element
+-dodajemo uslov za kondicionalno renderovanje za varijablu errorMessage
+-dodajemo komponentu PaymentElement sa samozatvarajucim tagom
+-kreiramo div element za komponentu LinkAuthenticationElement
+-komponenti LinkAuthenticationElement dodajemo prop onChange
+-dodajemo komponentu Button sa prop className, size i disabled
+-u komponentu Button dodajemo uslov ternarni operator za varijablu isLoading
+-kreiramo asinhronu funkciju handleSubmit() sa parametrom e
+-parametru e dodajemo tip FormEvent
+-form elementu dodajemo dogadaj onSubmit
+-u dogadaj onSubmit proslijedujemo funkciju handleSubmit
+-importujemo varijablu SERVER_URL iz constants/index.ts fajla
+-u funkciji handleSubmit() pozivamo funkciju e.preventDefault()
+-dodajemo uslov if (stripe == null || elements == null || email == null) return
+-pozivamo funkciju setIsLoading(true)
+-pozivamo funkciju stripe.confirmPayment()
+-nakon funkcije confirmPayment() pozivamo funkcije then() i finally()
+-otvorimo rutu: http://localhost:3000/order/[orderId] i kliknemo dugme za placanje
+-otvorimo link: https://dashboard.stripe.com/test/payments da vidimo listu placanja
