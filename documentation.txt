@@ -3128,3 +3128,44 @@ Section 15: Stripe Payments
 -nakon funkcije confirmPayment() pozivamo funkcije then() i finally()
 -otvorimo rutu: http://localhost:3000/order/[orderId] i kliknemo dugme za placanje
 -otvorimo link: https://dashboard.stripe.com/test/payments da vidimo listu placanja
+
+149. Stripe Payment Success Page
+-otvorimo rutu: 
+-u folderu order/[id] kreiramo folder stripe-payment-success i komponentu page.tsx
+-u komponenti stripe-payment-success/page.tsx kreiramo i eksportujemo asinhronu funkciju SuccessPage() kao default
+-importujemo tip Metadata iz paketa next
+-kreiramo i eksportujemo varijablu const metadata sa tipom Metadata
+-importujemo funkciju Stripe iz paketa stripe
+-pozivamo funkciju new Stripe() sa argumentom env varijablom
+-vrijednost funkcije new Stripe() pohranjujemo u varijablu const stripe
+-funkciji SuccessPage() dodajemo parametar props
+-iz objekta props destruktuiramo varijable params i searchParams
+-varijablama params i searchParams dodajemo tip Promise
+-u funkciji SuccessPage() pozivamo funkciju await props.params
+-vrijednost funkcije await props.params pohranjujemo u destruktuiranu varijablu const { id }
+-pozivamo funkciju await props.searchParams
+-vrijednost funkcije await props.searchParams pohranjujemo u destruktuiranu varijablu const { payment_intent: paymentIntentId }
+-importujemo funkcije notFound i redirect iz paketa next/navigation
+-importujemo funkciju getOrderById iz order.actions.ts fajla
+-pozivamo funkciju await getOrderById(id)
+-vrijednost funkcije await getOrderById(id) pohranjujemo u varijablu const order
+-dodajemo uslov if (!order)
+-u uslovu if (!order) pozivamo funkciju notFound()
+-pozivamo funkciju await stripe.paymentIntents.retrieve(paymentIntentId)
+-vrijednost funkcije await stripe.paymentIntents pohranjujemo u varijablu const paymentIntent
+-dodajemo uslov if da provjerimo da li je varijabla paymentIntent validna
+-u uslovu if pozivamo funkciju return notFound()
+-kreiramo varijablu const isSuccess 
+-dodajemo uslov if (!isSuccess) 
+-u uslov if (!isSuccess) pozivamo funkciju return redirect(`/order/${id}`)
+-importujemo komponentu Link iz paketa next/link
+-importujemo komponentu Button iz komponente ui/button.tsx
+-u jsx-u roditelj div elementu dodajemo Tailwind CSS klase
+-u roditelj div elementu kreiramo h2 element sa Tailwind klasom h2-bold
+-kreiramo h3 element
+-dodajemo komponentu Button sa prop asChild
+-u komponentu Button dodajemo komponentu Link
+-komponenti Link dodajemo dinamicki prop href
+-otvorimo rutu: http://localhost:3000/order/[orderId]/stripe-payment-success?payment_intent=pi_(...)&payment_intent_client_secret=pi_(...)_secret_(...)&redirect_status=succeeded
+-otvorimo rutu: http://localhost:3000/order/[orderId]
+-kad narucimo narudzbu, tekst da narudzba nije placena ce ostati lokalno
