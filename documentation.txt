@@ -3045,3 +3045,15 @@ React Icons package added
 Section 15: Stripe Payments
 
 145. Section Intro
+
+146. Stripe Setup
+-otvorimo web stranicu: https://stripe.com/
+-otvorimo link: https://dashboard.stripe.com/test/dashboard
+-otvorimo link: https://dashboard.stripe.com/test/developers
+-otvorimo link: https://www.npmjs.com/package/stripe
+-otvorimo link: https://www.npmjs.com/package/@stripe/stripe-js
+-otvorimo link: https://www.npmjs.com/package/@stripe/react-stripe-js
+-u .env faju kreiramo varijable NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY i STRIPE_SECRET_KEY
+-u example.env fajl dodajemo primjer varijabli koje je potrebno kreirati
+-na web stranici Vercel dodajemo env varijable
+-u terminalu ukucamo komandu npm i stripe @stripe/stripe-js @stripe/react-stripe-js
