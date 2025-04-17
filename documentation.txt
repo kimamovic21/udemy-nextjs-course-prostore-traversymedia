@@ -3057,3 +3057,29 @@ Section 15: Stripe Payments
 -u example.env fajl dodajemo primjer varijabli koje je potrebno kreirati
 -na web stranici Vercel dodajemo env varijable
 -u terminalu ukucamo komandu npm i stripe @stripe/stripe-js @stripe/react-stripe-js
+
+147. Order Form Payment Intent
+-u komponentu order/[id]/page.tsx importujemo funkciju Stripe iz paketa stripe
+-u funkciji OrderDetailsPage() kreiramo varijablu let client_secret
+-dodajemo uslov if (order.paymentMethod === 'Stripe' && !order.isPaid)
+-u uslovu if pozivamo funkciju new Stripe()
+-vrijednost funkcije new Stripe() pohranjujemo u varijablu const stripe
+-pozivamo funkciju await stripe.paymentIntents.create()
+-vrijednost funkcije await stripe.paymentIntents.create() pohranjujemo u varijablu const paymentIntent
+-redeklarisemo varijablu client_secret sa paymentIntent.client_secret
+-u jsx-u komponenti OrderDetailsTable dodajemo prop stripeClientSecret
+-u komponenti order-details-table.tsx, funkciji OrderDetailsTable() dodajemo parametar destruktuirani prop stripeClientSecret
+-u folderu order/[id] kreiramo komponentu stripe-payment.tsx
+-u komponenti stripe-payment.tsx kreiramo i eksportujemo funkciju StripePayment() kao default
+-funkciji StripePayment() dodajemo parametre destruktuirane prop priceInCents, orderId i clientSecret
+-parametrima dodajemo tipove
+-u komponentu order-details-table.tsx importujemo komponentu StripePayment iz komponente stripe-payment.tsx
+-u jsx-u dodajemo uslov za kondicionalno renderovanje !isPaid && paymentMethod === 'Stripe' && stripeClientSecret && (...)
+-u uslov za kondicionalno renderovanje dodajemo komponentu StripePayment
+-komponenti StripePayment dodajemo prop priceInCents, orderId i clientSecret
+-otvorimo rutu: http://localhost:3000/product/[productSlug] i kliknemo dugme dodaj u korpu
+-otvorimo rutu: http://localhost:3000/cart i kliknemo dugme nastavi sa naplatom
+-otvorimo rutu: http://localhost:3000/shipping-address i kliknemo dugme nastavi
+-otvorimo rutu: http://localhost:3000/payment-method, odaberemo opciju Stripe i kliknemo dugme nastavi
+-otvorimo rutu: http://localhost:3000/place-order i kliknemo dugme naruci narudzbu
+-otvorimo rutu: http://localhost:3000/order/[orderId]

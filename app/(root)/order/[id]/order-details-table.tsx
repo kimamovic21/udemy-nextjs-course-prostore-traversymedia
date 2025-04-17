@@ -6,16 +6,16 @@ import {
   PayPalScriptProvider,
   usePayPalScriptReducer,
 } from '@paypal/react-paypal-js';
-import { 
-  formatCurrency, 
-  formatDateTime, 
-  formatId 
+import {
+  formatCurrency,
+  formatDateTime,
+  formatId
 } from '@/lib/utils';
 import {
-  approvePayPalOrder, 
+  approvePayPalOrder,
   createPayPalOrder,
   updateOrderToPaidCOD,
-  deliverOrder 
+  deliverOrder
 } from '@/lib/actions/order.actions';
 import { useToast } from '@/hooks/use-toast';
 import { type Order } from '@/types';
@@ -32,15 +32,18 @@ import {
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
+import StripePayment from './stripe-payment';
 
-const OrderDetailsTable = ({ 
-  order, 
+const OrderDetailsTable = ({
+  order,
   paypalClientId,
-  isAdmin 
-}: { 
+  isAdmin,
+  stripeClientSecret
+}: {
   order: Order;
   paypalClientId: string;
   isAdmin: boolean;
+  stripeClientSecret: string | null;
 }) => {
   const {
     id,
@@ -195,6 +198,7 @@ const OrderDetailsTable = ({
                     <TableHead>Price</TableHead>
                   </TableRow>
                 </TableHeader>
+
                 <TableBody>
                   {orderItems?.map((item) => (
                     <TableRow key={item.slug}>
@@ -212,9 +216,11 @@ const OrderDetailsTable = ({
                           <span className='px-2'>{item.name}</span>
                         </Link>
                       </TableCell>
+
                       <TableCell>
                         <span className='px-2'>{item.qty}</span>
                       </TableCell>
+
                       <TableCell className='text-right'>
                         {formatCurrency(item.price)}
                       </TableCell>
@@ -230,18 +236,22 @@ const OrderDetailsTable = ({
           <Card>
             <CardContent className='p-4 space-y-4 gap-4'>
               <h2 className='text-xl pb-4'>Order Summary</h2>
+
               <div className='flex justify-between'>
                 <div>Items</div>
                 <div>{formatCurrency(itemsPrice)}</div>
               </div>
+
               <div className='flex justify-between'>
                 <div>Tax</div>
                 <div>{formatCurrency(taxPrice)}</div>
               </div>
+
               <div className='flex justify-between'>
                 <div>Shipping</div>
                 <div>{formatCurrency(shippingPrice)}</div>
               </div>
+
               <div className='flex justify-between'>
                 <div>Total</div>
                 <div>{formatCurrency(totalPrice)}</div>
@@ -252,12 +262,21 @@ const OrderDetailsTable = ({
                 <div>
                   <PayPalScriptProvider options={{ clientId: paypalClientId }}>
                     <PrintLoadingState />
-                    <PayPalButtons 
-                      createOrder={handleCreatePayPalOrder} 
+                    <PayPalButtons
+                      createOrder={handleCreatePayPalOrder}
                       onApprove={handleApprovePayPalOrder}
                     />
                   </PayPalScriptProvider>
                 </div>
+              )}
+
+              {/* Stripe Payment */}
+              {!isPaid && paymentMethod === 'Stripe' && stripeClientSecret && (
+                <StripePayment
+                  priceInCents={Number(order.totalPrice) * 100}
+                  orderId={order.id}
+                  clientSecret={stripeClientSecret}
+                />
               )}
 
               {/* Cash On Delivery */}
