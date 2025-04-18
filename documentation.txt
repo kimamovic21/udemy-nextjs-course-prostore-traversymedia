@@ -3227,3 +3227,10 @@ Section 16: Email Purchase Receipts
 -parametru order dodajemo tip Order
 -u komponentu email/index.tsx importujemo komponentu PurchaseReceiptEmail iz komponente purchase-receipt-email.tsx
 -u funkciji send(), u polje react dodajemo komponentu PurchaseReceiptEmail sa prop order
+
+154. Purchase Email Receipt Template
+-u komponentu purchase-receipt-email.tsx importujemo komponente iz paketa @react-email/components
+-importujemo funkciju formatCurrency iz utils.ts fajla
+-kreiramo varijablu const dateFormatter
+-u jsx-u dodajemo komponentu Html kao roditelj komponentu
+-u komponentu Html dodajemo ostale komponente iz paketa @react-email/components
