@@ -3234,3 +3234,18 @@ Section 16: Email Purchase Receipts
 -kreiramo varijablu const dateFormatter
 -u jsx-u dodajemo komponentu Html kao roditelj komponentu
 -u komponentu Html dodajemo ostale komponente iz paketa @react-email/components
+
+155. Preview Email In Browser With React Email
+-u komponentu purchase-receipt-email.tsx importujemo varijablu sampleData iz sample-data.ts fajla
+-kreiramo objekt PurchaseReceiptEmail.PreviewProps
+-kreiramo tip OrderInformationProps
+-u funkciji PurchaseReceiptEmail() parametru order dodajemo tip OrderInformationProps
+-u komponenti order-details-table.tsx, parametru order dodajemo tip Omit<Order, 'paymentResult'>
+-u types.ts fajlu, u tip Order dodajemo polje paymentResult sa tipom PaymentResult
+-u package.json fajl dodajemo komandu email
+-u komponentu purchase-receipt-email.tsx importujemo instancu dotenv iz paketa dotenv
+-pozivamo funkciju dotenv.config()
+-u terminalu ukucamo komandu npm run build
+-u terminalu ukucamo komandu npm run email
+-otvorimo rutu http://localhost:3001
+-otvorimo rutu: http://localhost:3001/preview/purchase-receipt-email
