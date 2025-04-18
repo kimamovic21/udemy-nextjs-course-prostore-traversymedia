@@ -3189,3 +3189,9 @@ Section 15: Stripe Payments
 -otvorimo rutu: https://dashboard.stripe.com/test/webhooks
 -u .env fajlu kreiramo varijablu STRIPE_WEBHOOK_SECRET
 -u example.env fajlu dodajemo primjer varijable koju je potrebno kreirati
+-otvorimo web stranicu u produkciji i platimo narudzbu sa Stripe karticom
+
+
+Section 16: Email Purchase Receipts
+
+151. Section Intro
