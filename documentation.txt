@@ -3169,3 +3169,23 @@ Section 15: Stripe Payments
 -otvorimo rutu: http://localhost:3000/order/[orderId]/stripe-payment-success?payment_intent=pi_(...)&payment_intent_client_secret=pi_(...)_secret_(...)&redirect_status=succeeded
 -otvorimo rutu: http://localhost:3000/order/[orderId]
 -kad narucimo narudzbu, tekst da narudzba nije placena ce ostati lokalno
+
+150. Webhook To Mark Order As Paid
+-otvorimo link: https://docs.stripe.com/webhooks/quickstart?lang=node
+-u order.actions.ts fajlu eksportujemo asinhronu funkciju updateOrderToPaid
+-u folderu api kreiramo foldere webhooks, stripe i route.ts fajl
+-u stripe/route.ts fajl importujemo funkcije NextRequest i NextResponse iz paketa next/server
+-importujemo funkciju updateOrderToPaid iz order.actions.ts fajla
+-importujemo funkciju Stripe iz paketa stripe
+-kreiramo i eksportujemo asinhronu funkciju POST()
+-funkciji POST() dodajemo parametar req sa tipom NextRequest
+-u funkciji POST() pozivamo funkciju await Stripe.webhooks.constructEvent()
+-vrijednost funkcije await Stripe.webhooks.constructEvent() pohranjujemo u varijablu const event
+-dodajemo uslov if (event.type === 'charge.succeeded')
+-u uslovu if destruktuiramo varijablu const { object } iz varijable event.data
+-pozivamo funkciju await updateOrderToPaid()
+-pozivamo funkciju return NextResponse.json() sa porukom da je placanje uspjesno
+-nakon uslova if pozivamo funkciju return NextResponse.json() sa porukom da placanje nije uspjesno
+-otvorimo rutu: https://dashboard.stripe.com/test/webhooks
+-u .env fajlu kreiramo varijablu STRIPE_WEBHOOK_SECRET
+-u example.env fajlu dodajemo primjer varijable koju je potrebno kreirati
