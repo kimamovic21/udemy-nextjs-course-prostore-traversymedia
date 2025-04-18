@@ -3195,3 +3195,13 @@ Section 15: Stripe Payments
 Section 16: Email Purchase Receipts
 
 151. Section Intro
+
+152. Resend API Key & Setup
+-otvorimo web stranicu: https://resend.com/
+-u .env fajlu kreiramo varijable RESEND_API_KEY i SENDER_EMAIL
+-u example.env fajl dodajemo primjer varijable koju je potrebno kreirati
+-u constants/index.ts fajlu kreiramo i eksportujemo varijablu const SENDER_EMAIL
+-otvorimo link: https://www.npmjs.com/package/resend
+-otvorimo link: https://www.npmjs.com/package/react-email
+-otvorimo link: https://www.npmjs.com/package/@react-email/components
+-u terminalu ukucamo komandu: npm i resend react-email @react-email/components
