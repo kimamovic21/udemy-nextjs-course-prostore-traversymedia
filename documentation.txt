@@ -3205,3 +3205,25 @@ Section 16: Email Purchase Receipts
 -otvorimo link: https://www.npmjs.com/package/react-email
 -otvorimo link: https://www.npmjs.com/package/@react-email/components
 -u terminalu ukucamo komandu: npm i resend react-email @react-email/components
+
+153. Resend Main Function
+-kreiramo folder email
+-u folderu email kreiramo komponente index.tsx i purchase-receipt-email.tsx
+-u komponentu index.tsx importujemo funkciju Resend iz paketa resend
+-importujemo tip Order iz types/index.ts fajla
+-importujemo varijable SENDER_EMAIL i APP_NAME iz constants/index.ts fajla
+-importujemo instancu dotenv iz paketa dotenv
+-pozivamo funkciju dotenv.config()
+-pozivamo funkciju new Resend() sa argumentom env varijablom RESEND_API_KEY
+-vrijednost funkcije new Resend() pohranjujemo u varijabu const resend
+-kreiramo i eksportujemo asinhronu funkciju sendPurchaseReceipt()
+-funkciji sendPurchaseReceipt() dodajemo destruktuirani parametar order sa tipom Order
+-u funkciji sendPurchaseReceipt() pozivamo funkciju await resend.emails.send()
+-funkciji send() dodajemo argument konfiguracioni objekt
+-u konfiguracioni objekt() dodajemo polja from, to, subject i react
+-u komponenti purchase-receipt-email.tsx kreiramo i eksportujemo funkciju PurchaseReceiptEmail()
+-importujemo tip Order iz types/index.ts fajla
+-funkciji PurchaseReceiptEmail() dodajemo parametar destruktuirani prop order
+-parametru order dodajemo tip Order
+-u komponentu email/index.tsx importujemo komponentu PurchaseReceiptEmail iz komponente purchase-receipt-email.tsx
+-u funkciji send(), u polje react dodajemo komponentu PurchaseReceiptEmail sa prop order
