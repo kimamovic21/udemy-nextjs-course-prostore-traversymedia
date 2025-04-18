@@ -3,15 +3,20 @@
 import { revalidatePath } from 'next/cache';
 import { Prisma } from '@prisma/client';
 import { isRedirectError } from 'next/dist/client/components/redirect-error';
+import { 
+  type CartItem, 
+  type PaymentResult,
+  type ShippingAddress,  
+} from '@/types';
 import { convertToPlainObject, formatError } from '../utils';
 import { auth } from '@/auth';
 import { getMyCart } from './cart.actions';
 import { getUserById } from './user.actions';
 import { insertOrderSchema } from '../validators';
 import { prisma } from '@/db/prisma';
-import { type CartItem, type PaymentResult } from '@/types';
 import { paypal } from '../paypal';
 import { PAGE_SIZE } from '../constants';
+import { sendPurchaseReceipt } from '@/email';
 
 export async function createOrder() {
   try {
@@ -73,7 +78,7 @@ export async function createOrder() {
           },
         });
       };
-      
+
       // Clear cart
       await tx.cart.update({
         where: { id: cart.id },
@@ -154,9 +159,9 @@ export async function createPayPalOrder(orderId: string) {
       throw new Error('Order not found');
     };
   } catch (err) {
-    return { 
-      success: false, 
-      message: formatError(err) 
+    return {
+      success: false,
+      message: formatError(err)
     };
   };
 };
@@ -267,9 +272,16 @@ export async function updateOrderToPaid({
     },
   });
 
-  if (!updatedOrder) {
-    throw new Error('Order not found');
-  };
+  if (!updatedOrder) throw new Error('Order not found');
+
+  // Send the purchase receipt email with the updated order
+  sendPurchaseReceipt({
+    order: {
+      ...updatedOrder,
+      shippingAddress: updatedOrder.shippingAddress as ShippingAddress,
+      paymentResult: updatedOrder.paymentResult as PaymentResult,
+    },
+  });
 };
 
 // Get user's orders
@@ -365,13 +377,13 @@ export async function getAllOrders({
   const queryFilter: Prisma.OrderWhereInput =
     query && query !== 'all'
       ? {
-          user: {
-            name: {
-              contains: query,
-              mode: 'insensitive',
-            } as Prisma.StringFilter,
-          },
-        }
+        user: {
+          name: {
+            contains: query,
+            mode: 'insensitive',
+          } as Prisma.StringFilter,
+        },
+      }
       : {};
 
   const data = await prisma.order.findMany({
@@ -404,9 +416,9 @@ export async function deleteOrder(id: string) {
       message: 'Order deleted successfully',
     };
   } catch (error) {
-    return { 
+    return {
       success: false,
-      message: formatError(error) 
+      message: formatError(error)
     };
   };
 };
@@ -417,14 +429,14 @@ export async function updateOrderToPaidCOD(orderId: string) {
     await updateOrderToPaid({ orderId });
     revalidatePath(`/order/${orderId}`);
 
-    return { 
-      success: true, 
-      message: 'Order marked as paid' 
+    return {
+      success: true,
+      message: 'Order marked as paid'
     };
   } catch (err) {
-    return { 
-      success: false, 
-      message: formatError(err) 
+    return {
+      success: false,
+      message: formatError(err)
     };
   };
 };
@@ -451,14 +463,14 @@ export async function deliverOrder(orderId: string) {
 
     revalidatePath(`/order/${orderId}`);
 
-    return { 
-      success: true, 
-      message: 'Order marked as delivered' 
+    return {
+      success: true,
+      message: 'Order marked as delivered'
     };
   } catch (err) {
-    return { 
-      success: false, 
-      message: formatError(err) 
+    return {
+      success: false,
+      message: formatError(err)
     };
   };
 };

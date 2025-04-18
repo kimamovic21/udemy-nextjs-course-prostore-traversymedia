@@ -3249,3 +3249,11 @@ Section 16: Email Purchase Receipts
 -u terminalu ukucamo komandu npm run email
 -otvorimo rutu http://localhost:3001
 -otvorimo rutu: http://localhost:3001/preview/purchase-receipt-email
+-u terminalu ukucamo komandu npm run dev
+
+156. Sending Emails
+-u order.actions.ts fajl importujemo funkciju sendPurchaseReceipt iz email/index.ts fajla
+-importujemo tip ShippingAddress iz types/index.ts fajla
+-u funkciji updateOrderToPaid() pozivamo funkciju sendPurchaseReceipt()
+-otvorimo projekt u produkciji i platimo narudzbu sa pravom email adresom
+-otvorimo email da vidimo fakturu potvrdu narudzbe
