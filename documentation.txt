@@ -3257,3 +3257,8 @@ Section 16: Email Purchase Receipts
 -u funkciji updateOrderToPaid() pozivamo funkciju sendPurchaseReceipt()
 -otvorimo projekt u produkciji i platimo narudzbu sa pravom email adresom
 -otvorimo email da vidimo fakturu potvrdu narudzbe
+
+
+Section 17: Homepage Components & Wrap Up
+
+157. Section Intro
