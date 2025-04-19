@@ -3262,3 +3262,13 @@ Section 16: Email Purchase Receipts
 Section 17: Homepage Components & Wrap Up
 
 157. Section Intro
+
+158. Icon Boxes Component
+-u folderu components kreiramo komponentu icon-boxes.tsx
+-u komponenti icon-boxes.tsx kreiramo i eskportujemo funkciju IconBoxes() kao default
+-importujemo React ikonice iz paketa lucide-react
+-importujemo komponente Card i CardContent iz komponente ui/card.tsx
+-u jsx-u dodajemo komponentu Card
+-u komponentu Card dodajemo komponentu CardContent
+-u komponentu app/(root)/page.tsx importujemo komponentu IconBoxes iz komponente icon-boxes.tsx
+-u jsx-u, ispod komponente ViewAllProductsButton dodajemo komponentu IconBoxes

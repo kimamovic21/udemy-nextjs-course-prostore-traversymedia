@@ -5,6 +5,7 @@ import {
 import ProductList from '@/components/shared/product/product-list';
 import ProductCarousel from '@/components/shared/product/product-carousel';
 import ViewAllProductsButton from '@/components/view-all-products-button';
+import IconBoxes from '@/components/icon-boxes';
 
 const delay = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -27,6 +28,8 @@ const Homepage = async () => {
       />
 
       <ViewAllProductsButton />
+
+      <IconBoxes />
     </>
   );
 };
