@@ -3272,3 +3272,30 @@ Section 17: Homepage Components & Wrap Up
 -u komponentu Card dodajemo komponentu CardContent
 -u komponentu app/(root)/page.tsx importujemo komponentu IconBoxes iz komponente icon-boxes.tsx
 -u jsx-u, ispod komponente ViewAllProductsButton dodajemo komponentu IconBoxes
+-otvorimo rutu: http://localhost:3000
+
+159. Deal Countdown Component
+-u folderu components kreiramo komponentu deal-countdown.tsx
+-u komponenti deal-countdown.tsx kreiramo i eksportujemo funkciju DealCountdown() kao default
+-dodajemo direktivu 'use client'
+-u komponentu app/(root)/page.tsx importujemo komponentu DealCountdown iz komponente deal-countdown.tsx
+-ispod komponente ViewAllProductsButton dodajemo komponentu DealCountdown
+-u komponenti deal-countdown.tsx, u jsx-u kreiramo roditelj section element sa Tailwind CSS klasama
+-kreiramo funkciju StatBox
+-importujemo funkcije useState i useEffect iz paketa react
+-importujemo React ikonice Gift i ShoppingCart iz paketa lucide-react
+-importujemo komponentu Button iz komponente ui/button.tsx
+-importujemo komponente Link i Image iz paketa next
+-u .env fajlu kreiramo varijablu NEXT_PUBLIC_PRODUCT_TARGET_DATE
+-u example.env fajlu dodajemo primjer varijable koju je potrebno kreirati
+-u komponenti deal-countdown.tsx kreiramo varijablu const PRODUCT_TARGET_DATE
+-kreiramo funkciju calculateTimeRemaining() sa parametrom targetDate
+-parametru targetDate dodajemo tip Date
+-u funkciji DealCountdown() kreiramo state varijablu time i set funkciju setTime
+-pozivamo funkciju useEffect()
+-dodajemo uslov if (!time)
+-dodajemo uslov if da provjerimo da li je vrijednost dana, sati, minuta i sekundi jednaka nuli
+-u jsx-u kreiramo HTML elemente sa Tailwind CSS klasama
+-kreiramo funkciju StatBox()
+-funkciji StatBox() dodajemo destruktuirane parametre label i value
+-otvorimo rutu: http://localhost:3000
