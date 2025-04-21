@@ -1,7 +1,8 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useState, useActionState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { signInDefaultValues } from '@/lib/constants';
@@ -18,14 +19,18 @@ const CredentialsSignInForm = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/';
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => setShowPassword(prev => !prev);
+
   return (
     <form action={action}>
-      <input 
-        type='hidden' 
-        name='callbackUrl' 
-        value={callbackUrl} 
+      <input
+        type='hidden'
+        name='callbackUrl'
+        value={callbackUrl}
       />
-      
+
       <div className='space-y-6'>
         <div>
           <Label htmlFor='email'>Email</Label>
@@ -41,14 +46,23 @@ const CredentialsSignInForm = () => {
 
         <div>
           <Label htmlFor='password'>Password</Label>
-          <Input
-            id='password'
-            name='password'
-            required
-            type='password'
-            defaultValue={signInDefaultValues.password}
-            autoComplete='current-password'
-          />
+          <div className='relative'>
+            <Input
+              id='password'
+              name='password'
+              required
+              type={showPassword ? 'text' : 'password'}
+              defaultValue={signInDefaultValues.password}
+              autoComplete='current-password'
+            />
+            <button
+              type='button'
+              onClick={togglePasswordVisibility}
+              className='absolute right-3 top-1/2 -translate-y-1/2 text-xl text-muted-foreground hover:underline'
+            >
+              {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
+            </button>
+          </div>
         </div>
 
         <div>
@@ -62,12 +76,28 @@ const CredentialsSignInForm = () => {
         )}
 
         <div className='text-sm text-center text-muted-foreground'>
-          <span className='mr-1'>
-            Don&apos;t have an account?
-          </span> 
-          <Link href='/sign-up' target='_self' className='link'>
-            Sign Up
-          </Link>
+          <p>
+            <span className='mr-1'>
+              Don&apos;t have an account?
+            </span>
+            <Link
+              href='/sign-up'
+              target='_self'
+              className='text-blue-500 hover:underline'
+            >
+              Sign up here
+            </Link>
+          </p>
+          <p>
+            <span className='mr-1'>Not interested ?</span>
+            <Link
+              href='/'
+              target='_self'
+              className='text-blue-500 hover:underline'
+            >
+              Go back to home page
+            </Link>
+          </p>
         </div>
       </div>
     </form>

@@ -3310,3 +3310,17 @@ Section 18: Notes & Fixes
 162. Vercel Hobby Tier Fix
 
 163. Cart Persist On Sign Out Fix
+
+Password visibility toggle
+-u komponente sign-up-form.tsx i credentials-signin-form.tsx importujemo funkciju useState iz paketa react
+-importujemo React ikonice IoMdEye, IoMdEyeOff iz paketa react-icons/io
+-kreiramo state varijable const showPassword i set funkcije setShowPassword()
+-kreiramofunkcije togglePasswordVisibility()
+-u jsx-u kreiramo button elemente sa atributima type i className
+-button elementima dodajemo dogadaj onClick
+-u dogadaj onClick proslijedujemo funkciju togglePasswordVisibility
+-u komponenti sign-up-form.tsx kreiramo state varijablu showConfirmPassword i set funkciju setShowConfirmPassword
+-kreiramo funkciju toggleConfirmPasswordVisibility
+-kreiramo jos jedan button element za potvrdu sifre
+-button elementu dodajemo atribute type i className
+-button elementu dodajemo dogadaj onClick u koji proslijedujemo funkciju toggleConfirmPasswordVisibility
