@@ -3303,3 +3303,8 @@ Section 17: Homepage Components & Wrap Up
 160. Wrap Up
 
 161. Vercel Hobby Plan Error
+
+
+Section 18: Notes & Fixes
+
+162. Vercel Hobby Tier Fix
