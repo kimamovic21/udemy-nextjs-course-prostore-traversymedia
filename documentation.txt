@@ -3315,7 +3315,7 @@ Password visibility toggle
 -u komponente sign-up-form.tsx i credentials-signin-form.tsx importujemo funkciju useState iz paketa react
 -importujemo React ikonice IoMdEye, IoMdEyeOff iz paketa react-icons/io
 -kreiramo state varijable const showPassword i set funkcije setShowPassword()
--kreiramofunkcije togglePasswordVisibility()
+-kreiramo funkcije togglePasswordVisibility()
 -u jsx-u kreiramo button elemente sa atributima type i className
 -button elementima dodajemo dogadaj onClick
 -u dogadaj onClick proslijedujemo funkciju togglePasswordVisibility
@@ -3324,3 +3324,16 @@ Password visibility toggle
 -kreiramo jos jedan button element za potvrdu sifre
 -button elementu dodajemo atribute type i className
 -button elementu dodajemo dogadaj onClick u koji proslijedujemo funkciju toggleConfirmPasswordVisibility
+
+Change Password
+-u validators.ts fajlu kreiramo i eksportujemo varijablu changePasswordSchema
+-u folderu actions kreiramo password.actions.ts fajl
+-u password.actions.ts fajlu kreiramo i eksportujemo asinhronu funkciju changePassword()
+-importujemo varijablu changePasswordSchema iz validators.ts fajla
+-u folderu user kreiramo folder settings
+-u folderu settings komponente page.tsx i new-password-form.tsx
+-u komponenti settings/page.tsx kreiramo i eksportujemo asinhronu funkciju SettingsPage()
+-u komponenti new-password-form.tsx kreiramo i eksportujemo funkciju NewPasswordForm()
+-importujemo ShadCN komponente iz foldera ui
+-u funkciju NewPasswordForm() dodajemo komponente ShadCN
+-u komponentu settings/page.tsx importujemo komponentu NewPasswordForm iz komponente new-password-form.tsx

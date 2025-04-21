@@ -244,3 +244,19 @@ export const insertReviewSchema = z.object({
     .min(1, 'Rating must be at least 1')
     .max(5, 'Rating must be at most 5'),
 });
+
+// Schema to change a password
+export const changePasswordSchema = z.object({
+  currentPassword: z.string(),
+  newPassword: z
+    .string()
+    .min(6, 'Password must be at least 6 characters long')
+    .max(30, 'Password must be at most 30 characters long'),
+  confirmNewPassword: z
+    .string()
+    .min(6, 'Password must be at least 6 characters long')
+    .max(30, 'Password must be at most 30 characters long'),
+}).refine(data => data.newPassword === data.confirmNewPassword, {
+  message: 'Passwords do not match',
+  path: ['confirmNewPassword'],
+});
