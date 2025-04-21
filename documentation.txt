@@ -3301,3 +3301,5 @@ Section 17: Homepage Components & Wrap Up
 -otvorimo rutu: http://localhost:3000
 
 160. Wrap Up
+
+161. Vercel Hobby Plan Error
