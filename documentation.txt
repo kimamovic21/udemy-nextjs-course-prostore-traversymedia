@@ -3299,3 +3299,5 @@ Section 17: Homepage Components & Wrap Up
 -kreiramo funkciju StatBox()
 -funkciji StatBox() dodajemo destruktuirane parametre label i value
 -otvorimo rutu: http://localhost:3000
+
+160. Wrap Up
