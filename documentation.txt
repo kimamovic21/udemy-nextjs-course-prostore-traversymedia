@@ -3308,3 +3308,5 @@ Section 17: Homepage Components & Wrap Up
 Section 18: Notes & Fixes
 
 162. Vercel Hobby Tier Fix
+
+163. Cart Persist On Sign Out Fix
