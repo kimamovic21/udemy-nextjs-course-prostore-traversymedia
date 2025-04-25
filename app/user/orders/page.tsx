@@ -1,6 +1,7 @@
 import { type Metadata } from 'next';
 import { formatCurrency, formatDateTime, formatId } from '@/lib/utils';
 import { getMyOrders } from '@/lib/actions/order.actions';
+import { Order } from '@/types';
 import {
   Table,
   TableBody,
@@ -44,7 +45,7 @@ const OrdersPage = async (props: {
             </TableHeader>
 
             <TableBody>
-              {orders?.data?.map((order) => (
+              {orders?.data?.map((order: Order) => (
                 <TableRow key={order.id}>
                   <TableCell>
                     {formatId(order.id)}
