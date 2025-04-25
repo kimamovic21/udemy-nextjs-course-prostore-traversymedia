@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Calendar, User } from 'lucide-react';
 import { type Review } from '@/types';
 import { getReviews } from '@/lib/actions/review.actions';
+import { getMyOrders } from '@/lib/actions/order.actions';
 import { formatDateTime } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -27,6 +28,7 @@ const ReviewList = ({
   productSlug: string;
 }) => {
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [hasPurchased, setHasPurchased] = useState(false);
 
   useEffect(() => {
     const loadReviews = async () => {
@@ -36,6 +38,24 @@ const ReviewList = ({
 
     loadReviews();
   }, [productId]);
+
+  useEffect(() => {
+    const checkPurchaseHistory = async () => {
+      try {
+        const { hasPurchasedProduct } = await getMyOrders({
+          page: 1,
+          productSlug,
+        });
+        setHasPurchased(hasPurchasedProduct);
+      } catch (err) {
+        console.error('Error checking purchase history:', err);
+      };
+    };
+
+    if (userId) {
+      checkPurchaseHistory();
+    }
+  }, [userId, productSlug]);
 
   const { toast } = useToast();
 
@@ -56,13 +76,17 @@ const ReviewList = ({
       {reviews.length === 0 && <div>No reviews yet.</div>}
 
       {userId ? (
-        <>
+        hasPurchased ? (
           <ReviewForm
             userId={userId}
             productId={productId}
             onReviewSubmitted={reload}
           />
-        </>
+        ) : (
+          <div className='text-gray-500'>
+            Only buyers who bought this product can leave a rating. Purchase the product to share your thoughts!
+          </div>
+        )
       ) : (
         <div>
           <span>Please</span>

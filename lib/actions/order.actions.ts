@@ -284,13 +284,15 @@ export async function updateOrderToPaid({
   });
 };
 
-// Get user's orders
+// Get user's orders and check if they have purchased a specific product
 export async function getMyOrders({
   limit = PAGE_SIZE,
   page,
+  productSlug, 
 }: {
   limit?: number;
   page: number;
+  productSlug?: string; 
 }) {
   const session = await auth();
   if (!session) throw new Error('User is not authorized');
@@ -300,15 +302,29 @@ export async function getMyOrders({
     orderBy: { createdAt: 'desc' },
     take: limit,
     skip: (page - 1) * limit,
+    include: {
+      orderItems: {
+        include: {
+          product: true, 
+        },
+      },
+    },
   });
 
   const dataCount = await prisma.order.count({
     where: { userId: session?.user?.id },
   });
 
+  const hasPurchasedProduct = data.some(order =>
+    order.orderItems.some(orderItem => orderItem.product.slug === productSlug)
+  );
+
+  const plainData = JSON.parse(JSON.stringify(data));
+
   return {
-    data,
+    data: plainData,
     totalPages: Math.ceil(dataCount / limit),
+    hasPurchasedProduct, 
   };
 };
 
