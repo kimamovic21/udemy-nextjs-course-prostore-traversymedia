@@ -1,7 +1,12 @@
 # Udemy Next.js Course Prostore Project - Traversy Media
 
-## Next.js E-commerce - Build a Shopping Platform From Scratch
+## Next.js 15 ECommerce - Build a Shopping Platform From Scratch
 
+### [Udemy Course Link](https://www.udemy.com/course/nextjs-ecommerce-course)
+
+### [Github Original Code](https://github.com/bradtraversy/prostore)
+
+### [App Demo Version](https://udemy-nextjs-course-prostore-traversymedia.vercel.app)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
